@@ -17,9 +17,7 @@ const navLinks = [
 
     <!-- Logo -->
     <a href={base} class="logo">
-      <span class="logo-mark">
-        <span class="logo-t">T</span><span class="logo-l">L</span>
-      </span>
+      <img src={`${base}logo-monogram.svg`} alt="Tushar Lab monogram" class="logo-mark-img" width="40" height="40" />
       <span class="logo-wordmark">
         <span class="logo-name">{site.labName}</span>
         <span class="logo-sub">{site.university}</span>
@@ -75,23 +73,9 @@ const navLinks = [
   text-decoration: none;
 }
 
-.logo-mark {
-  display: flex;
-  align-items: baseline;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.6rem;
-  line-height: 1;
-  position: relative;
-}
-.logo-t {
-  color: var(--cardinal);
-  position: relative;
-  z-index: 2;
-}
-.logo-l {
-  color: var(--white);
-  margin-left: -0.1em;
+.logo-mark-img {
+  flex-shrink: 0;
+  border-radius: 4px;
 }
 
 .logo-wordmark {

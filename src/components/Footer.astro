@@ -8,9 +8,7 @@ const year = new Date().getFullYear();
   <div class="container footer-inner">
 
     <div class="footer-brand">
-      <div class="footer-logo">
-        <span class="fl-t">T</span><span class="fl-l">L</span>
-      </div>
+      <img src={`${base}logo-monogram.svg`} alt="Tushar Lab monogram" class="footer-logo-img" width="48" height="48" />
       <div>
         <div class="footer-lab">{site.labName}</div>
         <div class="footer-uni">{site.university}</div>
@@ -78,15 +76,10 @@ const year = new Date().getFullYear();
   gap: 0.75rem;
 }
 
-.footer-logo {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.8rem;
-  line-height: 1;
+.footer-logo-img {
   flex-shrink: 0;
+  border-radius: 4px;
 }
-.fl-t { color: var(--cardinal); }
-.fl-l { color: var(--white); }
 
 .footer-lab {
   font-family: var(--font-display);
