@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import resources from '../content/resources.json';
+
+const typeOrder = ['Software', 'Dataset', 'Model'];
+const grouped = typeOrder.map(t => ({
+  type: t,
+  items: resources.filter(r => r.type === t),
+})).filter(g => g.items.length > 0);
+---
+
+<BaseLayout title="Resources">
+  <section class="page-hero">
+    <div class="container">
+      <p class="section-label" style="color:rgba(255,255,255,0.5)">Tushar Lab</p>
+      <h1>Resources</h1>
+      <p>Open-source tools, datasets, and model weights from the lab — freely available to the research community.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {grouped.map(g => (
+        <div class="resource-group">
+          <h3 class="rg-title">{g.type === 'Software' ? '🛠 ' : g.type === 'Dataset' ? '🗄 ' : '🤖 '}{g.type}</h3>
+          <div class="grid-2">
+            {g.items.map(r => (
+              <div class="resource-card card">
+                <div class="rc-top">
+                  <span class={`tag tag--${r.type === 'Software' ? 'red' : r.type === 'Dataset' ? 'navy' : ''}`}>{r.type}</span>
+                </div>
+                <h4 class="rc-title">{r.title}</h4>
+                <p class="rc-desc">{r.description}</p>
+                <div class="rc-tags">
+                  {r.tags.map(t => <span class="tag">{t}</span>)}
+                </div>
+                <div class="rc-links">
+                  {r.github && <a href={r.github} class="btn btn-navy" style="font-size:0.8rem;padding:0.5rem 1rem" target="_blank">GitHub ↗</a>}
+                  {r.paper && <a href={r.paper} class="btn btn-primary" style="font-size:0.8rem;padding:0.5rem 1rem" target="_blank">Paper ↗</a>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.resource-group {
+  margin-bottom: var(--space-2xl);
+}
+.rg-title {
+  font-size: 1.1rem;
+  color: var(--navy);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-xs);
+  border-bottom: 2px solid var(--cardinal);
+  display: inline-block;
+}
+.resource-card { display: flex; flex-direction: column; gap: 0.65rem; }
+.rc-top { display: flex; justify-content: flex-end; }
+.rc-title { color: var(--navy); font-size: 1.05rem; }
+.rc-desc { font-size: 0.9rem; line-height: 1.6; }
+.rc-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.rc-links { display: flex; gap: 0.5rem; margin-top: 0.25rem; }
+</style>

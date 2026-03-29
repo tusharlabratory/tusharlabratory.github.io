@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../content/site.json';
+---
+
+<BaseLayout title="Contact">
+  <section class="page-hero">
+    <div class="container">
+      <p class="section-label" style="color:rgba(255,255,255,0.5)">Tushar Lab</p>
+      <h1>Contact</h1>
+      <p>We welcome inquiries from prospective students, collaborators, and the broader research community.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-layout">
+
+      <div class="contact-info">
+
+        <div class="contact-block">
+          <p class="cb-label">Email</p>
+          <a href={`mailto:${site.email}`} class="cb-value cb-link">{site.email}</a>
+        </div>
+
+        <div class="contact-block">
+          <p class="cb-label">Address</p>
+          <p class="cb-value">{site.address}</p>
+        </div>
+
+        <div class="contact-block">
+          <p class="cb-label">GitHub</p>
+          <a href={site.github} class="cb-value cb-link" target="_blank" rel="noopener">{site.github}</a>
+        </div>
+
+        <div class="contact-block contact-block--full">
+          <p class="cb-label">For Prospective Students</p>
+          <p class="cb-value">
+            If you are interested in joining the lab as a PhD student or postdoc, please email with the subject line
+            <strong>[Application — your intended role]</strong>. Attach your CV and a brief (1-page) statement of research interests.
+          </p>
+          <a href={`${import.meta.env.BASE_URL}opportunities/`} class="btn btn-primary" style="margin-top:1rem;align-self:flex-start">
+            View Open Positions →
+          </a>
+        </div>
+
+        <div class="contact-block contact-block--full">
+          <p class="cb-label">For Collaborators</p>
+          <p class="cb-value">
+            We are open to research collaborations with clinical, industrial, and academic partners. Please describe your project or area of interest in your initial email.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="contact-map">
+        <div class="map-card card">
+          <div class="map-placeholder">
+            <span>📍</span>
+            <p>University of Arizona</p>
+            <p class="map-sub">Tucson, AZ 85721</p>
+          </div>
+        </div>
+        <div class="pi-contact-card card">
+          <div class="pcc-avatar">
+            <div class="pcc-initials">FIT</div>
+          </div>
+          <div>
+            <p class="pcc-name">{site.piName}</p>
+            <p class="pcc-title">{site.piTitle}</p>
+            <p class="pcc-dept">{site.department}</p>
+            <a href={`mailto:${site.email}`} class="pcc-email">{site.email}</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: var(--space-md);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+}
+.contact-block--full { grid-column: 1 / -1; }
+
+.cb-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cardinal);
+}
+.cb-value { font-size: 0.95rem; color: var(--navy); font-weight: 400; line-height: 1.6; }
+.cb-link { color: var(--cardinal); font-weight: 500; transition: opacity 0.15s; }
+.cb-link:hover { opacity: 0.7; }
+
+/* Map / sidebar */
+.contact-map {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  position: sticky;
+  top: calc(var(--nav-h) + 1.5rem);
+}
+
+.map-card { padding: 0; overflow: hidden; }
+.map-placeholder {
+  height: 200px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 2rem;
+}
+.map-placeholder p { color: var(--white); font-family: var(--font-display); font-size: 1rem; margin:0; }
+.map-sub { font-size: 0.8rem !important; color: rgba(255,255,255,0.5) !important; }
+
+.pi-contact-card {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+}
+.pcc-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid var(--cardinal);
+}
+.pcc-initials {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+}
+.pcc-name { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--navy); }
+.pcc-title { font-size: 0.8rem; color: var(--gray-600); }
+.pcc-dept { font-size: 0.75rem; color: var(--gray-400); }
+.pcc-email { font-size: 0.8rem; color: var(--cardinal); font-weight: 500; display: block; margin-top: 0.25rem; }
+
+@media (max-width: 860px) {
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-map { position: static; }
+}
+@media (max-width: 560px) {
+  .contact-info { grid-template-columns: 1fr; }
+  .contact-block--full { grid-column: 1; }
+}
+</style>

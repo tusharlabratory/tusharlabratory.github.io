@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import research from '../content/research.json';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Research">
+  <section class="page-hero">
+    <div class="container">
+      <p class="section-label" style="color:rgba(255,255,255,0.5)">Tushar Lab</p>
+      <h1>Research</h1>
+      <p>We develop physics-based simulation and AI frameworks to transform how medical imaging systems are evaluated and optimized.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {research.map((r, i) => (
+        <div class={`research-detail ${i % 2 === 1 ? 'research-detail--alt' : ''}`}>
+          <div class="rd-header">
+            <span class="rd-icon">{r.icon}</span>
+            <div>
+              <p class="section-label">{`0${i+1}`}</p>
+              <h2>{r.title}</h2>
+            </div>
+          </div>
+          <div class="rd-body">
+            <p>{r.description}</p>
+            <div class="rd-projects">
+              <h4>Active Projects</h4>
+              <ul class="project-list">
+                {r.projects.map(p => (
+                  <li class="project-list-item">
+                    <span class="pli-dot"></span>
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--navy">
+    <div class="container collab-section">
+      <div>
+        <p class="section-label" style="color:rgba(255,255,255,0.5)">Collaboration</p>
+        <h2>Interested in collaborating?</h2>
+        <p>We welcome collaborations with clinical, industry, and academic partners. Reach out to discuss potential projects.</p>
+      </div>
+      <a href={`${base}contact/`} class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.research-detail {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--space-xl);
+  padding: var(--space-xl) 0;
+  border-bottom: 1px solid var(--gray-200);
+  align-items: start;
+}
+.research-detail:last-child { border-bottom: none; }
+
+.rd-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  position: sticky;
+  top: calc(var(--nav-h) + 1.5rem);
+}
+.rd-icon {
+  font-size: 2.5rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-100);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-200);
+}
+
+.rd-body p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: var(--space-lg);
+}
+
+.rd-projects h4 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cardinal);
+  margin-bottom: var(--space-sm);
+}
+
+.project-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.project-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--navy);
+}
+.pli-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cardinal);
+  flex-shrink: 0;
+}
+
+.collab-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+@media (max-width: 800px) {
+  .research-detail { grid-template-columns: 1fr; }
+  .rd-header { position: static; }
+  .collab-section { flex-direction: column; align-items: flex-start; }
+}
+</style>

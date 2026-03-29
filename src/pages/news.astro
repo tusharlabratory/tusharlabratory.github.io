@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import news from '../content/news.json';
+const sorted = [...news].sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<BaseLayout title="News">
+  <section class="page-hero">
+    <div class="container">
+      <p class="section-label" style="color:rgba(255,255,255,0.5)">Tushar Lab</p>
+      <h1>News</h1>
+      <p>Announcements, publications, presentations, and lab milestones.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container news-layout">
+      <div class="news-feed">
+        {sorted.map(n => (
+          <article class="news-full-item">
+            <div class="nfi-aside">
+              <time datetime={n.date} class="nfi-date">
+                <span class="nfi-day">{new Date(n.date).getDate()}</span>
+                <span class="nfi-month">{new Date(n.date).toLocaleString('en-US',{month:'short'})}</span>
+                <span class="nfi-year">{new Date(n.date).getFullYear()}</span>
+              </time>
+            </div>
+            <div class="nfi-body">
+              <span class="tag tag--red nfi-cat">{n.category}</span>
+              <h3 class="nfi-title">{n.title}</h3>
+              <p class="nfi-summary">{n.summary}</p>
+              {n.content && <p class="nfi-content">{n.content}</p>}
+              {n.link && <a href={n.link} class="nfi-link" target="_blank">Read more ↗</a>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.news-layout { max-width: 780px; }
+
+.news-feed {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-full-item {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+.news-full-item:last-child { border-bottom: none; }
+
+.nfi-aside { display: flex; justify-content: flex-end; }
+.nfi-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 4px;
+  gap: 1px;
+}
+.nfi-day {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cardinal);
+  line-height: 1;
+}
+.nfi-month {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray-400);
+}
+.nfi-year {
+  font-size: 0.68rem;
+  color: var(--gray-400);
+}
+
+.nfi-body { display: flex; flex-direction: column; gap: 0.5rem; }
+.nfi-cat { align-self: flex-start; }
+.nfi-title { font-size: 1.15rem; }
+.nfi-summary { font-size: 0.95rem; line-height: 1.7; }
+.nfi-content { font-size: 0.9rem; line-height: 1.7; color: var(--gray-400); }
+.nfi-link { font-size: 0.875rem; font-weight: 500; color: var(--cardinal); }
+
+@media (max-width: 500px) {
+  .news-full-item { grid-template-columns: 1fr; }
+  .nfi-aside { justify-content: flex-start; }
+  .nfi-date { flex-direction: row; gap: 0.5rem; align-items: baseline; }
+  .nfi-day { font-size: 1.4rem; }
+}
+</style>

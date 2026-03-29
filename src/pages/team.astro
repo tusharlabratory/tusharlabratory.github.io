@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import team from '../content/team.json';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Team">
+  <section class="page-hero">
+    <div class="container">
+      <p class="section-label" style="color:rgba(255,255,255,0.5)">Tushar Lab</p>
+      <h1>Our Team</h1>
+      <p>A growing group of researchers committed to rigorous, impactful science at the intersection of physics and AI.</p>
+    </div>
+  </section>
+
+  <!-- PI -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Principal Investigator</p>
+      {team.filter(m => m.role === 'Principal Investigator').map(pi => (
+        <div class="pi-profile">
+          <div class="pi-avatar">
+            {pi.photo
+              ? <img src={pi.photo} alt={pi.name} />
+              : <div class="pi-initials">{pi.name.split(' ').map((n:string) => n[0]).join('')}</div>
+            }
+          </div>
+          <div class="pi-info">
+            <h2>{pi.name}</h2>
+            <p class="pi-role">{pi.title}</p>
+            <p class="pi-affil">{pi.affiliation}</p>
+            <div class="divider"></div>
+            <p class="pi-bio">{pi.bio}</p>
+            <div class="pi-interests">
+              {pi.interests.map((i: string) => <span class="tag tag--navy">{i}</span>)}
+            </div>
+            <div class="pi-links">
+              {pi.email && <a href={`mailto:${pi.email}`} class="pi-link">✉ {pi.email}</a>}
+              {pi.github && <a href={pi.github} class="pi-link" target="_blank">⌥ GitHub ↗</a>}
+              {pi.scholar && <a href={pi.scholar} class="pi-link" target="_blank">Scholar ↗</a>}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Students / Members (non-PI) -->
+  {team.filter(m => m.role !== 'Principal Investigator').length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <p class="section-label">Lab Members</p>
+        <div class="grid-3 members-grid">
+          {team.filter(m => m.role !== 'Principal Investigator').map(m => (
+            <div class="member-card card">
+              <div class="member-avatar">
+                {m.photo
+                  ? <img src={m.photo} alt={m.name} />
+                  : <div class="member-initials">{m.name.split(' ').map((n:string) => n[0]).join('')}</div>
+                }
+              </div>
+              <h4>{m.name}</h4>
+              <p class="member-role">{m.role}</p>
+              {m.email && <a href={`mailto:${m.email}`} class="member-email">{m.email}</a>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Open positions teaser -->
+  <section class="section">
+    <div class="container join-teaser">
+      <div class="jt-text">
+        <p class="section-label">Join Us</p>
+        <h2>We're building the team</h2>
+        <p>The lab is actively recruiting PhD students, postdocs, and research assistants. We welcome candidates with backgrounds in medical imaging, deep learning, or computational physics.</p>
+      </div>
+      <a href={`${base}opportunities/`} class="btn btn-primary">View Open Positions</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+/* PI profile */
+.pi-profile {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+  margin-top: var(--space-lg);
+}
+
+.pi-avatar {
+  aspect-ratio: 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 3px solid var(--cardinal);
+  background: var(--navy);
+}
+.pi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.pi-initials {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: -2px;
+}
+
+.pi-info h2 { margin-bottom: 0.25rem; }
+.pi-role { font-weight: 500; color: var(--navy); font-size: 1rem; }
+.pi-affil { font-size: 0.875rem; color: var(--gray-400); margin-top: 2px; }
+.pi-bio { font-size: 1rem; line-height: 1.8; margin-bottom: var(--space-md); }
+.pi-interests { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: var(--space-md); }
+.pi-links { display: flex; flex-wrap: wrap; gap: var(--space-md); }
+.pi-link {
+  font-size: 0.875rem;
+  color: var(--cardinal);
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.pi-link:hover { opacity: 0.7; }
+
+/* Members */
+.member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+.member-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--gray-200);
+  background: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.member-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.member-initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+}
+.member-role { font-size: 0.85rem; color: var(--gray-400); }
+.member-email { font-size: 0.8rem; color: var(--cardinal); }
+
+/* Join teaser */
+.join-teaser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  background: var(--sand);
+}
+.jt-text p:not(.section-label) { max-width: 480px; margin-top: 0.5rem; }
+
+@media (max-width: 700px) {
+  .pi-profile { grid-template-columns: 1fr; }
+  .pi-avatar { max-width: 180px; }
+  .join-teaser { flex-direction: column; align-items: flex-start; }
+}
+</style>

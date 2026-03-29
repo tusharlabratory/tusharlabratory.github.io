@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Page Not Found">
+  <section class="not-found">
+    <div class="container nf-inner">
+      <div class="nf-code">404</div>
+      <h1>Page not found</h1>
+      <p>The page you're looking for doesn't exist or has been moved.</p>
+      <a href={base} class="btn btn-primary">Back to Home</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.not-found {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  background: var(--sand);
+}
+.nf-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-md);
+}
+.nf-code {
+  font-family: var(--font-display);
+  font-size: 8rem;
+  font-weight: 700;
+  color: var(--gray-200);
+  line-height: 1;
+}
+</style>

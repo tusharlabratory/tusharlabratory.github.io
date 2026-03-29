@@ -1,0 +1,38 @@
+[
+  {
+    "id": "vlst-toolkit",
+    "title": "VLST Toolkit",
+    "description": "Open-source framework for running virtual lung screening trials using digital human phantoms and CT simulation.",
+    "type": "Software",
+    "tags": ["Python", "CT Simulation", "Virtual Trials"],
+    "github": "https://github.com/fitushar",
+    "paper": ""
+  },
+  {
+    "id": "synlungs-dataset",
+    "title": "SYN-LUNGS Dataset",
+    "description": "Synthetically generated lung CT volumes with annotated nodules, spanning diverse patient anatomies and acquisition protocols.",
+    "type": "Dataset",
+    "tags": ["CT", "Lung Nodules", "Synthetic Data"],
+    "github": "",
+    "paper": ""
+  },
+  {
+    "id": "cpu-index-tool",
+    "title": "CPU-Index Evaluation Tool",
+    "description": "Python package for computing the Comprehensive CT Protocol Utility Index — a task-based image quality metric.",
+    "type": "Software",
+    "tags": ["Python", "Image Quality", "CT Protocol"],
+    "github": "https://github.com/fitushar",
+    "paper": ""
+  },
+  {
+    "id": "dukeseg-weights",
+    "title": "DukeSeg Pre-trained Weights",
+    "description": "Pre-trained model weights for weakly-supervised organ segmentation on chest and abdomen CT.",
+    "type": "Model",
+    "tags": ["PyTorch", "Segmentation", "Transfer Learning"],
+    "github": "https://github.com/fitushar",
+    "paper": ""
+  }
+]

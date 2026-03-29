@@ -1,0 +1,57 @@
+[
+  {
+    "id": "vlst-2024",
+    "title": "Virtual Lung Screening Trial: A Framework for In Silico Evaluation of CT Lung Cancer Screening",
+    "authors": ["Fakrul Islam Tushar", "et al."],
+    "venue": "Medical Physics",
+    "year": 2024,
+    "type": "journal",
+    "tags": ["Virtual Imaging Trials", "CT", "Lung Cancer Screening"],
+    "doi": "",
+    "pdf": ""
+  },
+  {
+    "id": "nodmaisi-2024",
+    "title": "NodMAISI: Multi-Scale AI for Pulmonary Nodule Detection in Low-Dose CT",
+    "authors": ["Fakrul Islam Tushar", "et al."],
+    "venue": "SPIE Medical Imaging",
+    "year": 2024,
+    "type": "conference",
+    "tags": ["Nodule Detection", "Deep Learning", "Low-Dose CT"],
+    "doi": "",
+    "pdf": ""
+  },
+  {
+    "id": "dukeseg-2023",
+    "title": "DukeSeg: Weakly-Supervised Organ Segmentation for CT Phantoms",
+    "authors": ["Fakrul Islam Tushar", "et al."],
+    "venue": "IEEE Transactions on Medical Imaging",
+    "year": 2023,
+    "type": "journal",
+    "tags": ["Segmentation", "Weakly-Supervised", "Digital Phantoms"],
+    "doi": "",
+    "pdf": ""
+  },
+  {
+    "id": "cpu-index-2023",
+    "title": "CPU-Index: A Comprehensive CT Protocol Utility Index for Task-Based Image Quality",
+    "authors": ["Fakrul Islam Tushar", "et al."],
+    "venue": "Medical Physics",
+    "year": 2023,
+    "type": "journal",
+    "tags": ["Image Quality", "CT Protocol", "Task-Based Metrics"],
+    "doi": "",
+    "pdf": ""
+  },
+  {
+    "id": "synlungs-2022",
+    "title": "SYN-LUNGS: Synthesis of Realistic Lung CT Volumes with Controllable Pathology",
+    "authors": ["Fakrul Islam Tushar", "et al."],
+    "venue": "NeurIPS Workshop on Medical Imaging",
+    "year": 2022,
+    "type": "workshop",
+    "tags": ["Generative AI", "Synthetic Data", "Lung CT"],
+    "doi": "",
+    "pdf": ""
+  }
+]

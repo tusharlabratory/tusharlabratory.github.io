@@ -1,0 +1,29 @@
+[
+  {
+    "id": "lab-launch-2025",
+    "title": "Tushar Lab Officially Launches at the University of Arizona",
+    "date": "2025-01-15",
+    "category": "Announcement",
+    "summary": "We are excited to announce the official launch of the Tushar Lab at the University of Arizona's Department of Medical Imaging. The lab will focus on virtual imaging trials and deep learning for radiology AI.",
+    "content": "The Tushar Lab is now open and accepting applications for PhD students and postdoctoral researchers. We are excited to build a dynamic team passionate about transforming medical imaging through physics-based simulation and AI.",
+    "link": ""
+  },
+  {
+    "id": "vlst-paper-2024",
+    "title": "VLST Paper Accepted in Medical Physics",
+    "date": "2024-11-10",
+    "category": "Publication",
+    "summary": "Our paper on the Virtual Lung Screening Trial framework has been accepted for publication in Medical Physics journal.",
+    "content": "",
+    "link": ""
+  },
+  {
+    "id": "rsna-2024",
+    "title": "Lab Presents at RSNA 2024",
+    "date": "2024-12-01",
+    "category": "Conference",
+    "summary": "Dr. Tushar presented research on virtual imaging trials and AI-based nodule detection at the Radiological Society of North America Annual Meeting in Chicago.",
+    "content": "",
+    "link": ""
+  }
+]

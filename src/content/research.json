@@ -1,0 +1,34 @@
+[
+  {
+    "id": "virtual-imaging-trials",
+    "title": "Virtual Imaging Trials",
+    "short": "Physics-based simulation of CT imaging systems using digital human phantoms for in silico clinical evaluation.",
+    "description": "We develop end-to-end virtual imaging trial (VIT) frameworks that simulate the patient, imaging system, and image reader computationally. Our flagship project, the Virtual Lung Screening Trial (VLST), enables large-scale evaluation of CT protocols without patient exposure.",
+    "icon": "🫁",
+    "projects": ["Virtual Lung Screening Trial (VLST)", "SYN-LUNGS", "Digital Human Phantoms"]
+  },
+  {
+    "id": "medical-imaging-ai",
+    "title": "Medical Imaging AI",
+    "short": "Foundation models and weakly-supervised deep learning for robust, data-efficient radiology AI.",
+    "description": "We build foundation models and generative AI pipelines that address chronic data scarcity in medical imaging. Our NodMAISI and DukeSeg projects push the frontier of lesion detection, segmentation, and classification with minimal labeled data.",
+    "icon": "🧠",
+    "projects": ["NodMAISI", "DukeSeg", "Foundation Models for CT"]
+  },
+  {
+    "id": "image-quality",
+    "title": "Image Quality & Evaluation",
+    "short": "Objective, task-based frameworks for quantifying CT image quality and AI model performance.",
+    "description": "We develop novel metrics and computational evaluation tools — including the CPU-Index framework — that quantify CT image quality in clinically meaningful, task-based terms. Our work connects physics-based quality assessment with downstream AI performance.",
+    "icon": "📊",
+    "projects": ["CPU-Index Framework", "Task-Based Image Quality", "AI Model Benchmarking"]
+  },
+  {
+    "id": "generative-ai",
+    "title": "Generative AI for Imaging",
+    "short": "Synthetic data generation for augmenting scarce clinical datasets and enabling robust model training.",
+    "description": "Leveraging diffusion models and physics-guided generative approaches, we synthesize realistic medical images with controllable pathology, anatomy, and acquisition parameters. This enables large-scale training of AI models without compromising patient privacy.",
+    "icon": "⚙️",
+    "projects": ["SYN-LUNGS Synthesis", "Pathology-Conditioned CT Generation", "Privacy-Preserving Data Augmentation"]
+  }
+]

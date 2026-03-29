@@ -1,0 +1,191 @@
+---
+import site from '../content/site.json';
+const base = import.meta.env.BASE_URL;
+const navLinks = [
+  { label: 'Research',     href: `${base}research/` },
+  { label: 'Publications', href: `${base}publications/` },
+  { label: 'Team',         href: `${base}team/` },
+  { label: 'Resources',    href: `${base}resources/` },
+  { label: 'News',         href: `${base}news/` },
+  { label: 'Opportunities',href: `${base}opportunities/` },
+  { label: 'Contact',      href: `${base}contact/` },
+];
+---
+
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+
+    <!-- Logo -->
+    <a href={base} class="logo">
+      <span class="logo-mark">
+        <span class="logo-t">T</span><span class="logo-l">L</span>
+      </span>
+      <span class="logo-wordmark">
+        <span class="logo-name">{site.labName}</span>
+        <span class="logo-sub">{site.university}</span>
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="nav-desktop" aria-label="Primary">
+      {navLinks.map(l => (
+        <a class="nav-link" href={l.href}>{l.label}</a>
+      ))}
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <nav class="nav-mobile" id="nav-mobile" aria-hidden="true">
+    {navLinks.map(l => (
+      <a class="nav-mobile-link" href={l.href}>{l.label}</a>
+    ))}
+  </nav>
+</header>
+
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--navy);
+  border-bottom: 3px solid var(--cardinal);
+  height: var(--nav-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logo-mark {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1;
+  position: relative;
+}
+.logo-t {
+  color: var(--cardinal);
+  position: relative;
+  z-index: 2;
+}
+.logo-l {
+  color: var(--white);
+  margin-left: -0.1em;
+}
+
+.logo-wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.logo-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--white);
+}
+.logo-sub {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Desktop nav */
+.nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.8);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius);
+  transition: color 0.15s, background 0.15s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav-link:hover {
+  color: var(--white);
+  background: rgba(255,255,255,0.08);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: 0.25s;
+}
+
+/* Mobile nav */
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  background: var(--navy-light);
+  padding: var(--space-sm) 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile-link {
+  padding: 0.75rem var(--space-lg);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+.nav-mobile-link:hover { background: rgba(255,255,255,0.06); color: var(--white); }
+
+@media (max-width: 860px) {
+  .nav-desktop { display: none; }
+  .hamburger { display: flex; }
+  .site-header { height: auto; }
+}
+</style>
+
+<script>
+const btn = document.getElementById('hamburger');
+const nav = document.getElementById('nav-mobile');
+btn?.addEventListener('click', () => {
+  const open = nav?.classList.toggle('open');
+  btn.setAttribute('aria-expanded', String(open));
+  nav?.setAttribute('aria-hidden', String(!open));
+});
+</script>

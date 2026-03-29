@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import opp from '../content/opportunities.json';
+import site from '../content/site.json';
+
+const statusColor: Record<string, string> = { Open: 'red', Closed: '', };
+---
+
+<BaseLayout title="Opportunities">
+  <section class="page-hero">
+    <div class="container">
+      <p class="section-label" style="color:rgba(255,255,255,0.5)">Join the Lab</p>
+      <h1>Opportunities</h1>
+      <p>{opp.intro}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container opp-layout">
+
+      <div class="positions-list">
+        {opp.positions.map((pos) => (
+          <div class="position-card card">
+            <div class="pos-header">
+              <div>
+                <span class={`tag tag--${statusColor[pos.status] ?? ''}`}>{pos.status}</span>
+                <span class="tag" style="margin-left:0.4rem">{pos.type}</span>
+              </div>
+            </div>
+            <h3 class="pos-title">{pos.title}</h3>
+            <p class="pos-desc">{pos.description}</p>
+            <div class="pos-req">
+              <h4 class="req-title">Requirements</h4>
+              <ul class="req-list">
+                {pos.requirements.map(r => (
+                  <li class="req-item"><span class="req-check">✓</span>{r}</li>
+                ))}
+              </ul>
+            </div>
+            <a href={`mailto:${pos.contact}?subject=[${pos.type}] Application`} class="btn btn-primary pos-btn">
+              Apply via Email →
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <aside class="opp-sidebar">
+        <div class="how-card card">
+          <h4>How to Apply</h4>
+          <div class="divider"></div>
+          <p>{opp.how_to_apply}</p>
+        </div>
+        <div class="contact-card card" style="background:var(--navy);">
+          <h4 style="color:var(--white)">Questions?</h4>
+          <p style="color:rgba(255,255,255,0.65);font-size:0.875rem;margin-top:0.5rem;">
+            Feel free to reach out to Dr. Tushar directly for any inquiries about lab fit, research directions, or funding.
+          </p>
+          <a href={`mailto:${site.email}`} class="btn btn-primary" style="margin-top:1rem;width:100%;justify-content:center;">
+            Email Dr. Tushar
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.opp-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.positions-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.position-card { display: flex; flex-direction: column; gap: 0.75rem; }
+.pos-header { display: flex; justify-content: space-between; align-items: flex-start; }
+.pos-title { font-size: 1.2rem; }
+.pos-desc { font-size: 0.95rem; line-height: 1.7; }
+
+.req-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cardinal);
+  margin-bottom: 0.5rem;
+}
+.req-list { display: flex; flex-direction: column; gap: 0.3rem; }
+.req-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+.req-check { color: var(--cardinal); flex-shrink: 0; font-weight: 600; }
+.pos-btn { align-self: flex-start; margin-top: 0.25rem; }
+
+/* Sidebar */
+.opp-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  position: sticky;
+  top: calc(var(--nav-h) + 1.5rem);
+}
+.how-card { display: flex; flex-direction: column; gap: 0.5rem; }
+.how-card p { font-size: 0.875rem; line-height: 1.7; }
+
+@media (max-width: 800px) {
+  .opp-layout { grid-template-columns: 1fr; }
+  .opp-sidebar { position: static; }
+}
+</style>

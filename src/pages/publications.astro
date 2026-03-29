@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import pubs from '../content/publications.json';
+
+const years = [...new Set(pubs.map(p => p.year))].sort((a,b) => b - a);
+const typeLabel: Record<string, string> = {
+  journal: 'Journal',
+  conference: 'Conference',
+  workshop: 'Workshop',
+  preprint: 'Preprint',
+};
+---
+
+<BaseLayout title="Publications">
+  <section class="page-hero">
+    <div class="container">
+      <p class="section-label" style="color:rgba(255,255,255,0.5)">Tushar Lab</p>
+      <h1>Publications</h1>
+      <p>Peer-reviewed research in medical imaging AI, virtual imaging trials, and computational evaluation.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container pubs-layout">
+
+      <!-- Sidebar filters -->
+      <aside class="pubs-sidebar">
+        <div class="filter-group">
+          <div class="filter-title">Year</div>
+          <button class="filter-btn active" data-filter="year" data-value="all">All Years</button>
+          {years.map(y => (
+            <button class="filter-btn" data-filter="year" data-value={String(y)}>{y}</button>
+          ))}
+        </div>
+        <div class="filter-group">
+          <div class="filter-title">Type</div>
+          <button class="filter-btn active" data-filter="type" data-value="all">All Types</button>
+          {['journal','conference','workshop','preprint'].map(t => (
+            <button class="filter-btn" data-filter="type" data-value={t}>{typeLabel[t]}</button>
+          ))}
+        </div>
+      </aside>
+
+      <!-- Publication list -->
+      <div class="pubs-list" id="pubs-list">
+        {years.map(year => (
+          <div class="year-group" data-year={year}>
+            <div class="year-heading">{year}</div>
+            {pubs.filter(p => p.year === year).map(p => (
+              <article class="pub-item" data-type={p.type} data-year={p.year}>
+                <div class="pub-meta">
+                  <span class={`pub-type tag tag--${p.type === 'journal' ? 'red' : 'navy'}`}>
+                    {typeLabel[p.type] ?? p.type}
+                  </span>
+                  <span class="pub-venue">{p.venue}</span>
+                </div>
+                <h3 class="pub-title">{p.title}</h3>
+                <p class="pub-authors">{p.authors.join(', ')}</p>
+                <div class="pub-tags">
+                  {p.tags.map(t => <span class="tag">{t}</span>)}
+                </div>
+                <div class="pub-links">
+                  {p.doi && <a href={`https://doi.org/${p.doi}`} class="pub-link" target="_blank">DOI ↗</a>}
+                  {p.pdf && <a href={p.pdf} class="pub-link" target="_blank">PDF ↗</a>}
+                </div>
+              </article>
+            ))}
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.pubs-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/* Sidebar */
+.pubs-sidebar {
+  position: sticky;
+  top: calc(var(--nav-h) + 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+.filter-group { display: flex; flex-direction: column; gap: 0.3rem; }
+.filter-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cardinal);
+  margin-bottom: 0.25rem;
+}
+.filter-btn {
+  text-align: left;
+  padding: 0.35rem 0.65rem;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.filter-btn:hover { background: var(--gray-100); color: var(--navy); }
+.filter-btn.active {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+/* Publication list */
+.year-group { margin-bottom: var(--space-xl); }
+.year-heading {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gray-200);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.pub-item {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.pub-item:last-child { border-bottom: none; }
+.pub-item.hidden { display: none; }
+
+.pub-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.pub-venue {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  font-style: italic;
+}
+.pub-title {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.4;
+}
+.pub-authors { font-size: 0.85rem; color: var(--gray-400); font-weight: 400; }
+.pub-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.pub-links { display: flex; gap: var(--space-sm); }
+.pub-link {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--cardinal);
+  transition: opacity 0.15s;
+}
+.pub-link:hover { opacity: 0.7; }
+
+@media (max-width: 700px) {
+  .pubs-layout { grid-template-columns: 1fr; }
+  .pubs-sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
+  .filter-group { flex-direction: row; align-items: center; gap: 0.3rem; }
+}
+</style>
+
+<script>
+const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+let activeYear = 'all';
+let activeType = 'all';
+
+function applyFilters() {
+  const items = document.querySelectorAll<HTMLElement>('.pub-item');
+  items.forEach(item => {
+    const yearMatch = activeYear === 'all' || item.dataset.year === activeYear;
+    const typeMatch = activeType === 'all' || item.dataset.type === activeType;
+    item.classList.toggle('hidden', !(yearMatch && typeMatch));
+  });
+  // Hide empty year groups
+  document.querySelectorAll<HTMLElement>('.year-group').forEach(g => {
+    const visible = g.querySelectorAll('.pub-item:not(.hidden)').length > 0;
+    g.style.display = visible ? '' : 'none';
+  });
+}
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter!;
+    const value = btn.dataset.value!;
+    // Deactivate siblings
+    document.querySelectorAll<HTMLButtonElement>(`.filter-btn[data-filter="${filter}"]`).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (filter === 'year') activeYear = value;
+    if (filter === 'type') activeType = value;
+    applyFilters();
+  });
+});
+</script>
