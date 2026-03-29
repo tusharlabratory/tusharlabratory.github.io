@@ -1,15 +1,15 @@
 [
   {
     "id": "tushar",
-    "name": "Fakrul Islam Tushar",
+    "name": "Fakrul Islam Tushar, PhD",
     "role": "Principal Investigator",
     "title": "Assistant Professor, Department of Medical Imaging",
     "affiliation": "University of Arizona",
-    "bio": "Dr. Tushar is a computational medical imaging researcher specializing in virtual imaging trials, digital human phantoms, and deep learning for radiology AI. He completed his PhD at Duke University's Center for Virtual Imaging Trials (CVIT) under Dr. Joseph Lo.",
+    "bio": "Dr. Tushar is a computational medical imaging researcher with expertise in virtual imaging trials, AI-driven image analysis, and synthetic data generation. He earned his PhD from Duke University, where he worked at the Center for Virtual Imaging Trials (CVIT) developing simulation-based evaluation frameworks and deep learning methods for lung cancer screening. His research is driven by the goal of making medical AI more rigorous, reproducible, and clinically grounded.",
     "email": "ftushar@arizona.edu",
     "github": "https://github.com/fitushar",
     "scholar": "",
     "photo": "",
-    "interests": ["Virtual Imaging Trials", "CT Simulation", "Foundation Models", "Medical AI"]
+    "interests": ["Virtual Imaging Trials", "Medical Imaging AI", "Data-Centric AI", "Synthetic Imaging", "Lung Cancer Screening"]
   }
 ]
