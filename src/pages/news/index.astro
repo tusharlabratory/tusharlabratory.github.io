@@ -1,6 +1,7 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import news from '../content/news.json';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import news from '../../content/news.json';
+const base = import.meta.env.BASE_URL;
 const sorted = [...news].sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 ---
 
@@ -27,7 +28,9 @@ const sorted = [...news].sort((a,b) => new Date(b.date).getTime() - new Date(a.d
             </div>
             <div class="nfi-body">
               <span class="tag tag--red nfi-cat">{n.category}</span>
-              <h3 class="nfi-title">{n.title}</h3>
+              <h3 class="nfi-title">
+                <a href={`${base}news/${n.id}/`} class="nfi-title-link">{n.title}</a>
+              </h3>
               <p class="nfi-summary">{n.summary}</p>
               {n.content && <p class="nfi-content">{n.content}</p>}
               {n.link && <a href={n.link} class="nfi-link" target="_blank">Read more ↗</a>}
@@ -87,6 +90,14 @@ const sorted = [...news].sort((a,b) => new Date(b.date).getTime() - new Date(a.d
 .nfi-body { display: flex; flex-direction: column; gap: 0.5rem; }
 .nfi-cat { align-self: flex-start; }
 .nfi-title { font-size: 1.15rem; }
+.nfi-title-link {
+  color: var(--navy);
+  text-decoration: none;
+}
+.nfi-title-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
 .nfi-summary { font-size: 0.95rem; line-height: 1.7; }
 .nfi-content { font-size: 0.9rem; line-height: 1.7; color: var(--gray-400); }
 .nfi-link { font-size: 0.875rem; font-weight: 500; color: var(--primary); }

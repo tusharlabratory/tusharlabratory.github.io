@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import news from '../../content/news.json';
+
+export function getStaticPaths() {
+  return news.map(n => ({
+    params: { id: n.id },
+    props: { article: n },
+  }));
+}
+
+const { article } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title={article.title}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="section-label" style="color:rgba(255,255,255,0.5)">News</p>
+      <h1>{article.title}</h1>
+      <p>
+        <time datetime={article.date}>
+          {new Date(article.date).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })}
+        </time>
+        &middot; {article.category}
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container article-layout">
+      {article.image && (
+        <div class="article-image">
+          <img src={`${base}${article.image.replace(/^\//, '')}`} alt={article.title} />
+        </div>
+      )}
+      <div class="article-body">
+        <p class="article-summary">{article.summary}</p>
+        {article.content && <p class="article-content">{article.content}</p>}
+        {article.link && (
+          <a href={article.link} class="btn btn-primary" target="_blank" rel="noopener">
+            Read full article ↗
+          </a>
+        )}
+      </div>
+      <div class="article-back">
+        <a href={`${base}news/`} class="btn btn-outline">&larr; Back to News</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.article-layout {
+  max-width: 780px;
+}
+
+.article-image {
+  margin-bottom: var(--space-lg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+
+.article-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.article-summary {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text);
+  font-weight: 400;
+}
+
+.article-content {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.article-back {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--gray-200);
+}
+</style>

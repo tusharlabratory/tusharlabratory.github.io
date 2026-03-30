@@ -6,7 +6,8 @@
     "type": "Software",
     "tags": ["Python", "CT Simulation", "Virtual Trials"],
     "github": "https://github.com/fitushar",
-    "paper": ""
+    "paper": "",
+    "image": "/images/resources/vlst-toolkit.svg"
   },
   {
     "id": "synlungs-dataset",
@@ -15,7 +16,8 @@
     "type": "Dataset",
     "tags": ["CT", "Lung Nodules", "Synthetic Data"],
     "github": "",
-    "paper": ""
+    "paper": "",
+    "image": "/images/resources/synlungs-dataset.svg"
   },
   {
     "id": "cpu-index-tool",
@@ -24,7 +26,8 @@
     "type": "Software",
     "tags": ["Python", "Image Quality", "CT Protocol"],
     "github": "https://github.com/fitushar",
-    "paper": ""
+    "paper": "",
+    "image": "/images/resources/cpu-index-tool.svg"
   },
   {
     "id": "dukeseg-weights",
@@ -33,6 +36,7 @@
     "type": "Model",
     "tags": ["PyTorch", "Segmentation", "Transfer Learning"],
     "github": "https://github.com/fitushar",
-    "paper": ""
+    "paper": "",
+    "image": "/images/resources/dukeseg-weights.svg"
   }
 ]
