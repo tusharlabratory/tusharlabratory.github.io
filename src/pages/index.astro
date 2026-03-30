@@ -7,6 +7,13 @@ import resources from '../content/resources.json';
 const base = import.meta.env.BASE_URL;
 const recentSoftware = resources.filter(r => r.type === 'Software').slice(0, 2);
 const recentData = resources.filter(r => r.type === 'Dataset' || r.type === 'Model').slice(0, 2);
+
+function assetUrl(path: string) {
+  return `${base}${path.replace(/^\//, '')}`;
+}
+function itemLink(item: { github?: string }) {
+  return item.github || `${base}resources/`;
+}
 ---
 
 <BaseLayout>
@@ -97,11 +104,11 @@ const recentData = resources.filter(r => r.type === 'Dataset' || r.type === 'Mod
           {recentSoftware.map(item => (
             <div class="shared-item">
               <h3 class="shared-item-title">
-                <a href={item.github || `${base}resources/`}>{item.title}</a>
+                <a href={itemLink(item)}>{item.title}</a>
               </h3>
               <div class="shared-item-body">
                 {item.image && (
-                  <img src={`${base}${item.image.replace(/^\//, '')}`} alt={item.title} class="shared-item-thumb" />
+                  <img src={assetUrl(item.image)} alt={item.title} class="shared-item-thumb" />
                 )}
                 <p>{item.description}</p>
               </div>
@@ -116,11 +123,11 @@ const recentData = resources.filter(r => r.type === 'Dataset' || r.type === 'Mod
           {recentData.map(item => (
             <div class="shared-item">
               <h3 class="shared-item-title">
-                <a href={item.github || `${base}resources/`}>{item.title}</a>
+                <a href={itemLink(item)}>{item.title}</a>
               </h3>
               <div class="shared-item-body">
                 {item.image && (
-                  <img src={`${base}${item.image.replace(/^\//, '')}`} alt={item.title} class="shared-item-thumb" />
+                  <img src={assetUrl(item.image)} alt={item.title} class="shared-item-thumb" />
                 )}
                 <p>{item.description}</p>
               </div>
@@ -145,7 +152,7 @@ const recentData = resources.filter(r => r.type === 'Dataset' || r.type === 'Mod
           <a href={`${base}news/${n.id}/`} class="news-card-v2 reveal">
             {n.image && (
               <div class="news-card-image">
-                <img src={`${base}${n.image.replace(/^\//, '')}`} alt={n.title} />
+                <img src={assetUrl(n.image)} alt={n.title} />
               </div>
             )}
             <div class="news-card-body">
