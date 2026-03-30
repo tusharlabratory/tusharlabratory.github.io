@@ -69,7 +69,7 @@ const sorted = [...news].sort((a,b) => new Date(b.date).getTime() - new Date(a.d
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--cardinal);
+  color: var(--primary);
   line-height: 1;
 }
 .nfi-month {
@@ -89,7 +89,7 @@ const sorted = [...news].sort((a,b) => new Date(b.date).getTime() - new Date(a.d
 .nfi-title { font-size: 1.15rem; }
 .nfi-summary { font-size: 0.95rem; line-height: 1.7; }
 .nfi-content { font-size: 0.9rem; line-height: 1.7; color: var(--gray-400); }
-.nfi-link { font-size: 0.875rem; font-weight: 500; color: var(--cardinal); }
+.nfi-link { font-size: 0.875rem; font-weight: 500; color: var(--primary); }
 
 @media (max-width: 500px) {
   .news-full-item { grid-template-columns: 1fr; }
