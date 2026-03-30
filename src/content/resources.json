@@ -7,7 +7,7 @@
     "tags": ["Medical Imaging", "AI", "Healthcare"],
     "github": "https://github.com/fitushar/HAID",
     "paper": "",
-    "image": "images/resources/haid-dataset.svg",
+    "image": "images/resources/HAID_logo.png",
     "link": "https://github.com/fitushar/HAID"
   },
   {
@@ -18,7 +18,7 @@
     "tags": ["Deep Learning", "Lung Health", "Classification"],
     "github": "https://github.com/fitushar",
     "paper": "",
-    "image": "images/resources/ai-lung-health.svg",
-    "link": "https://github.com/fitushar"
+    "image": "images/resources/AI_Lung_Models.png",
+    "link": "https://github.com/fitushar/AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets"
   }
 ]
