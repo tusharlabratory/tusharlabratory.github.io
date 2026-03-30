@@ -2,8 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import opp from '../content/opportunities.json';
 import site from '../content/site.json';
-
-const statusColor: Record<string, string> = { Open: 'red', Closed: '', };
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Opportunities">
@@ -18,42 +17,56 @@ const statusColor: Record<string, string> = { Open: 'red', Closed: '', };
   <section class="section">
     <div class="container opp-layout">
 
-      <div class="positions-list">
-        {opp.positions.map((pos) => (
-          <div class="position-card card">
-            <div class="pos-header">
-              <div>
-                <span class={`tag tag--${statusColor[pos.status] ?? ''}`}>{pos.status}</span>
-                <span class="tag" style="margin-left:0.4rem">{pos.type}</span>
+      <div class="opp-main">
+        <div class="general-card card">
+          <h3>We're Growing</h3>
+          <div class="divider"></div>
+          <p>{opp.general_message}</p>
+          <a href={`mailto:${site.email}`} class="btn btn-ghost" style="margin-top:var(--space-sm);align-self:flex-start;">
+            Get in Touch &rarr;
+          </a>
+        </div>
+
+        {opp.positions.length > 0 && (
+          <div class="positions-list">
+            <h3 style="margin-bottom:var(--space-md)">Open Positions</h3>
+            {opp.positions.map((pos: any) => (
+              <div class="position-card card">
+                <div class="pos-header">
+                  <span class="tag tag--red">{pos.status}</span>
+                  <span class="tag" style="margin-left:0.4rem">{pos.type}</span>
+                </div>
+                <h4 class="pos-title">{pos.title}</h4>
+                <p class="pos-desc">{pos.description}</p>
+                {pos.requirements?.length > 0 && (
+                  <div class="pos-req">
+                    <h4 class="req-title">Requirements</h4>
+                    <ul class="req-list">
+                      {pos.requirements.map((r: string) => (
+                        <li class="req-item"><span class="req-check">&check;</span>{r}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                <a href={`mailto:${pos.contact}?subject=[${pos.type}] Application`} class="btn btn-primary pos-btn">
+                  Apply via Email &rarr;
+                </a>
               </div>
-            </div>
-            <h3 class="pos-title">{pos.title}</h3>
-            <p class="pos-desc">{pos.description}</p>
-            <div class="pos-req">
-              <h4 class="req-title">Requirements</h4>
-              <ul class="req-list">
-                {pos.requirements.map(r => (
-                  <li class="req-item"><span class="req-check">✓</span>{r}</li>
-                ))}
-              </ul>
-            </div>
-            <a href={`mailto:${pos.contact}?subject=[${pos.type}] Application`} class="btn btn-primary pos-btn">
-              Apply via Email →
-            </a>
+            ))}
           </div>
-        ))}
+        )}
       </div>
 
       <aside class="opp-sidebar">
         <div class="how-card card">
-          <h4>How to Apply</h4>
+          <h4>How to Reach Us</h4>
           <div class="divider"></div>
           <p>{opp.how_to_apply}</p>
         </div>
-        <div class="contact-card card" style="background:var(--navy);">
-          <h4 style="color:var(--white)">Questions?</h4>
-          <p style="color:rgba(255,255,255,0.65);font-size:0.875rem;margin-top:0.5rem;">
-            Feel free to reach out to Dr. Tushar directly for any inquiries about lab fit, research directions, or funding.
+        <div class="contact-card card" style="border-left:3px solid var(--cardinal);">
+          <h4>Questions?</h4>
+          <p style="font-size:0.875rem;margin-top:0.5rem;">
+            Feel free to reach out to Dr. Tushar directly for any inquiries about research directions or potential fit.
           </p>
           <a href={`mailto:${site.email}`} class="btn btn-primary" style="margin-top:1rem;width:100%;justify-content:center;">
             Email Dr. Tushar
@@ -73,6 +86,21 @@ const statusColor: Record<string, string> = { Open: 'red', Closed: '', };
   align-items: start;
 }
 
+.opp-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.general-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-left: 3px solid var(--cardinal);
+  box-shadow: 0 0 30px rgba(171,5,32,0.05);
+}
+.general-card p { font-size: 0.95rem; line-height: 1.8; }
+
 .positions-list {
   display: flex;
   flex-direction: column;
@@ -80,13 +108,13 @@ const statusColor: Record<string, string> = { Open: 'red', Closed: '', };
 }
 
 .position-card { display: flex; flex-direction: column; gap: 0.75rem; }
-.pos-header { display: flex; justify-content: space-between; align-items: flex-start; }
-.pos-title { font-size: 1.2rem; }
+.pos-header { display: flex; align-items: flex-start; gap: 0.4rem; }
+.pos-title { font-size: 1.1rem; }
 .pos-desc { font-size: 0.95rem; line-height: 1.7; }
 
 .req-title {
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--cardinal);
@@ -98,7 +126,7 @@ const statusColor: Record<string, string> = { Open: 'red', Closed: '', };
   align-items: flex-start;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: var(--gray-600);
+  color: var(--text-muted);
 }
 .req-check { color: var(--cardinal); flex-shrink: 0; font-weight: 600; }
 .pos-btn { align-self: flex-start; margin-top: 0.25rem; }

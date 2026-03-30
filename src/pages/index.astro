@@ -1,152 +1,112 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import site from '../content/site.json';
-import research from '../content/research.json';
-import team from '../content/team.json';
-import news from '../content/news.json';
 const base = import.meta.env.BASE_URL;
-const pi = team.find(m => m.role === 'Principal Investigator');
 ---
 
 <BaseLayout>
 
   <!-- ============================================================
-       HERO — Clean, academic, honest about being new
+       HERO — Dark, particles, massive typography
   ============================================================ -->
   <section class="hero">
+    <canvas id="particles" class="hero-canvas"></canvas>
+    <div class="grid-pattern"></div>
+    <div class="hero-glow"></div>
     <div class="container hero-content">
-      <div class="hero-pillars">
-        <span class="hero-pill">Medical Imaging AI</span>
-        <span class="hero-pill-sep">&middot;</span>
-        <span class="hero-pill">Virtual Imaging Trials</span>
-        <span class="hero-pill-sep">&middot;</span>
-        <span class="hero-pill">Data-Centric AI</span>
-      </div>
-      <h1 class="hero-title">
-        Building rigorous AI<br />for medical imaging.
+      <div class="hero-badge reveal">University of Arizona</div>
+      <h1 class="hero-title reveal" style="transition-delay:0.1s">
+        Data-centric AI for<br /><em>healthcare</em> and <em>medicine.</em>
       </h1>
-      <p class="hero-desc">
-        The Tushar Lab is a newly established research group at the University of Arizona,
-        focused on trustworthy AI for radiology through simulation, synthetic data,
-        and clinically grounded evaluation.
+      <p class="hero-desc reveal" style="transition-delay:0.2s">
+        The Tushar Lab is a newly established research group at the University of Arizona
+        advancing data-centric AI for healthcare and medicine through data discovery,
+        intelligent tools, and the integration of clinical, simulated, and synthetic datasets.
       </p>
-      <div class="hero-actions">
-        <a href={`${base}research/`} class="btn btn-primary">Our Research</a>
+      <p class="hero-affiliation reveal" style="transition-delay:0.25s">
+        Department of Radiology and Imaging Sciences &middot; University of Arizona
+      </p>
+      <div class="hero-actions reveal" style="transition-delay:0.3s">
+        <a href={`${base}research/`} class="btn btn-primary">Explore Research &rarr;</a>
         <a href={`${base}opportunities/`} class="btn btn-outline">Join the Lab</a>
       </div>
     </div>
-    <div class="hero-accent" aria-hidden="true"></div>
   </section>
 
   <!-- ============================================================
-       MISSION — Short, credible, forward-looking
+       ABOUT — Slightly lighter dark bg, pull-quote style
   ============================================================ -->
-  <section class="section mission-section">
-    <div class="container mission-grid">
-      <div class="mission-left">
-        <p class="section-label">About the Lab</p>
-        <h2>A new lab with a clear direction</h2>
-      </div>
-      <div class="mission-right">
-        <p class="mission-text">
-          We are building a research program around a core question:
-          <em>How do we develop medical imaging AI that is truly reliable?</em>
-        </p>
-        <p class="mission-text">
-          Our approach combines virtual imaging trials&mdash;physics-based simulations of the entire imaging
-          pipeline&mdash;with data-centric methods that focus on improving the quality, diversity, and
-          representativeness of training data. We aim to make AI evaluation more rigorous and AI development
-          more grounded in clinical reality.
-        </p>
-        <p class="mission-text">
-          The lab is newly established and currently growing. We are open to collaboration with researchers
-          who share an interest in reproducible, clinically relevant AI.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       RESEARCH THEMES — Clean cards, no inflation
-  ============================================================ -->
-  <section class="section section--alt research-section">
+  <section class="section section--alt about-section">
+    <div class="grid-pattern"></div>
     <div class="container">
-      <div class="section-header">
-        <p class="section-label">Research</p>
-        <h2>What we work on</h2>
-        <p>Our research directions span AI development, simulation, and evaluation for medical imaging.</p>
-      </div>
-      <div class="grid-2 research-grid">
-        {research.map(r => (
-          <a href={`${base}research/`} class="research-card">
-            <div class="rc-icon-wrap">
-              <svg class="rc-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                {r.icon === 'brain' && <path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z M9 22h6"/>}
-                {r.icon === 'monitor' && <><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></>}
-                {r.icon === 'database' && <><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></>}
-                {r.icon === 'layers' && <><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></>}
-              </svg>
-            </div>
-            <div class="rc-body">
-              <h3>{r.title}</h3>
-              <p>{r.short}</p>
-            </div>
-            <span class="rc-arrow">&rarr;</span>
-          </a>
-        ))}
+      <div class="about-grid">
+        <div class="about-left reveal">
+          <p class="section-label">About the Lab</p>
+          <h2>A new lab with a clear research vision</h2>
+        </div>
+        <div class="about-right">
+          <blockquote class="about-quote reveal" style="transition-delay:0.1s">
+            How do we develop AI for healthcare and medicine that is trustworthy,
+            rigorously evaluated, and grounded in clinical needs?
+          </blockquote>
+          <p class="about-text reveal" style="transition-delay:0.15s">
+            Our work combines data-centric AI, intelligent tools, and clinical, simulated,
+            and synthetic data to move from data to discovery in ways that better support
+            healthcare professionals, reduce workload, and strengthen reliability in practice.
+          </p>
+          <p class="about-text reveal" style="transition-delay:0.2s">
+            As a newly established and growing lab, we welcome collaboration with researchers,
+            students, and partners who share an interest in trustworthy, reproducible, and
+            clinically grounded AI.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       SELECTED DIRECTIONS — Representative work, not "flagship"
+       RESEARCH PILLARS — Three glassy cards
   ============================================================ -->
-  <section class="section">
+  <section class="section pillars-section">
     <div class="container">
-      <div class="section-header">
-        <p class="section-label">Selected Work</p>
-        <h2>Representative research directions</h2>
-        <p>Projects that reflect the lab's emerging research program and the PI's prior work.</p>
+      <div class="section-header reveal">
+        <p class="section-label">Research Pillars</p>
+        <h2>Three directions, one mission</h2>
       </div>
-      <div class="directions-list">
+      <div class="grid-3 pillars-grid">
 
-        <div class="direction-item">
-          <div class="di-marker"></div>
-          <div class="di-content">
-            <h3>Virtual Lung Screening Trial (VLST)</h3>
-            <p>An end-to-end simulation framework for lung cancer screening&mdash;modeling patient anatomy, CT acquisition, and AI-based detection&mdash;enabling protocol evaluation without patient exposure.</p>
-            <div class="di-tags">
-              <span class="tag tag--red">CT Simulation</span>
-              <span class="tag tag--navy">Digital Phantoms</span>
-              <span class="tag">Lung Cancer</span>
-            </div>
+        <div class="pillar-card card reveal" style="transition-delay:0.1s">
+          <div class="pillar-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <line x1="8" y1="11" x2="14" y2="11"/><line x1="11" y1="8" x2="11" y2="14"/>
+            </svg>
           </div>
+          <h3>Data Discovery</h3>
+          <p>Developing methods for curating, auditing, and discovering high-quality datasets that power reliable medical AI systems.</p>
         </div>
 
-        <div class="direction-item">
-          <div class="di-marker"></div>
-          <div class="di-content">
-            <h3>NodMAISI</h3>
-            <p>A multi-scale AI model for pulmonary nodule detection and characterization, designed to achieve strong performance with limited labeled data through weakly-supervised and self-supervised strategies.</p>
-            <div class="di-tags">
-              <span class="tag tag--red">Deep Learning</span>
-              <span class="tag tag--navy">Weakly Supervised</span>
-              <span class="tag">Nodule Detection</span>
-            </div>
+        <div class="pillar-card card reveal" style="transition-delay:0.2s">
+          <div class="pillar-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/>
+              <line x1="9" y1="22" x2="15" y2="22"/>
+            </svg>
           </div>
+          <h3>Intelligent Tools</h3>
+          <p>Building foundation models and AI-driven tools for medical image analysis, segmentation, and clinical decision support.</p>
         </div>
 
-        <div class="direction-item">
-          <div class="di-marker"></div>
-          <div class="di-content">
-            <h3>SYN-LUNGS</h3>
-            <p>A synthetic lung CT generation pipeline that produces anatomically realistic images with controllable pathology, supporting both AI training and privacy-preserving data sharing.</p>
-            <div class="di-tags">
-              <span class="tag tag--red">Generative AI</span>
-              <span class="tag tag--navy">Synthetic Data</span>
-              <span class="tag">Open Science</span>
-            </div>
+        <div class="pillar-card card reveal" style="transition-delay:0.3s">
+          <div class="pillar-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+              <polyline points="2 17 12 22 22 17"/>
+              <polyline points="2 12 12 17 22 12"/>
+            </svg>
           </div>
+          <h3>Data Integration</h3>
+          <p>Bridging clinical, simulated, and synthetic data to create robust evaluation frameworks and training pipelines for medical AI.</p>
         </div>
 
       </div>
@@ -154,79 +114,34 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   </section>
 
   <!-- ============================================================
-       PI SECTION — Brief, professional, connecting background to vision
+       OPPORTUNITIES — General welcoming message
   ============================================================ -->
-  <section class="section section--alt pi-section">
+  <section class="section section--alt opportunities-section">
+    <div class="grid-pattern"></div>
     <div class="container">
-      <div class="section-header">
-        <p class="section-label">Principal Investigator</p>
-      </div>
-      <div class="pi-card">
-        <div class="pi-avatar-wrap">
-          {pi?.photo
-            ? <img src={pi.photo} alt={pi?.name} class="pi-avatar-img" />
-            : <div class="pi-avatar-placeholder">
-                <span>{pi?.name.split(' ').map((n: string) => n[0]).join('')}</span>
-              </div>
-          }
+      <div class="opp-grid">
+        <div class="opp-left reveal">
+          <p class="section-label">Opportunities</p>
+          <h2>Join Us</h2>
         </div>
-        <div class="pi-info">
-          <h3>{pi?.name}</h3>
-          <p class="pi-title">{pi?.title}</p>
-          <p class="pi-affil">{pi?.affiliation}</p>
-          <div class="divider"></div>
-          <p class="pi-bio">{pi?.bio}</p>
-          <div class="pi-links">
-            {pi?.email && <a href={`mailto:${pi.email}`} class="pi-link">{pi.email}</a>}
-            {pi?.github && <a href={pi.github} class="pi-link" target="_blank" rel="noopener">GitHub</a>}
+        <div class="opp-right reveal" style="transition-delay:0.1s">
+          <div class="opp-card">
+            <p>
+              The Tushar Lab is a newly established and growing research group. While specific
+              positions have not yet been finalized, we anticipate openings for PhD students,
+              postdoctoral researchers, and research staff in the near future.
+            </p>
+            <p>
+              We are always eager to hear from motivated individuals with interests in medical
+              imaging AI, data-centric machine learning, and computational health sciences. If
+              our research resonates with you, we encourage you to check back here for updates
+              or reach out directly.
+            </p>
+            <p class="opp-note">
+              Opportunities will be posted here as they become available.
+            </p>
+            <a href={`${base}contact/`} class="btn btn-ghost">Get in Touch &rarr;</a>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       NEWS — Latest updates
-  ============================================================ -->
-  <section class="section news-section">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label">News</p>
-        <h2>Recent updates</h2>
-      </div>
-      <div class="grid-3">
-        {news.slice(0, 3).map(n => (
-          <article class="news-card card">
-            <time class="news-date" datetime={n.date}>
-              {new Date(n.date).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })}
-            </time>
-            <h4 class="news-title">{n.title}</h4>
-            <p class="news-summary">{n.summary}</p>
-          </article>
-        ))}
-      </div>
-      <div class="section-cta">
-        <a href={`${base}news/`} class="btn btn-outline">All News &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       JOIN — Welcoming, academic, appropriate for a new lab
-  ============================================================ -->
-  <section class="join-section">
-    <div class="container join-inner">
-      <div class="join-content">
-        <p class="section-label" style="color:rgba(255,255,255,0.5)">Opportunities</p>
-        <h2>We are building the team</h2>
-        <p>
-          The Tushar Lab is actively recruiting PhD students, postdoctoral researchers,
-          and motivated undergraduates. We welcome applicants with backgrounds in medical imaging,
-          machine learning, computational physics, or related fields.
-        </p>
-        <div class="join-actions">
-          <a href={`${base}opportunities/`} class="btn btn-primary">Open Positions</a>
-          <a href={`mailto:${site.email}`} class="btn btn-outline-white">Contact Dr. Tushar</a>
         </div>
       </div>
     </div>
@@ -238,59 +153,80 @@ const pi = team.find(m => m.role === 'Principal Investigator');
 /* ---- Hero ---- */
 .hero {
   position: relative;
-  padding: var(--space-3xl) 0 var(--space-2xl);
-  background: var(--white);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--bg-deep);
   overflow: hidden;
+  padding-top: var(--nav-h);
 }
 
-.hero-accent {
+.hero-canvas {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 40%;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, transparent 0%, var(--cardinal-light) 100%);
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -30%);
+  background: radial-gradient(circle, rgba(171,5,32,0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
-  max-width: 680px;
+  z-index: 2;
+  padding: var(--space-3xl) 0;
+  max-width: 760px;
 }
 
-.hero-pillars {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: var(--space-md);
-  flex-wrap: wrap;
-}
-.hero-pill {
+.hero-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
   font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--cardinal);
-}
-.hero-pill-sep {
-  color: var(--gray-300);
-  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
 }
 
 .hero-title {
-  color: var(--gray-900);
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  line-height: 1.15;
+  font-size: clamp(2.8rem, 6.5vw, 4.8rem);
+  line-height: 1.08;
+  color: var(--white);
   margin-bottom: var(--space-md);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--cardinal);
+  text-shadow: 0 0 40px var(--cardinal-glow), 0 0 80px rgba(171,5,32,0.15);
 }
 
 .hero-desc {
-  color: var(--text-secondary);
+  color: var(--text-muted);
   font-size: 1.1rem;
-  line-height: 1.7;
-  max-width: 560px;
+  line-height: 1.75;
+  max-width: 600px;
+  margin-bottom: var(--space-sm);
+  font-weight: 300;
+}
+
+.hero-affiliation {
+  font-size: 0.8rem;
+  color: var(--text-dim);
   margin-bottom: var(--space-lg);
   font-weight: 400;
 }
@@ -301,216 +237,199 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   flex-wrap: wrap;
 }
 
-/* ---- Mission ---- */
-.mission-section {
-  border-top: 1px solid var(--gray-100);
-}
-
-.mission-grid {
+/* ---- About ---- */
+.about-grid {
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: var(--space-xl);
   align-items: start;
 }
-.mission-text {
-  font-size: 1.02rem;
-  line-height: 1.8;
-  margin-bottom: var(--space-sm);
-  color: var(--text-secondary);
-}
-.mission-text em {
+
+.about-quote {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: var(--space-lg);
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--cardinal);
   font-style: italic;
-  color: var(--gray-800);
-  font-weight: 500;
 }
 
-/* ---- Research cards ---- */
-.research-card {
+.about-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: var(--space-sm);
+  color: var(--text-muted);
+}
+
+/* ---- Research Pillars ---- */
+.pillar-card {
   display: flex;
-  gap: var(--space-md);
-  align-items: flex-start;
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  text-decoration: none;
-  color: inherit;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-  position: relative;
+  flex-direction: column;
+  gap: var(--space-sm);
 }
-.research-card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--gray-300);
-}
-.rc-icon-wrap {
-  width: 44px;
-  height: 44px;
+
+.pillar-icon {
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--cardinal-light);
   border-radius: var(--radius);
-  flex-shrink: 0;
+  background: rgba(171,5,32,0.08);
   color: var(--cardinal);
-}
-.rc-body { flex: 1; }
-.rc-body h3 {
-  color: var(--gray-900);
-  margin-bottom: 0.4rem;
-  font-size: 1.05rem;
-}
-.rc-body p {
-  font-size: 0.9rem;
-  line-height: 1.65;
-}
-.rc-arrow {
-  color: var(--gray-300);
-  font-size: 1.1rem;
-  flex-shrink: 0;
-  transition: color 0.2s, transform 0.2s;
-}
-.research-card:hover .rc-arrow {
-  color: var(--cardinal);
-  transform: translateX(3px);
+  margin-bottom: var(--space-xs);
 }
 
-/* ---- Selected directions ---- */
-.directions-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+.pillar-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
 }
 
-.direction-item {
-  display: flex;
-  gap: var(--space-lg);
-  padding: var(--space-lg) 0;
-  border-bottom: 1px solid var(--gray-100);
-  align-items: flex-start;
-}
-.direction-item:first-child { padding-top: 0; }
-.direction-item:last-child { border-bottom: none; }
-
-.di-marker {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--cardinal);
-  flex-shrink: 0;
-  margin-top: 0.55rem;
-}
-
-.di-content h3 {
-  margin-bottom: 0.35rem;
-  font-size: 1.1rem;
-}
-.di-content p {
-  font-size: 0.95rem;
+.pillar-card p {
+  font-size: 0.92rem;
   line-height: 1.7;
-  margin-bottom: 0.75rem;
 }
-.di-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
 
-/* ---- PI section ---- */
-.pi-card {
+/* ---- Opportunities ---- */
+.opp-grid {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 280px 1fr;
   gap: var(--space-xl);
   align-items: start;
 }
 
-.pi-avatar-wrap {
-  aspect-ratio: 1;
+.opp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cardinal);
   border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 2px solid var(--gray-200);
-}
-.pi-avatar-img { width: 100%; height: 100%; object-fit: cover; }
-.pi-avatar-placeholder {
-  width: 100%;
-  height: 100%;
-  min-height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--navy);
-  font-family: var(--font-display);
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: rgba(255,255,255,0.2);
-}
-
-.pi-info h3 { margin-bottom: 0.2rem; font-size: 1.4rem; }
-.pi-title { font-weight: 500; color: var(--gray-700); font-size: 0.95rem; }
-.pi-affil { font-size: 0.85rem; color: var(--gray-400); margin-top: 2px; }
-.pi-bio {
-  font-size: 0.95rem;
-  line-height: 1.8;
-  margin-bottom: var(--space-md);
-  color: var(--text-secondary);
-}
-.pi-links { display: flex; flex-wrap: wrap; gap: var(--space-md); }
-.pi-link {
-  font-size: 0.85rem;
-  color: var(--cardinal);
-  font-weight: 500;
-  transition: opacity 0.15s;
-}
-.pi-link:hover { opacity: 0.7; }
-
-/* ---- News ---- */
-.news-card {
+  padding: var(--space-lg) var(--space-xl);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-.news-date {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--gray-400);
-  font-weight: 500;
-}
-.news-title { font-size: 1rem; color: var(--gray-900); }
-.news-summary { font-size: 0.875rem; line-height: 1.65; }
-
-.section-cta {
-  margin-top: var(--space-xl);
-  text-align: center;
-}
-
-/* ---- Join section ---- */
-.join-section {
-  background: var(--navy);
-  padding: var(--space-2xl) 0;
-}
-.join-inner {
-  max-width: 640px;
-}
-.join-content h2 {
-  color: var(--white);
-  margin-bottom: var(--space-sm);
-}
-.join-content p {
-  color: rgba(255,255,255,0.65);
-  line-height: 1.75;
-  margin-bottom: var(--space-lg);
-}
-.join-actions {
-  display: flex;
   gap: var(--space-sm);
-  flex-wrap: wrap;
+  box-shadow: 0 0 30px rgba(171,5,32,0.05);
+}
+
+.opp-card p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.opp-note {
+  font-size: 0.85rem !important;
+  color: var(--text-dim) !important;
+  font-style: italic;
+}
+
+.opp-card .btn {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
 }
 
 /* ---- Responsive ---- */
 @media (max-width: 800px) {
-  .mission-grid { grid-template-columns: 1fr; }
-  .pi-card { grid-template-columns: 1fr; }
-  .pi-avatar-wrap { max-width: 160px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .opp-grid { grid-template-columns: 1fr; }
+  .opp-card { padding: var(--space-lg); }
 }
 
 @media (max-width: 600px) {
-  .hero { padding: var(--space-2xl) 0 var(--space-xl); }
-  .hero-accent { display: none; }
-  .direction-item { gap: var(--space-sm); }
+  .hero { min-height: auto; padding-top: calc(var(--nav-h) + var(--space-xl)); padding-bottom: var(--space-xl); }
+  .hero-content { padding: var(--space-xl) 0; }
+  .hero-glow { width: 300px; height: 300px; }
 }
 </style>
+
+<!-- Particle animation -->
+<script>
+const canvas = document.getElementById('particles') as HTMLCanvasElement;
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  let w = 0, h = 0;
+
+  interface Particle {
+    x: number; y: number; vx: number; vy: number;
+    r: number; a: number; pulse: number; speed: number;
+  }
+
+  const particles: Particle[] = [];
+  const COUNT = 60;
+
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+
+  function init() {
+    resize();
+    for (let i = 0; i < COUNT; i++) {
+      const speed = 0.15 + Math.random() * 0.25;
+      const angle = Math.random() * Math.PI * 2;
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        r: 1 + Math.random() * 1.5,
+        a: 0.15 + Math.random() * 0.35,
+        pulse: Math.random() * Math.PI * 2,
+        speed: 0.008 + Math.random() * 0.015,
+      });
+    }
+  }
+
+  function draw() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, w, h);
+
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.pulse += p.speed;
+
+      // Wrap around
+      if (p.x < -10) p.x = w + 10;
+      if (p.x > w + 10) p.x = -10;
+      if (p.y < -10) p.y = h + 10;
+      if (p.y > h + 10) p.y = -10;
+
+      const alpha = p.a * (0.6 + 0.4 * Math.sin(p.pulse));
+      const glow = p.r * 3;
+
+      // Outer glow
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, glow, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(171, 5, 32, ${alpha * 0.15})`;
+      ctx.fill();
+
+      // Core dot
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200, 180, 180, ${alpha})`;
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  init();
+  draw();
+  window.addEventListener('resize', resize);
+}
+</script>
+
+<!-- Scroll reveal observer -->
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+</script>
