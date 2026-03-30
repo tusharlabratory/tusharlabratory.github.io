@@ -1,48 +1,129 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import research from '../content/research.json';
+import researchData from '../content/research.json';
 const base = import.meta.env.BASE_URL;
+const areas = researchData.areas;
+const featured = researchData.featured;
+const gallery = researchData.gallery;
 ---
 
 <BaseLayout title="Research">
+
+  <!-- ============================================================
+       HERO — Research page header
+  ============================================================ -->
   <section class="page-hero">
     <div class="container">
       <p class="section-label" style="color:rgba(255,255,255,0.5)">Tushar Lab</p>
       <h1>Research</h1>
-      <p>We develop physics-based simulation and AI frameworks to transform how medical imaging systems are evaluated and optimized.</p>
+      <p>We develop data-centric AI frameworks for healthcare and medicine — building tools, data, and evaluation methods that are clinically grounded, rigorously tested, and worthy of real-world trust.</p>
     </div>
   </section>
 
+  <!-- ============================================================
+       PART 1 — RESEARCH AREAS AS FLASHCARDS
+  ============================================================ -->
   <section class="section">
     <div class="container">
-      {research.map((r, i) => (
-        <div class={`research-detail ${i % 2 === 1 ? 'research-detail--alt' : ''}`}>
-          <div class="rd-header">
-            <span class="rd-icon">{r.icon}</span>
-            <div>
-              <p class="section-label">{`0${i+1}`}</p>
-              <h2>{r.title}</h2>
+      <div class="section-header reveal">
+        <p class="section-label">What We Work On</p>
+        <h2>Research Areas</h2>
+        <p>Our research spans five interconnected themes — from curating better data and building intelligent clinical tools, to leveraging simulation, synthetic data, and rigorous evaluation to advance healthcare AI.</p>
+      </div>
+      <div class="flashcard-grid">
+        {areas.map((area, i) => (
+          <div class={`flashcard reveal`} style={`transition-delay:${i * 0.07}s`}>
+            <div class="flashcard-top">
+              <div class={`flashcard-icon fc-theme-${i}`}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  {area.icon === 'database' && <><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></>}
+                  {area.icon === 'brain' && <path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z M9 22h6"/>}
+                  {area.icon === 'monitor' && <><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></>}
+                  {area.icon === 'layers' && <><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></>}
+                  {area.icon === 'shield' && <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></>}
+                </svg>
+              </div>
+              <span class={`flashcard-number fc-num-${i}`}>{`0${i + 1}`}</span>
+            </div>
+            <h3 class="flashcard-title">{area.title}</h3>
+            <p class="flashcard-desc">{area.short}</p>
+            <div class="flashcard-tags">
+              {area.tags.map(tag => (
+                <span class="flashcard-tag">{tag}</span>
+              ))}
             </div>
           </div>
-          <div class="rd-body">
-            <p>{r.description}</p>
-            <div class="rd-projects">
-              <h4>Active Projects</h4>
-              <ul class="project-list">
-                {r.projects.map(p => (
-                  <li class="project-list-item">
-                    <span class="pli-dot"></span>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </section>
 
+  <!-- ============================================================
+       PART 2 — FEATURED PROJECTS
+  ============================================================ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Flagship Work</p>
+        <h2>Featured Projects</h2>
+        <p>Selected projects that represent our lab's core contributions — advancing how medical AI is built, evaluated, and trusted in clinical practice.</p>
+      </div>
+      <div class="featured-grid">
+        {featured.map((project, i) => (
+          <div class={`featured-card reveal`} style={`transition-delay:${i * 0.08}s`}>
+            <div class="featured-accent" aria-hidden="true"></div>
+            <div class="featured-body">
+              <div class="featured-header">
+                <h3 class="featured-title">{project.title}</h3>
+                <div class="featured-tags">
+                  {project.tags.map(tag => (
+                    <span class="tag tag--navy">{tag}</span>
+                  ))}
+                </div>
+              </div>
+              <p class="featured-summary">{project.summary}</p>
+              <div class="featured-impact">
+                <span class="featured-impact-label">Why It Matters</span>
+                <p>{project.impact}</p>
+              </div>
+              {project.link && (
+                <a href={project.link} class="btn btn-outline featured-cta">View Project &rarr;</a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PART 3 — PROJECTS GALLERY
+  ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">All Projects</p>
+        <h2>Research Portfolio</h2>
+        <p>A broader view of ongoing and published work across the lab — from tools and datasets to evaluation frameworks and generative methods.</p>
+      </div>
+      <div class="gallery-grid">
+        {gallery.map((project, i) => (
+          <div class={`gallery-item reveal`} style={`transition-delay:${i * 0.05}s`}>
+            <div class="gallery-item-top">
+              <h4 class="gallery-item-title">{project.title}</h4>
+              <span class={`gallery-status gallery-status--${project.status.toLowerCase().replace(/[\s-]+/g, '-')}`}>{project.status}</span>
+            </div>
+            <p class="gallery-item-desc">{project.description}</p>
+            <span class="gallery-category">{project.category}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COLLABORATION CTA
+  ============================================================ -->
   <section class="section section--navy">
     <div class="container collab-section">
       <div>
@@ -56,67 +137,307 @@ const base = import.meta.env.BASE_URL;
 </BaseLayout>
 
 <style>
-.research-detail {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: var(--space-xl);
-  padding: var(--space-xl) 0;
-  border-bottom: 1px solid var(--gray-200);
-  align-items: start;
+/* ---- Scroll reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
-.research-detail:last-child { border-bottom: none; }
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-.rd-header {
+/* ============================================================
+   PART 1 — FLASHCARD GRID
+   ============================================================ */
+.flashcard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.flashcard {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
-  position: sticky;
-  top: calc(var(--nav-h) + 1.5rem);
+  position: relative;
+  transition: box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, transform 0.35s ease;
 }
-.rd-icon {
-  font-size: 2.5rem;
-  width: 60px;
-  height: 60px;
+.flashcard:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gray-300);
+  transform: translateY(-3px);
+}
+
+.flashcard-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.flashcard-icon {
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gray-100);
   border-radius: var(--radius-lg);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.flashcard:hover .flashcard-icon {
+  transform: scale(1.08);
+}
+
+/* Icon themes matching homepage */
+.fc-theme-0 { background: rgba(171, 5, 32, 0.08); color: var(--primary); }
+.fc-theme-1 { background: rgba(12, 35, 75, 0.08); color: var(--navy); }
+.fc-theme-2 { background: rgba(37, 87, 167, 0.1); color: #2557A7; }
+.fc-theme-3 { background: rgba(139, 0, 21, 0.08); color: var(--primary-dark); }
+.fc-theme-4 { background: rgba(12, 35, 75, 0.06); color: var(--navy-light); }
+
+.flashcard-number {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--gray-300);
+}
+
+.flashcard-title {
+  font-size: 1.1rem;
+  color: var(--gray-900);
+  margin-bottom: 0.6rem;
+}
+
+.flashcard-desc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: var(--space-md);
+}
+
+.flashcard-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+
+.flashcard-tag {
+  display: inline-block;
+  padding: 0.18rem 0.55rem;
+  background: var(--gray-100);
+  color: var(--gray-600);
+  font-size: 0.7rem;
+  font-weight: 500;
+  border-radius: 100px;
+  letter-spacing: 0.01em;
+}
+
+/* 5 cards: first row 3, second row 2 centered */
+.flashcard-grid > :nth-child(4),
+.flashcard-grid > :nth-child(5) {
+  /* handled by grid naturally */
+}
+
+@media (max-width: 900px) {
+  .flashcard-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .flashcard-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   PART 2 — FEATURED PROJECTS
+   ============================================================ */
+.featured-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.featured-card {
+  background: var(--white);
   border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  transition: box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s ease;
+}
+.featured-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
 }
 
-.rd-body p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  margin-bottom: var(--space-lg);
+.featured-accent {
+  width: 4px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--navy) 100%);
+}
+.featured-card:nth-child(2) .featured-accent {
+  background: linear-gradient(180deg, var(--navy) 0%, #2557A7 100%);
+}
+.featured-card:nth-child(3) .featured-accent {
+  background: linear-gradient(180deg, #2557A7 0%, var(--primary-dark) 100%);
 }
 
-.rd-projects h4 {
-  font-size: 0.72rem;
+.featured-body {
+  padding: var(--space-lg);
+  flex: 1;
+}
+
+.featured-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.featured-title {
+  font-size: 1.3rem;
+  color: var(--navy);
+}
+
+.featured-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.featured-summary {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: var(--space-md);
+}
+
+.featured-impact {
+  background: var(--gray-50);
+  border-left: 3px solid var(--primary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: var(--space-md);
+}
+
+.featured-impact-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--primary);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.featured-impact p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.featured-cta {
+  margin-top: var(--space-xs);
+}
+
+@media (max-width: 600px) {
+  .featured-header { flex-direction: column; }
+  .featured-body { padding: var(--space-md); }
+}
+
+/* ============================================================
+   PART 3 — PROJECTS GALLERY
+   ============================================================ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.gallery-item {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.gallery-item:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--gray-300);
+  transform: translateY(-2px);
+}
+
+.gallery-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  margin-bottom: 0.5rem;
+}
+
+.gallery-item-title {
+  font-size: 1rem;
+  color: var(--navy);
+  line-height: 1.35;
+}
+
+.gallery-status {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.gallery-status--ongoing {
+  background: rgba(37, 87, 167, 0.1);
+  color: #2557A7;
+}
+.gallery-status--published {
+  background: rgba(22, 163, 74, 0.1);
+  color: #16a34a;
+}
+.gallery-status--in-development {
+  background: rgba(234, 179, 8, 0.12);
+  color: #b45309;
+}
+.gallery-status--open-source {
+  background: rgba(171, 5, 32, 0.08);
+  color: var(--primary);
+}
+
+.gallery-item-desc {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  flex: 1;
   margin-bottom: var(--space-sm);
 }
 
-.project-list { display: flex; flex-direction: column; gap: 0.6rem; }
-.project-list-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.95rem;
+.gallery-category {
+  font-size: 0.72rem;
   font-weight: 500;
-  color: var(--navy);
-}
-.pli-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--primary);
-  flex-shrink: 0;
+  color: var(--gray-400);
+  letter-spacing: 0.04em;
+  margin-top: auto;
 }
 
+@media (max-width: 700px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   COLLABORATION SECTION
+   ============================================================ */
 .collab-section {
   display: flex;
   align-items: center;
@@ -125,8 +446,20 @@ const base = import.meta.env.BASE_URL;
 }
 
 @media (max-width: 800px) {
-  .research-detail { grid-template-columns: 1fr; }
-  .rd-header { position: static; }
   .collab-section { flex-direction: column; align-items: flex-start; }
 }
 </style>
+
+<!-- Scroll reveal observer -->
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+</script>
