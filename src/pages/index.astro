@@ -251,7 +251,7 @@ const pi = team.find(m => m.role === 'Principal Investigator');
 .hero {
   position: relative;
   padding: var(--space-3xl) 0 var(--space-2xl);
-  background: var(--white);
+  background: linear-gradient(180deg, #F8FAFF 0%, var(--white) 100%);
   overflow: hidden;
 }
 
@@ -267,9 +267,9 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   position: absolute;
   top: 0;
   right: 0;
-  width: 40%;
+  width: 45%;
   height: 100%;
-  background: linear-gradient(135deg, transparent 0%, var(--cardinal-light) 100%);
+  background: radial-gradient(ellipse at 70% 40%, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -291,7 +291,7 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--cardinal);
+  color: var(--primary);
 }
 .hero-pill-sep {
   color: var(--gray-300);
@@ -355,12 +355,13 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   padding: var(--space-lg);
   text-decoration: none;
   color: inherit;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, transform 0.3s ease;
   position: relative;
 }
 .research-card:hover {
   box-shadow: var(--shadow-md);
-  border-color: var(--gray-300);
+  border-color: rgba(37, 99, 235, 0.2);
+  transform: translateY(-2px);
 }
 .rc-icon-wrap {
   width: 44px;
@@ -368,10 +369,10 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--cardinal-light);
+  background: var(--primary-light);
   border-radius: var(--radius);
   flex-shrink: 0;
-  color: var(--cardinal);
+  color: var(--primary);
 }
 .rc-body { flex: 1; }
 .rc-body h3 {
@@ -390,7 +391,7 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   transition: color 0.2s, transform 0.2s;
 }
 .research-card:hover .rc-arrow {
-  color: var(--cardinal);
+  color: var(--primary);
   transform: translateX(3px);
 }
 
@@ -415,7 +416,7 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--cardinal);
+  background: var(--primary);
   flex-shrink: 0;
   margin-top: 0.55rem;
 }
@@ -472,7 +473,7 @@ const pi = team.find(m => m.role === 'Principal Investigator');
 .pi-links { display: flex; flex-wrap: wrap; gap: var(--space-md); }
 .pi-link {
   font-size: 0.85rem;
-  color: var(--cardinal);
+  color: var(--primary);
   font-weight: 500;
   transition: opacity 0.15s;
 }
@@ -500,7 +501,7 @@ const pi = team.find(m => m.role === 'Principal Investigator');
 
 /* ---- Join section ---- */
 .join-section {
-  background: var(--navy);
+  background: linear-gradient(135deg, var(--navy) 0%, #1E3A6E 50%, #2557A7 100%);
   padding: var(--space-2xl) 0;
 }
 .join-inner {
@@ -535,7 +536,7 @@ const pi = team.find(m => m.role === 'Principal Investigator');
 }
 </style>
 
-<!-- Floating particle animation (light theme: cardinal-red dots on white) -->
+<!-- Floating particle animation (light theme: blue dots on white) -->
 <script>
 const canvas = document.getElementById('particles') as HTMLCanvasElement;
 if (canvas) {
@@ -592,13 +593,13 @@ if (canvas) {
       // Soft glow
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(171, 5, 32, ${alpha * 0.08})`;
+      ctx.fillStyle = `rgba(37, 99, 235, ${alpha * 0.08})`;
       ctx.fill();
 
       // Core dot
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(171, 5, 32, ${alpha})`;
+      ctx.fillStyle = `rgba(37, 99, 235, ${alpha})`;
       ctx.fill();
     }
 

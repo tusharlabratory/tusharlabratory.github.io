@@ -1,37 +1,43 @@
 /* =====================================================
    TUSHAR LAB — Global Styles
-   Clean academic design with UofA accent colors
+   Clean academic design with white & blue theme
    White background · Refined typography · Airy spacing
    ===================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  /* UA Brand Colors — used as accents on white */
-  --cardinal:     #AB0520;
-  --cardinal-dark:#8B1A2B;
-  --cardinal-light: rgba(171, 5, 32, 0.06);
+  /* Brand Colors — Blue accent on white */
+  --primary:      #2563EB;
+  --primary-dark: #1D4ED8;
+  --primary-light: rgba(37, 99, 235, 0.06);
+  --primary-muted: rgba(37, 99, 235, 0.12);
   --navy:         #0C234B;
   --navy-light:   #1E3A5F;
   --navy-muted:   #2d4a7a;
 
-  /* Neutrals — warm whites and grays */
+  /* Legacy aliases */
+  --cardinal:     var(--primary);
+  --cardinal-dark: var(--primary-dark);
+  --cardinal-light: var(--primary-light);
+
+  /* Neutrals — cool whites and grays */
   --bg:           #FFFFFF;
   --bg-subtle:    #FAFAFA;
-  --bg-warm:      #F8F7F5;
+  --bg-warm:      #F8FAFC;
   --white:        #FFFFFF;
-  --gray-50:      #F9FAFB;
-  --gray-100:     #F3F4F6;
-  --gray-200:     #E5E7EB;
-  --gray-300:     #D1D5DB;
-  --gray-400:     #9CA3AF;
-  --gray-500:     #6B7280;
-  --gray-600:     #4B5563;
-  --gray-700:     #374151;
-  --gray-800:     #1F2937;
-  --gray-900:     #111827;
-  --text:         #1F2937;
-  --text-secondary: #4B5563;
+  --gray-50:      #F8FAFC;
+  --gray-100:     #F1F5F9;
+  --gray-200:     #E2E8F0;
+  --gray-300:     #CBD5E1;
+  --gray-400:     #94A3B8;
+  --gray-500:     #64748B;
+  --gray-600:     #475569;
+  --gray-700:     #334155;
+  --gray-800:     #1E293B;
+  --gray-900:     #0F172A;
+  --text:         #1E293B;
+  --text-secondary: #475569;
 
   /* Typography */
   --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
@@ -49,13 +55,14 @@
   /* Layout */
   --max-w: 1120px;
   --nav-h: 64px;
-  --radius: 6px;
-  --radius-lg: 10px;
+  --radius: 8px;
+  --radius-lg: 12px;
 
-  /* Shadows — subtle */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
-  --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+  /* Shadows — modern, blue-tinted */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.07);
+  --shadow-lg: 0 8px 30px rgba(15, 23, 42, 0.1);
+  --shadow-xl: 0 16px 48px rgba(15, 23, 42, 0.12);
 }
 
 /* ---- Reset ---- */
@@ -125,7 +132,7 @@ p {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--cardinal);
+  color: var(--primary);
   margin-bottom: 0.75rem;
 }
 
@@ -143,25 +150,26 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.5rem;
+  padding: 0.7rem 1.6rem;
   border-radius: var(--radius);
   font-family: var(--font-body);
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   text-decoration: none;
   letter-spacing: 0.01em;
 }
 
 .btn-primary {
-  background: var(--cardinal);
+  background: var(--primary);
   color: var(--white);
 }
 .btn-primary:hover {
-  background: var(--cardinal-dark);
-  box-shadow: 0 2px 8px rgba(171,5,32,0.25);
+  background: var(--primary-dark);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  transform: translateY(-1px);
 }
 
 .btn-outline {
@@ -170,8 +178,9 @@ p {
   border: 1.5px solid var(--gray-300);
 }
 .btn-outline:hover {
-  border-color: var(--navy);
-  background: var(--gray-50);
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
 }
 
 .btn-outline-white {
@@ -181,7 +190,7 @@ p {
 }
 .btn-outline-white:hover {
   border-color: var(--white);
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.1);
 }
 
 .btn-navy {
@@ -190,6 +199,17 @@ p {
 }
 .btn-navy:hover {
   background: var(--navy-light);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--primary);
+  padding: 0.5rem 0;
+  font-weight: 500;
+}
+.btn-ghost:hover {
+  opacity: 0.8;
 }
 
 /* ---- Cards ---- */
@@ -198,11 +218,12 @@ p {
   border: 1px solid var(--gray-200);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, transform 0.3s ease;
 }
 .card:hover {
   box-shadow: var(--shadow-md);
   border-color: var(--gray-300);
+  transform: translateY(-2px);
 }
 
 /* ---- Tag / Badge ---- */
@@ -217,8 +238,8 @@ p {
 }
 
 .tag--red {
-  background: rgba(171,5,32,0.07);
-  color: var(--cardinal);
+  background: var(--primary-muted);
+  color: var(--primary);
 }
 
 .tag--navy {
@@ -244,17 +265,27 @@ p {
 .divider {
   width: 40px;
   height: 2px;
-  background: var(--cardinal);
+  background: var(--primary);
   border-radius: 2px;
   margin: var(--space-sm) 0 var(--space-md);
 }
 
 /* ---- Page hero (inner pages) ---- */
 .page-hero {
-  background: var(--navy);
+  background: linear-gradient(135deg, var(--navy) 0%, #1E3A6E 50%, #2557A7 100%);
   padding: var(--space-2xl) 0 var(--space-xl);
   position: relative;
   overflow: hidden;
 }
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(ellipse at 80% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
 .page-hero h1 { color: var(--white); }
-.page-hero p  { color: rgba(255,255,255,0.7); max-width: 600px; }
+.page-hero p  { color: rgba(255,255,255,0.75); max-width: 600px; }

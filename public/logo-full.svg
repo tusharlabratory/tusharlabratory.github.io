@@ -13,9 +13,9 @@
   <rect x="35" y="20" width="18" height="75" fill="#0C234B"/>
   <rect x="35" y="78" width="55" height="17" fill="#0C234B"/>
 
-  <!-- "Tushar" text in Cardinal Red -->
-  <text x="105" y="48" font-family="'DM Sans', system-ui, sans-serif" font-weight="700" font-size="32" fill="#AB0520">Tushar</text>
+  <!-- "Tushar" text in Blue -->
+  <text x="105" y="48" font-family="'DM Sans', system-ui, sans-serif" font-weight="700" font-size="32" fill="#2563EB">Tushar</text>
 
-  <!-- "Lab" text in Cardinal Red -->
-  <text x="105" y="82" font-family="'DM Sans', system-ui, sans-serif" font-weight="700" font-size="32" fill="#AB0520">Lab</text>
+  <!-- "Lab" text in Blue -->
+  <text x="105" y="82" font-family="'DM Sans', system-ui, sans-serif" font-weight="700" font-size="32" fill="#2563EB">Lab</text>
 </svg>
