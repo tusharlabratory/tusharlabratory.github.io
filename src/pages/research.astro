@@ -4,7 +4,11 @@ import researchData from '../content/research.json';
 const base = import.meta.env.BASE_URL;
 const areas = researchData.areas;
 const featured = researchData.featured;
-const gallery = researchData.gallery;
+const projects = researchData.projects;
+
+function assetUrl(path: string) {
+  return `${base}${path.replace(/^\//, '')}`;
+}
 ---
 
 <BaseLayout title="Research">
@@ -28,7 +32,7 @@ const gallery = researchData.gallery;
       <div class="section-header reveal">
         <p class="section-label">What We Work On</p>
         <h2>Research Areas</h2>
-        <p>Our research spans five interconnected themes — from curating better data and building intelligent clinical tools, to leveraging simulation, synthetic data, and rigorous evaluation to advance healthcare AI.</p>
+        <p>Our research spans four interconnected themes — from curating better data and building intelligent clinical tools, to leveraging simulation and synthetic data to advance healthcare AI.</p>
       </div>
       <div class="flashcard-grid">
         {areas.map((area, i) => (
@@ -40,18 +44,12 @@ const gallery = researchData.gallery;
                   {area.icon === 'brain' && <path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z M9 22h6"/>}
                   {area.icon === 'monitor' && <><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></>}
                   {area.icon === 'layers' && <><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></>}
-                  {area.icon === 'shield' && <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></>}
                 </svg>
               </div>
               <span class={`flashcard-number fc-num-${i}`}>{`0${i + 1}`}</span>
             </div>
             <h3 class="flashcard-title">{area.title}</h3>
             <p class="flashcard-desc">{area.short}</p>
-            <div class="flashcard-tags">
-              {area.tags.map(tag => (
-                <span class="flashcard-tag">{tag}</span>
-              ))}
-            </div>
           </div>
         ))}
       </div>
@@ -71,24 +69,20 @@ const gallery = researchData.gallery;
       <div class="featured-grid">
         {featured.map((project, i) => (
           <div class={`featured-card reveal`} style={`transition-delay:${i * 0.08}s`}>
-            <div class="featured-accent" aria-hidden="true"></div>
+            <div class="featured-image">
+              <img src={assetUrl(project.image)} alt={project.title} />
+            </div>
             <div class="featured-body">
               <div class="featured-header">
                 <h3 class="featured-title">{project.title}</h3>
-                <div class="featured-tags">
-                  {project.tags.map(tag => (
-                    <span class="tag tag--navy">{tag}</span>
-                  ))}
-                </div>
+                <p class="featured-heading">{project.heading}</p>
               </div>
               <p class="featured-summary">{project.summary}</p>
               <div class="featured-impact">
                 <span class="featured-impact-label">Why It Matters</span>
                 <p>{project.impact}</p>
               </div>
-              {project.link && (
-                <a href={project.link} class="btn btn-outline featured-cta">View Project &rarr;</a>
-              )}
+              <a href={project.link} class="btn btn-outline featured-cta" target="_blank" rel="noopener noreferrer">View Project &rarr;</a>
             </div>
           </div>
         ))}
@@ -97,7 +91,7 @@ const gallery = researchData.gallery;
   </section>
 
   <!-- ============================================================
-       PART 3 — PROJECTS GALLERY
+       PART 3 — PROJECTS
   ============================================================ -->
   <section class="section">
     <div class="container">
@@ -106,16 +100,19 @@ const gallery = researchData.gallery;
         <h2>Research Portfolio</h2>
         <p>A broader view of ongoing and published work across the lab — from tools and datasets to evaluation frameworks and generative methods.</p>
       </div>
-      <div class="gallery-grid">
-        {gallery.map((project, i) => (
-          <div class={`gallery-item reveal`} style={`transition-delay:${i * 0.05}s`}>
-            <div class="gallery-item-top">
-              <h4 class="gallery-item-title">{project.title}</h4>
-              <span class={`gallery-status gallery-status--${project.status.toLowerCase().replace(/[\s-]+/g, '-')}`}>{project.status}</span>
+      <div class="projects-grid">
+        {projects.map((project, i) => (
+          <a href={project.link} class={`project-card reveal`} style={`transition-delay:${i * 0.05}s`} target="_blank" rel="noopener noreferrer">
+            <div class="project-card-image">
+              <img src={assetUrl(project.image)} alt={project.title} />
             </div>
-            <p class="gallery-item-desc">{project.description}</p>
-            <span class="gallery-category">{project.category}</span>
-          </div>
+            <div class="project-card-body">
+              <h4 class="project-card-title">{project.title}</h4>
+              <p class="project-card-heading">{project.heading}</p>
+              <p class="project-card-desc">{project.description}</p>
+              <span class="project-card-link">View Project &rarr;</span>
+            </div>
+          </a>
         ))}
       </div>
     </div>
@@ -153,7 +150,7 @@ const gallery = researchData.gallery;
    ============================================================ */
 .flashcard-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-lg);
 }
 
@@ -199,7 +196,6 @@ const gallery = researchData.gallery;
 .fc-theme-1 { background: rgba(12, 35, 75, 0.08); color: var(--navy); }
 .fc-theme-2 { background: rgba(37, 87, 167, 0.1); color: #2557A7; }
 .fc-theme-3 { background: rgba(139, 0, 21, 0.08); color: var(--primary-dark); }
-.fc-theme-4 { background: rgba(12, 35, 75, 0.06); color: var(--navy-light); }
 
 .flashcard-number {
   font-family: var(--font-display);
@@ -219,30 +215,8 @@ const gallery = researchData.gallery;
   font-size: 0.9rem;
   line-height: 1.7;
   flex: 1;
-  margin-bottom: var(--space-md);
 }
 
-.flashcard-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: auto;
-}
-
-.flashcard-tag {
-  display: inline-block;
-  padding: 0.18rem 0.55rem;
-  background: var(--gray-100);
-  color: var(--gray-600);
-  font-size: 0.7rem;
-  font-weight: 500;
-  border-radius: 100px;
-  letter-spacing: 0.01em;
-}
-
-@media (max-width: 900px) {
-  .flashcard-grid { grid-template-columns: repeat(2, 1fr); }
-}
 @media (max-width: 600px) {
   .flashcard-grid { grid-template-columns: 1fr; }
 }
@@ -269,16 +243,19 @@ const gallery = researchData.gallery;
   transform: translateY(-2px);
 }
 
-.featured-accent {
-  width: 4px;
+.featured-image {
+  width: 320px;
   flex-shrink: 0;
-  background: linear-gradient(180deg, var(--primary) 0%, var(--navy) 100%);
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
-.featured-card:nth-child(2) .featured-accent {
-  background: linear-gradient(180deg, var(--navy) 0%, #2557A7 100%);
-}
-.featured-card:nth-child(3) .featured-accent {
-  background: linear-gradient(180deg, #2557A7 0%, var(--primary-dark) 100%);
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .featured-body {
@@ -287,23 +264,20 @@ const gallery = researchData.gallery;
 }
 
 .featured-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-sm);
   margin-bottom: var(--space-sm);
-  flex-wrap: wrap;
 }
 
 .featured-title {
   font-size: 1.3rem;
   color: var(--navy);
+  margin-bottom: 0.25rem;
 }
 
-.featured-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
+.featured-heading {
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  font-weight: 500;
+  margin-bottom: 0;
 }
 
 .featured-summary {
@@ -340,93 +314,100 @@ const gallery = researchData.gallery;
   margin-top: var(--space-xs);
 }
 
-@media (max-width: 600px) {
-  .featured-header { flex-direction: column; }
+@media (max-width: 700px) {
+  .featured-card { flex-direction: column; }
+  .featured-image { width: 100%; height: 200px; }
   .featured-body { padding: var(--space-md); }
 }
 
 /* ============================================================
-   PART 3 — PROJECTS GALLERY
+   PART 3 — PROJECTS
    ============================================================ */
-.gallery-grid {
+.projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
 }
 
-.gallery-item {
+.project-card {
   background: var(--white);
   border: 1px solid var(--gray-200);
   border-radius: var(--radius-lg);
-  padding: var(--space-md) var(--space-lg);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  text-decoration: none;
+  color: inherit;
   transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
-.gallery-item:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--gray-300);
-  transform: translateY(-2px);
+.project-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(171, 5, 32, 0.15);
+  transform: translateY(-3px);
 }
 
-.gallery-item-top {
+.project-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--gray-100);
+}
+.project-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.project-card:hover .project-card-image img {
+  transform: scale(1.03);
+}
+
+.project-card-body {
+  padding: var(--space-md);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-xs);
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-card-title {
+  font-size: 1.1rem;
+  color: var(--navy);
+  margin-bottom: 0.2rem;
+}
+
+.project-card-heading {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  font-weight: 500;
   margin-bottom: 0.5rem;
 }
 
-.gallery-item-title {
-  font-size: 1rem;
-  color: var(--navy);
-  line-height: 1.35;
-}
-
-.gallery-status {
-  display: inline-block;
-  padding: 0.15rem 0.55rem;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  border-radius: 100px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.gallery-status--ongoing {
-  background: rgba(37, 87, 167, 0.1);
-  color: #2557A7;
-}
-.gallery-status--published {
-  background: rgba(22, 163, 74, 0.1);
-  color: #16a34a;
-}
-.gallery-status--in-development {
-  background: rgba(234, 179, 8, 0.12);
-  color: #b45309;
-}
-.gallery-status--open-source {
-  background: rgba(171, 5, 32, 0.08);
-  color: var(--primary);
-}
-
-.gallery-item-desc {
+.project-card-desc {
   font-size: 0.88rem;
   line-height: 1.65;
   flex: 1;
   margin-bottom: var(--space-sm);
 }
 
-.gallery-category {
-  font-size: 0.72rem;
+.project-card-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: var(--gray-400);
-  letter-spacing: 0.04em;
+  color: var(--primary);
+  gap: 0.25rem;
   margin-top: auto;
+  transition: gap 0.2s ease;
+}
+.project-card:hover .project-card-link {
+  gap: 0.5rem;
 }
 
-@media (max-width: 700px) {
-  .gallery-grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .projects-grid { grid-template-columns: 1fr; }
 }
 
 /* ============================================================

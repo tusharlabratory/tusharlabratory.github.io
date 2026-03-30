@@ -6,7 +6,6 @@
       "short": "Advancing AI by improving the data it learns from — through better curation, quality assessment, diversity analysis, and rigorous benchmarking for clinical reliability.",
       "description": "Advancing AI by improving the data it learns from — through better curation, quality assessment, diversity analysis, and rigorous benchmarking for clinical reliability.",
       "icon": "database",
-      "tags": ["Data Quality", "Curation", "Benchmarking"],
       "projects": ["SYN-LUNGS Synthesis", "CPU-Index Framework", "AI Benchmarking"]
     },
     {
@@ -15,7 +14,6 @@
       "short": "Designing AI-powered tools that integrate meaningfully into clinical workflows — reducing burden, supporting decision-making, and adapting to real-world healthcare settings.",
       "description": "Designing AI-powered tools that integrate meaningfully into clinical workflows — reducing burden, supporting decision-making, and adapting to real-world healthcare settings.",
       "icon": "brain",
-      "tags": ["Clinical AI", "Decision Support", "Workflow Integration"],
       "projects": ["NodMAISI", "DukeSeg", "Foundation Models for CT"]
     },
     {
@@ -24,7 +22,6 @@
       "short": "Leveraging physics-based simulation and virtual patient models to evaluate AI rigorously, safely, and at scale — where real-world clinical testing alone is limited or costly.",
       "description": "Leveraging physics-based simulation and virtual patient models to evaluate AI rigorously, safely, and at scale — where real-world clinical testing alone is limited or costly.",
       "icon": "monitor",
-      "tags": ["Virtual Imaging", "Physics-Based", "Evaluation"],
       "projects": ["Virtual Lung Screening Trial (VLST)", "SYN-LUNGS", "Digital Human Phantoms"]
     },
     {
@@ -33,101 +30,69 @@
       "short": "Creating controllable, privacy-preserving synthetic datasets and generative models for AI training, evaluation, and reproducible experimentation in medicine.",
       "description": "Creating controllable, privacy-preserving synthetic datasets and generative models for AI training, evaluation, and reproducible experimentation in medicine.",
       "icon": "layers",
-      "tags": ["Generative Models", "Privacy-Preserving", "Synthetic Data"],
       "projects": ["Pathology-Conditioned CT Generation", "Privacy-Preserving Data Augmentation", "Open Synthetic Datasets"]
-    },
-    {
-      "id": "trustworthy-evaluation",
-      "title": "Trustworthy & Clinically Grounded AI",
-      "short": "Developing evaluation frameworks that go beyond standard metrics — testing AI under clinically meaningful conditions to build systems worthy of real-world trust.",
-      "description": "Developing evaluation frameworks that go beyond standard metrics — testing AI under clinically meaningful conditions to build systems worthy of real-world trust.",
-      "icon": "shield",
-      "tags": ["Trustworthiness", "Rigorous Evaluation", "Clinical Relevance"],
-      "projects": ["Clinically Grounded Evaluation", "Robustness Testing", "Population-Aware Benchmarks"]
     }
   ],
   "featured": [
     {
-      "id": "vlst",
-      "title": "Virtual Lung Screening Trial (VLST)",
-      "summary": "A large-scale virtual imaging trial simulating low-dose CT lung cancer screening across diverse patient populations, scanner models, and acquisition protocols. Enables rigorous, controlled evaluation of AI screening tools beyond the limitations of traditional clinical trials.",
-      "impact": "Enables scalable, population-level evaluation of lung cancer screening AI under conditions that are impossible to replicate in real-world trials alone.",
-      "tags": ["Virtual Trials", "Lung Cancer", "CT Screening"],
-      "link": null
+      "id": "haid",
+      "title": "HAID",
+      "heading": "Health AI Data Resource",
+      "summary": "An open-access repository providing 13+ standardized medical imaging datasets covering lung cancer, COVID-19, and universal lesions with expert-verified annotations, preprocessed files, and train-test splits to democratize access to high-quality clinical data for AI/ML development.",
+      "impact": "Democratizes access to high-quality, standardized clinical data — accelerating reproducible AI research across multiple disease domains.",
+      "image": "images/research/haid.png",
+      "link": "https://github.com/fitushar/HAID"
     },
     {
-      "id": "syn-lungs",
-      "title": "SYN-LUNGS",
-      "summary": "A comprehensive synthetic data generation pipeline that produces anatomically realistic, pathology-conditioned lung CT images with full ground-truth annotations — supporting AI development, evaluation, and reproducibility.",
-      "impact": "Provides the research community with open, controllable, and fully annotated imaging data to accelerate development and fair benchmarking of thoracic AI models.",
-      "tags": ["Synthetic Data", "Lung Imaging", "Open Science"],
-      "link": null
-    },
-    {
-      "id": "nodmaisi",
-      "title": "NodMAISI",
-      "summary": "An intelligent tool for automated lung nodule measurement, analysis, and reporting in CT imaging — designed to reduce inter-reader variability and support standardized clinical workflows in pulmonary nodule management.",
-      "impact": "Brings consistency and efficiency to a critical step in lung cancer detection, directly addressing a real clinical bottleneck in radiology practice.",
-      "tags": ["Clinical AI", "Lung Nodules", "Radiology"],
-      "link": null
+      "id": "triannotate",
+      "title": "TriAnnot",
+      "heading": "Multi-Stage AI Pipeline for Lung Nodule Annotation",
+      "summary": "A comprehensive, freely available pipeline integrating lung segmentation, nodule detection, and malignancy classification into a unified tri-stage workflow designed to prioritize sensitivity while reducing annotator burden for first-pass lung nodule annotation in screening CT.",
+      "impact": "Reduces manual annotation burden and improves consistency in lung nodule identification — enabling faster, more reliable screening workflows.",
+      "image": "images/research/triannotate.png",
+      "link": "https://github.com/fitushar/TriAnnot"
     }
   ],
-  "gallery": [
+  "projects": [
     {
-      "id": "cpu-index",
-      "title": "CPU-Index Framework",
-      "description": "A data-centric framework for measuring and improving the coverage, precision, and utility of medical imaging datasets for AI development.",
-      "status": "Ongoing",
-      "category": "Data-Centric AI"
+      "id": "vlst",
+      "title": "VLST",
+      "heading": "Virtual Lung Screening Trial",
+      "description": "A large-scale virtual imaging trial simulating low-dose CT lung cancer screening across diverse patient populations, scanner models, and acquisition protocols.",
+      "image": "images/research/vlst.png",
+      "link": "https://fitushar.github.io/VLST.github.io/"
     },
     {
-      "id": "dukeseg",
-      "title": "DukeSeg",
-      "description": "Segmentation tools for anatomical structures in medical imaging, built for integration into clinical and research pipelines.",
-      "status": "Published",
-      "category": "Clinical Tools"
+      "id": "ai-lung-health",
+      "title": "AI in Lung Health",
+      "heading": "Benchmarking Detection and Diagnostic Models Across Multiple CT Scan Datasets",
+      "description": "A public, reproducible multi-dataset benchmark for lung nodule detection and cancer classification, demonstrating that detection performance is strongly driven by dataset characteristics.",
+      "image": "images/research/ai-lung-health.png",
+      "link": "https://github.com/fitushar/AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets"
     },
     {
-      "id": "foundation-models-ct",
-      "title": "Foundation Models for CT",
-      "description": "Exploring large-scale pre-trained models adapted for CT imaging tasks — from organ segmentation to anomaly detection.",
-      "status": "In Development",
-      "category": "Clinical Tools"
+      "id": "nomaisi",
+      "title": "NoMAISI",
+      "heading": "Nodule-Oriented Medical AI for Synthetic Imaging",
+      "description": "A generative framework using flow-based diffusion and ControlNet conditioning to create realistic synthetic CT images with AI-generated lung nodules for data augmentation.",
+      "image": "images/research/nomaisi.png",
+      "link": "https://github.com/fitushar/NoMAISI"
     },
     {
-      "id": "digital-human-phantoms",
-      "title": "Digital Human Phantoms",
-      "description": "Computationally generated patient models with realistic anatomy and pathology for physics-based imaging simulation.",
-      "status": "Ongoing",
-      "category": "Simulation"
+      "id": "haid",
+      "title": "HAID",
+      "heading": "Health AI Data Resource",
+      "description": "An open-access repository providing 13+ standardized medical imaging datasets with expert-verified annotations and preprocessed files for AI/ML development.",
+      "image": "images/research/haid.png",
+      "link": "https://github.com/fitushar/HAID"
     },
     {
-      "id": "pathology-conditioned-generation",
-      "title": "Pathology-Conditioned CT Generation",
-      "description": "Generative models that produce CT images conditioned on specific pathologies, enabling controlled experiments and data augmentation.",
-      "status": "In Development",
-      "category": "Generative Data"
-    },
-    {
-      "id": "privacy-preserving-augmentation",
-      "title": "Privacy-Preserving Data Augmentation",
-      "description": "Synthetic data methods designed to expand training datasets while preserving patient privacy and maintaining clinical fidelity.",
-      "status": "Ongoing",
-      "category": "Generative Data"
-    },
-    {
-      "id": "open-synthetic-datasets",
-      "title": "Open Synthetic Datasets",
-      "description": "Publicly available synthetic imaging datasets with full annotations, designed to support reproducible AI research and benchmarking.",
-      "status": "Open-Source",
-      "category": "Data-Centric AI"
-    },
-    {
-      "id": "robustness-testing",
-      "title": "Robustness & Stress Testing for AI",
-      "description": "Systematic evaluation of AI model behavior under distribution shifts, edge cases, and clinically challenging scenarios.",
-      "status": "Ongoing",
-      "category": "Evaluation"
+      "id": "triannotate",
+      "title": "TriAnnot",
+      "heading": "Multi-Stage AI Pipeline for Lung Nodule Annotation",
+      "description": "A freely available pipeline integrating lung segmentation, nodule detection, and malignancy classification into a unified tri-stage workflow for screening CT.",
+      "image": "images/research/triannotate.png",
+      "link": "https://github.com/fitushar/TriAnnot"
     }
   ]
 }
