@@ -1,33 +1,33 @@
 [
   {
-    "id": "medical-imaging-ai",
-    "title": "Medical Imaging AI",
-    "short": "Developing deep learning methods for detection, segmentation, and diagnosis in radiology\u2014with a focus on data efficiency and clinical reliability.",
-    "description": "We build AI models for medical image analysis that are designed to work under real-world clinical constraints: limited labeled data, domain shift, and the need for interpretable outputs. Our work includes foundation models, weakly-supervised learning, and multi-scale architectures for CT and other modalities.",
-    "icon": "brain",
-    "projects": ["NodMAISI", "DukeSeg", "Foundation Models for CT"]
-  },
-  {
-    "id": "virtual-imaging-trials",
-    "title": "Virtual Imaging Trials",
-    "short": "Physics-based simulation of imaging pipelines\u2014from digital patients to virtual scanners\u2014enabling large-scale evaluation without radiation or patient risk.",
-    "description": "We develop end-to-end virtual imaging trial (VIT) frameworks that computationally simulate patient anatomy, CT acquisition physics, and image interpretation. This enables rigorous protocol evaluation and AI benchmarking at a scale not possible with real clinical trials.",
-    "icon": "monitor",
-    "projects": ["Virtual Lung Screening Trial (VLST)", "SYN-LUNGS", "Digital Human Phantoms"]
-  },
-  {
     "id": "data-centric-ai",
     "title": "Data-Centric AI",
-    "short": "Improving AI through better data\u2014synthetic generation, quality-aware curation, and rigorous benchmarking for medical imaging.",
-    "description": "Rather than only optimizing models, we focus on the data itself: generating high-fidelity synthetic images, building standardized benchmarks, and developing evaluation frameworks that connect data quality to downstream clinical performance.",
+    "short": "We study how better data can lead to better AI. This includes improving data quality, diversity, representativeness, curation, and benchmarking for more reliable model development.",
+    "description": "We study how better data can lead to better AI. This includes improving data quality, diversity, representativeness, curation, and benchmarking for more reliable model development.",
     "icon": "database",
     "projects": ["SYN-LUNGS Synthesis", "CPU-Index Framework", "AI Benchmarking"]
   },
   {
-    "id": "generative-synthetic-imaging",
-    "title": "Synthetic & Generative Imaging",
-    "short": "Creating realistic synthetic medical images with controllable anatomy and pathology to augment training data and protect patient privacy.",
-    "description": "Using diffusion models and physics-guided generative approaches, we synthesize medical images with precise control over anatomy, pathology, and acquisition parameters. This addresses data scarcity while preserving patient privacy and enabling reproducible research.",
+    "id": "intelligent-tools-healthcare",
+    "title": "Intelligent Tools for Healthcare",
+    "short": "We design intelligent tools that help make AI more practical, efficient, and useful for healthcare professionals in real-world settings.",
+    "description": "We design intelligent tools that help make AI more practical, efficient, and useful for healthcare professionals in real-world settings.",
+    "icon": "brain",
+    "projects": ["NodMAISI", "DukeSeg", "Foundation Models for CT"]
+  },
+  {
+    "id": "simulation-virtual-trials",
+    "title": "Simulation and Virtual Trials",
+    "short": "We use physics-based simulation and virtual patient models to evaluate AI rigorously, safely, and at scale, especially in settings where clinical testing alone is limited or costly.",
+    "description": "We use physics-based simulation and virtual patient models to evaluate AI rigorously, safely, and at scale, especially in settings where clinical testing alone is limited or costly.",
+    "icon": "monitor",
+    "projects": ["Virtual Lung Screening Trial (VLST)", "SYN-LUNGS", "Digital Human Phantoms"]
+  },
+  {
+    "id": "synthetic-generative-data",
+    "title": "Synthetic and Generative Data",
+    "short": "We develop synthetic and generative data approaches to support AI training, evaluation, privacy-preserving research, and controllable experimentation.",
+    "description": "We develop synthetic and generative data approaches to support AI training, evaluation, privacy-preserving research, and controllable experimentation.",
     "icon": "layers",
     "projects": ["Pathology-Conditioned CT Generation", "Privacy-Preserving Data Augmentation", "Open Synthetic Datasets"]
   }

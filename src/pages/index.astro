@@ -2,10 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import site from '../content/site.json';
 import research from '../content/research.json';
-import team from '../content/team.json';
 import news from '../content/news.json';
 const base = import.meta.env.BASE_URL;
-const pi = team.find(m => m.role === 'Principal Investigator');
 ---
 
 <BaseLayout>
@@ -74,10 +72,10 @@ const pi = team.find(m => m.role === 'Principal Investigator');
     <div class="container">
       <div class="section-header reveal">
         <p class="section-label">Research</p>
-        <h2>What we work on</h2>
-        <p>Our research directions span AI development, simulation, and evaluation for medical imaging.</p>
+        <h2>Research</h2>
+        <p>Our research spans data-centric AI, simulation, and evaluation to make healthcare AI more trustworthy, useful, and clinically grounded.</p>
       </div>
-      <div class="grid-2 research-grid">
+      <div class="grid-4 research-grid">
         {research.map(r => (
           <a href={`${base}research/`} class="research-card">
             <div class="rc-icon-wrap">
@@ -95,93 +93,6 @@ const pi = team.find(m => m.role === 'Principal Investigator');
             <span class="rc-arrow">&rarr;</span>
           </a>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SELECTED DIRECTIONS — Representative work, not "flagship"
-  ============================================================ -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-label">Selected Work</p>
-        <h2>Representative research directions</h2>
-        <p>Projects that reflect the lab's emerging research program and the PI's prior work.</p>
-      </div>
-      <div class="directions-list">
-
-        <div class="direction-item">
-          <div class="di-marker"></div>
-          <div class="di-content">
-            <h3>Virtual Lung Screening Trial (VLST)</h3>
-            <p>An end-to-end simulation framework for lung cancer screening&mdash;modeling patient anatomy, CT acquisition, and AI-based detection&mdash;enabling protocol evaluation without patient exposure.</p>
-            <div class="di-tags">
-              <span class="tag tag--red">CT Simulation</span>
-              <span class="tag tag--navy">Digital Phantoms</span>
-              <span class="tag">Lung Cancer</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="direction-item">
-          <div class="di-marker"></div>
-          <div class="di-content">
-            <h3>NodMAISI</h3>
-            <p>A multi-scale AI model for pulmonary nodule detection and characterization, designed to achieve strong performance with limited labeled data through weakly-supervised and self-supervised strategies.</p>
-            <div class="di-tags">
-              <span class="tag tag--red">Deep Learning</span>
-              <span class="tag tag--navy">Weakly Supervised</span>
-              <span class="tag">Nodule Detection</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="direction-item">
-          <div class="di-marker"></div>
-          <div class="di-content">
-            <h3>SYN-LUNGS</h3>
-            <p>A synthetic lung CT generation pipeline that produces anatomically realistic images with controllable pathology, supporting both AI training and privacy-preserving data sharing.</p>
-            <div class="di-tags">
-              <span class="tag tag--red">Generative AI</span>
-              <span class="tag tag--navy">Synthetic Data</span>
-              <span class="tag">Open Science</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       PI SECTION — Brief, professional, connecting background to vision
-  ============================================================ -->
-  <section class="section section--alt pi-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-label">Principal Investigator</p>
-      </div>
-      <div class="pi-card reveal" style="transition-delay:0.1s">
-        <div class="pi-avatar-wrap">
-          {pi?.photo
-            ? <img src={pi.photo} alt={pi?.name} class="pi-avatar-img" />
-            : <div class="pi-avatar-placeholder">
-                <span>{pi?.name.split(' ').map((n: string) => n[0]).join('')}</span>
-              </div>
-          }
-        </div>
-        <div class="pi-info">
-          <h3>{pi?.name}</h3>
-          <p class="pi-title">{pi?.title}</p>
-          <p class="pi-affil">{pi?.affiliation}</p>
-          <div class="divider"></div>
-          <p class="pi-bio">{pi?.bio}</p>
-          <div class="pi-links">
-            {pi?.email && <a href={`mailto:${pi.email}`} class="pi-link">{pi.email}</a>}
-            {pi?.github && <a href={pi.github} class="pi-link" target="_blank" rel="noopener">GitHub</a>}
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -395,90 +306,6 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   transform: translateX(3px);
 }
 
-/* ---- Selected directions ---- */
-.directions-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.direction-item {
-  display: flex;
-  gap: var(--space-lg);
-  padding: var(--space-lg) 0;
-  border-bottom: 1px solid var(--gray-100);
-  align-items: flex-start;
-}
-.direction-item:first-child { padding-top: 0; }
-.direction-item:last-child { border-bottom: none; }
-
-.di-marker {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--primary);
-  flex-shrink: 0;
-  margin-top: 0.55rem;
-}
-
-.di-content h3 {
-  margin-bottom: 0.35rem;
-  font-size: 1.1rem;
-}
-.di-content p {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  margin-bottom: 0.75rem;
-}
-.di-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-
-/* ---- PI section ---- */
-.pi-card {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: var(--space-xl);
-  align-items: start;
-}
-
-.pi-avatar-wrap {
-  aspect-ratio: 1;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 2px solid var(--gray-200);
-}
-.pi-avatar-img { width: 100%; height: 100%; object-fit: cover; }
-.pi-avatar-placeholder {
-  width: 100%;
-  height: 100%;
-  min-height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--navy);
-  font-family: var(--font-display);
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: rgba(255,255,255,0.2);
-}
-
-.pi-info h3 { margin-bottom: 0.2rem; font-size: 1.4rem; }
-.pi-title { font-weight: 500; color: var(--gray-700); font-size: 0.95rem; }
-.pi-affil { font-size: 0.85rem; color: var(--gray-400); margin-top: 2px; }
-.pi-bio {
-  font-size: 0.95rem;
-  line-height: 1.8;
-  margin-bottom: var(--space-md);
-  color: var(--text-secondary);
-}
-.pi-links { display: flex; flex-wrap: wrap; gap: var(--space-md); }
-.pi-link {
-  font-size: 0.85rem;
-  color: var(--primary);
-  font-weight: 500;
-  transition: opacity 0.15s;
-}
-.pi-link:hover { opacity: 0.7; }
-
 /* ---- News ---- */
 .news-card {
   display: flex;
@@ -525,14 +352,11 @@ const pi = team.find(m => m.role === 'Principal Investigator');
 /* ---- Responsive ---- */
 @media (max-width: 800px) {
   .mission-grid { grid-template-columns: 1fr; }
-  .pi-card { grid-template-columns: 1fr; }
-  .pi-avatar-wrap { max-width: 160px; }
 }
 
 @media (max-width: 600px) {
   .hero { padding: var(--space-2xl) 0 var(--space-xl); }
   .hero-accent { display: none; }
-  .direction-item { gap: var(--space-sm); }
 }
 </style>
 
