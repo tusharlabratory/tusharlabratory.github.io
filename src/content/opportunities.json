@@ -1,42 +1,6 @@
 {
-  "intro": "We are actively recruiting talented and motivated researchers at all levels. Our lab offers a collaborative, rigorous, and supportive environment at the intersection of physics, computation, and clinical impact.",
-  "positions": [
-    {
-      "id": "phd-2025",
-      "title": "PhD Student (Fall 2025 / Spring 2026)",
-      "type": "Graduate",
-      "status": "Open",
-      "description": "We are seeking PhD students with backgrounds in biomedical engineering, computer science, medical physics, or a related field. Strong programming skills (Python) and interest in medical imaging are required. Experience with deep learning or CT simulation is a plus.",
-      "requirements": ["BS/MS in BME, CS, Physics, or related field", "Python proficiency", "Strong mathematical background", "Interest in medical imaging AI"],
-      "contact": "ftushar@arizona.edu"
-    },
-    {
-      "id": "postdoc-2025",
-      "title": "Postdoctoral Researcher",
-      "type": "Postdoc",
-      "status": "Open",
-      "description": "We seek a postdoc with expertise in deep learning for medical imaging, ideally with experience in generative models, foundation models, or CT simulation. The postdoc will lead independent research projects and co-mentor graduate students.",
-      "requirements": ["PhD in CS, BME, Medical Physics, or related", "Strong publication record", "Experience with PyTorch or JAX", "Medical imaging or simulation background"],
-      "contact": "ftushar@arizona.edu"
-    },
-    {
-      "id": "ms-2025",
-      "title": "MS Student / Research Assistant",
-      "type": "Masters",
-      "status": "Open",
-      "description": "Current UA graduate students interested in joining the lab for thesis research or as research assistants are encouraged to reach out.",
-      "requirements": ["Enrolled at University of Arizona", "Programming background", "Motivated self-starter"],
-      "contact": "ftushar@arizona.edu"
-    },
-    {
-      "id": "undergrad-2025",
-      "title": "Undergraduate Researcher",
-      "type": "Undergraduate",
-      "status": "Open",
-      "description": "Exceptional UA undergraduates interested in research can apply for part-time positions. Commitment of at least 10 hours/week is expected.",
-      "requirements": ["UA undergraduate", "GPA ≥ 3.5", "Background in CS or engineering"],
-      "contact": "ftushar@arizona.edu"
-    }
-  ],
-  "how_to_apply": "Send an email to ftushar@arizona.edu with subject line '[Position] – Your Name'. Include your CV, a brief statement of research interests (1 page), and any relevant code samples or publications."
+  "intro": "The Tushar Lab is a newly established and growing research group. We welcome motivated individuals with interests in medical imaging AI, data-centric machine learning, and computational health sciences.",
+  "positions": [],
+  "how_to_apply": "If our research resonates with you, we encourage you to reach out directly via email at ftushar@arizona.edu. Please include your CV and a brief statement of research interests. Specific positions will be posted here as they become available.",
+  "general_message": "While specific positions have not yet been finalized, we anticipate openings for PhD students, postdoctoral researchers, and research staff in the near future. We are always eager to hear from motivated individuals. If our research resonates with you, we encourage you to check back here for updates or reach out directly."
 }

@@ -8,11 +8,10 @@ const year = new Date().getFullYear();
   <div class="container footer-inner">
 
     <div class="footer-brand">
-      <img src={`${base}logo-monogram.svg`} alt="Tushar Lab" class="footer-logo" width="40" height="40" />
+      <img src={`${base}logo-monogram.svg`} alt="Tushar Lab" class="footer-logo" width="36" height="36" />
       <div>
         <div class="footer-lab">{site.labName}</div>
         <div class="footer-dept">{site.department}</div>
-        <div class="footer-uni">{site.university}</div>
       </div>
     </div>
 
@@ -37,33 +36,29 @@ const year = new Date().getFullYear();
         <a href={`${base}contact/`}>Contact</a>
         <a href={site.github} target="_blank" rel="noopener">GitHub</a>
       </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Contact</div>
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-        <p class="footer-address">{site.address}</p>
-      </div>
     </div>
 
   </div>
 
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <span>&copy; {year} {site.labName} &middot; {site.university}</span>
+      <span>&copy; {year} {site.labName} &middot; Department of Radiology and Imaging Sciences &middot; University of Arizona &middot; Tucson, AZ</span>
     </div>
   </div>
 </footer>
 
 <style>
 .site-footer {
-  border-top: 1px solid var(--gray-200);
-  color: var(--gray-500);
+  background: var(--bg-deep);
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
   padding-top: var(--space-2xl);
   font-size: 0.875rem;
 }
 
 .footer-inner {
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 240px 1fr;
   gap: var(--space-xl);
   padding-bottom: var(--space-2xl);
 }
@@ -76,70 +71,61 @@ const year = new Date().getFullYear();
 
 .footer-logo {
   flex-shrink: 0;
+  border-radius: 6px;
 }
 
 .footer-lab {
   font-family: var(--font-display);
   font-size: 1rem;
-  font-weight: 600;
-  color: var(--gray-900);
+  color: var(--white);
   line-height: 1.3;
 }
-.footer-dept { font-size: 0.78rem; color: var(--gray-500); margin-top: 2px; }
-.footer-uni { font-size: 0.75rem; color: var(--gray-400); margin-top: 1px; }
+.footer-dept { font-size: 0.75rem; color: var(--text-dim); margin-top: 3px; }
 
 .footer-cols {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-lg);
 }
 
 .footer-col {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.4rem;
 }
 
 .footer-col-title {
   font-family: var(--font-body);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gray-900);
+  color: var(--text-muted);
   margin-bottom: 0.2rem;
 }
 
 .footer-col a {
-  color: var(--gray-500);
+  color: var(--text-dim);
   font-size: 0.84rem;
   text-decoration: none;
-  transition: color 0.15s;
+  transition: color 0.2s;
   line-height: 1.5;
 }
 .footer-col a:hover { color: var(--cardinal); }
 
-.footer-address {
-  color: var(--gray-400);
-  font-size: 0.8rem;
-  line-height: 1.5;
-}
-
 .footer-bottom {
-  border-top: 1px solid var(--gray-100);
+  border-top: 1px solid var(--border);
   padding: var(--space-sm) 0;
 }
 .footer-bottom-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.78rem;
-  color: var(--gray-400);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-align: center;
 }
 
 @media (max-width: 900px) {
   .footer-inner { grid-template-columns: 1fr; }
-  .footer-cols { grid-template-columns: repeat(2, 1fr); }
+  .footer-cols { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 480px) {
   .footer-cols { grid-template-columns: 1fr; }
