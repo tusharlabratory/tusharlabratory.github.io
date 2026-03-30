@@ -50,7 +50,7 @@
     {
       "id": "vlst",
       "title": "Virtual Lung Screening Trial (VLST)",
-      "summary": "A large-scale virtual imaging trial simulating low-dose CT lung cancer screening across diverse patient populations, scanner models, and acquisition protocols — enabling rigorous, controlled evaluation of AI screening tools without the cost and limitations of traditional clinical trials.",
+      "summary": "A large-scale virtual imaging trial simulating low-dose CT lung cancer screening across diverse patient populations, scanner models, and acquisition protocols. Enables rigorous, controlled evaluation of AI screening tools beyond the limitations of traditional clinical trials.",
       "impact": "Enables scalable, population-level evaluation of lung cancer screening AI under conditions that are impossible to replicate in real-world trials alone.",
       "tags": ["Virtual Trials", "Lung Cancer", "CT Screening"],
       "link": null
