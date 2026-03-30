@@ -16,6 +16,7 @@
   --cardinal-dark:#8B1A2B;
   --cardinal-glow: rgba(171,5,32,0.4);
   --navy:         #0C234B;
+  --navy-light:   #1E3A5F;
 
   /* Text */
   --text:         #E8E8E8;
@@ -26,6 +27,19 @@
   /* Borders */
   --border:       rgba(255,255,255,0.08);
   --border-hover: rgba(171,5,32,0.3);
+
+  /* Legacy compat — mapped to dark theme equivalents for inner pages */
+  --sand:         var(--bg-alt);
+  --gray-50:      rgba(255,255,255,0.02);
+  --gray-100:     rgba(255,255,255,0.04);
+  --gray-200:     rgba(255,255,255,0.08);
+  --gray-300:     rgba(255,255,255,0.12);
+  --gray-400:     var(--text-dim);
+  --gray-500:     var(--text-muted);
+  --gray-600:     var(--text-muted);
+  --gray-700:     var(--text);
+  --gray-800:     var(--text);
+  --gray-900:     var(--white);
 
   /* Typography */
   --font-display: 'DM Serif Display', Georgia, serif;
@@ -108,6 +122,14 @@ p {
   background: var(--bg-alt);
 }
 
+.section--navy {
+  background: var(--navy);
+  color: var(--white);
+}
+.section--navy h2,
+.section--navy h3 { color: var(--white); }
+.section--navy p  { color: rgba(255,255,255,0.75); }
+
 .section-label {
   font-family: var(--font-body);
   font-size: 0.7rem;
@@ -161,6 +183,14 @@ p {
 .btn-outline:hover {
   border-color: rgba(255,255,255,0.25);
   background: rgba(255,255,255,0.04);
+}
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--white);
+}
+.btn-navy:hover {
+  background: var(--navy-light);
 }
 
 .btn-ghost {
