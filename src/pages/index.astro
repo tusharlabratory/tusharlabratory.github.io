@@ -14,23 +14,24 @@ const pi = team.find(m => m.role === 'Principal Investigator');
        HERO — Clean, academic, honest about being new
   ============================================================ -->
   <section class="hero">
+    <canvas id="particles" class="hero-canvas"></canvas>
     <div class="container hero-content">
-      <div class="hero-pillars">
+      <div class="hero-pillars reveal">
         <span class="hero-pill">Medical Imaging AI</span>
         <span class="hero-pill-sep">&middot;</span>
         <span class="hero-pill">Virtual Imaging Trials</span>
         <span class="hero-pill-sep">&middot;</span>
         <span class="hero-pill">Data-Centric AI</span>
       </div>
-      <h1 class="hero-title">
+      <h1 class="hero-title reveal" style="transition-delay:0.1s">
         Building rigorous AI<br />for medical imaging.
       </h1>
-      <p class="hero-desc">
+      <p class="hero-desc reveal" style="transition-delay:0.2s">
         The Tushar Lab is a newly established research group at the University of Arizona,
         focused on trustworthy AI for radiology through simulation, synthetic data,
         and clinically grounded evaluation.
       </p>
-      <div class="hero-actions">
+      <div class="hero-actions reveal" style="transition-delay:0.3s">
         <a href={`${base}research/`} class="btn btn-primary">Our Research</a>
         <a href={`${base}opportunities/`} class="btn btn-outline">Join the Lab</a>
       </div>
@@ -43,11 +44,11 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   ============================================================ -->
   <section class="section mission-section">
     <div class="container mission-grid">
-      <div class="mission-left">
+      <div class="mission-left reveal">
         <p class="section-label">About the Lab</p>
         <h2>A new lab with a clear direction</h2>
       </div>
-      <div class="mission-right">
+      <div class="mission-right reveal" style="transition-delay:0.1s">
         <p class="mission-text">
           We are building a research program around a core question:
           <em>How do we develop medical imaging AI that is truly reliable?</em>
@@ -71,7 +72,7 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   ============================================================ -->
   <section class="section section--alt research-section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <p class="section-label">Research</p>
         <h2>What we work on</h2>
         <p>Our research directions span AI development, simulation, and evaluation for medical imaging.</p>
@@ -103,7 +104,7 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   ============================================================ -->
   <section class="section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <p class="section-label">Selected Work</p>
         <h2>Representative research directions</h2>
         <p>Projects that reflect the lab's emerging research program and the PI's prior work.</p>
@@ -158,10 +159,10 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   ============================================================ -->
   <section class="section section--alt pi-section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <p class="section-label">Principal Investigator</p>
       </div>
-      <div class="pi-card">
+      <div class="pi-card reveal" style="transition-delay:0.1s">
         <div class="pi-avatar-wrap">
           {pi?.photo
             ? <img src={pi.photo} alt={pi?.name} class="pi-avatar-img" />
@@ -190,7 +191,7 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   ============================================================ -->
   <section class="section news-section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <p class="section-label">News</p>
         <h2>Recent updates</h2>
       </div>
@@ -216,7 +217,7 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   ============================================================ -->
   <section class="join-section">
     <div class="container join-inner">
-      <div class="join-content">
+      <div class="join-content reveal">
         <p class="section-label" style="color:rgba(255,255,255,0.5)">Opportunities</p>
         <h2>We are building the team</h2>
         <p>
@@ -235,12 +236,31 @@ const pi = team.find(m => m.role === 'Principal Investigator');
 </BaseLayout>
 
 <style>
+/* ---- Scroll reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ---- Hero ---- */
 .hero {
   position: relative;
   padding: var(--space-3xl) 0 var(--space-2xl);
   background: var(--white);
   overflow: hidden;
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .hero-accent {
@@ -514,3 +534,93 @@ const pi = team.find(m => m.role === 'Principal Investigator');
   .direction-item { gap: var(--space-sm); }
 }
 </style>
+
+<!-- Floating particle animation (light theme: cardinal-red dots on white) -->
+<script>
+const canvas = document.getElementById('particles') as HTMLCanvasElement;
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  let w = 0, h = 0;
+
+  interface Particle {
+    x: number; y: number; vx: number; vy: number;
+    r: number; a: number; pulse: number; speed: number;
+  }
+
+  const particles: Particle[] = [];
+  const COUNT = 50;
+
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+
+  function init() {
+    resize();
+    for (let i = 0; i < COUNT; i++) {
+      const speed = 0.12 + Math.random() * 0.2;
+      const angle = Math.random() * Math.PI * 2;
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        r: 1 + Math.random() * 2,
+        a: 0.08 + Math.random() * 0.18,
+        pulse: Math.random() * Math.PI * 2,
+        speed: 0.006 + Math.random() * 0.012,
+      });
+    }
+  }
+
+  function draw() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, w, h);
+
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.pulse += p.speed;
+
+      if (p.x < -10) p.x = w + 10;
+      if (p.x > w + 10) p.x = -10;
+      if (p.y < -10) p.y = h + 10;
+      if (p.y > h + 10) p.y = -10;
+
+      const alpha = p.a * (0.5 + 0.5 * Math.sin(p.pulse));
+
+      // Soft glow
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(171, 5, 32, ${alpha * 0.08})`;
+      ctx.fill();
+
+      // Core dot
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(171, 5, 32, ${alpha})`;
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  init();
+  draw();
+  window.addEventListener('resize', resize);
+}
+</script>
+
+<!-- Scroll reveal observer -->
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+</script>
