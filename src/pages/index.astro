@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import site from '../content/site.json';
-import research from '../content/research.json';
+import researchData from '../content/research.json';
 import news from '../content/news.json';
 import resources from '../content/resources.json';
 const base = import.meta.env.BASE_URL;
+const research = researchData.areas;
 const recentSoftware = resources.filter(r => r.type === 'Software').slice(0, 2);
 const recentData = resources.filter(r => r.type === 'Dataset' || r.type === 'Model').slice(0, 2);
 

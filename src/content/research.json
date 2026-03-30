@@ -1,34 +1,133 @@
-[
-  {
-    "id": "data-centric-ai",
-    "title": "Data-Centric AI",
-    "short": "We study how better data can lead to better AI. This includes improving data quality, diversity, representativeness, curation, and benchmarking for more reliable model development.",
-    "description": "We study how better data can lead to better AI. This includes improving data quality, diversity, representativeness, curation, and benchmarking for more reliable model development.",
-    "icon": "database",
-    "projects": ["SYN-LUNGS Synthesis", "CPU-Index Framework", "AI Benchmarking"]
-  },
-  {
-    "id": "intelligent-tools-healthcare",
-    "title": "Intelligent Tools for Healthcare",
-    "short": "We design intelligent tools that help make AI more practical, efficient, and useful for healthcare professionals in real-world settings.",
-    "description": "We design intelligent tools that help make AI more practical, efficient, and useful for healthcare professionals in real-world settings.",
-    "icon": "brain",
-    "projects": ["NodMAISI", "DukeSeg", "Foundation Models for CT"]
-  },
-  {
-    "id": "simulation-virtual-trials",
-    "title": "Simulation and Virtual Trials",
-    "short": "We use physics-based simulation and virtual patient models to evaluate AI rigorously, safely, and at scale, especially in settings where clinical testing alone is limited or costly.",
-    "description": "We use physics-based simulation and virtual patient models to evaluate AI rigorously, safely, and at scale, especially in settings where clinical testing alone is limited or costly.",
-    "icon": "monitor",
-    "projects": ["Virtual Lung Screening Trial (VLST)", "SYN-LUNGS", "Digital Human Phantoms"]
-  },
-  {
-    "id": "synthetic-generative-data",
-    "title": "Synthetic and Generative Data",
-    "short": "We develop synthetic and generative data approaches to support AI training, evaluation, privacy-preserving research, and controllable experimentation.",
-    "description": "We develop synthetic and generative data approaches to support AI training, evaluation, privacy-preserving research, and controllable experimentation.",
-    "icon": "layers",
-    "projects": ["Pathology-Conditioned CT Generation", "Privacy-Preserving Data Augmentation", "Open Synthetic Datasets"]
-  }
-]
+{
+  "areas": [
+    {
+      "id": "data-centric-ai",
+      "title": "Data-Centric AI",
+      "short": "Advancing AI by improving the data it learns from — through better curation, quality assessment, diversity analysis, and rigorous benchmarking for clinical reliability.",
+      "description": "Advancing AI by improving the data it learns from — through better curation, quality assessment, diversity analysis, and rigorous benchmarking for clinical reliability.",
+      "icon": "database",
+      "tags": ["Data Quality", "Curation", "Benchmarking"],
+      "projects": ["SYN-LUNGS Synthesis", "CPU-Index Framework", "AI Benchmarking"]
+    },
+    {
+      "id": "intelligent-clinical-tools",
+      "title": "Intelligent Clinical Tools",
+      "short": "Designing AI-powered tools that integrate meaningfully into clinical workflows — reducing burden, supporting decision-making, and adapting to real-world healthcare settings.",
+      "description": "Designing AI-powered tools that integrate meaningfully into clinical workflows — reducing burden, supporting decision-making, and adapting to real-world healthcare settings.",
+      "icon": "brain",
+      "tags": ["Clinical AI", "Decision Support", "Workflow Integration"],
+      "projects": ["NodMAISI", "DukeSeg", "Foundation Models for CT"]
+    },
+    {
+      "id": "simulation-virtual-trials",
+      "title": "Simulation & Virtual Trials",
+      "short": "Leveraging physics-based simulation and virtual patient models to evaluate AI rigorously, safely, and at scale — where real-world clinical testing alone is limited or costly.",
+      "description": "Leveraging physics-based simulation and virtual patient models to evaluate AI rigorously, safely, and at scale — where real-world clinical testing alone is limited or costly.",
+      "icon": "monitor",
+      "tags": ["Virtual Imaging", "Physics-Based", "Evaluation"],
+      "projects": ["Virtual Lung Screening Trial (VLST)", "SYN-LUNGS", "Digital Human Phantoms"]
+    },
+    {
+      "id": "synthetic-generative-data",
+      "title": "Synthetic & Generative Data",
+      "short": "Creating controllable, privacy-preserving synthetic datasets and generative models for AI training, evaluation, and reproducible experimentation in medicine.",
+      "description": "Creating controllable, privacy-preserving synthetic datasets and generative models for AI training, evaluation, and reproducible experimentation in medicine.",
+      "icon": "layers",
+      "tags": ["Generative Models", "Privacy-Preserving", "Synthetic Data"],
+      "projects": ["Pathology-Conditioned CT Generation", "Privacy-Preserving Data Augmentation", "Open Synthetic Datasets"]
+    },
+    {
+      "id": "trustworthy-evaluation",
+      "title": "Trustworthy & Clinically Grounded AI",
+      "short": "Developing evaluation frameworks that go beyond standard metrics — testing AI under clinically meaningful conditions to build systems worthy of real-world trust.",
+      "description": "Developing evaluation frameworks that go beyond standard metrics — testing AI under clinically meaningful conditions to build systems worthy of real-world trust.",
+      "icon": "shield",
+      "tags": ["Trustworthiness", "Rigorous Evaluation", "Clinical Relevance"],
+      "projects": ["Clinically Grounded Evaluation", "Robustness Testing", "Population-Aware Benchmarks"]
+    }
+  ],
+  "featured": [
+    {
+      "id": "vlst",
+      "title": "Virtual Lung Screening Trial (VLST)",
+      "summary": "A large-scale virtual imaging trial simulating low-dose CT lung cancer screening across diverse patient populations, scanner models, and acquisition protocols. Enables rigorous, controlled evaluation of AI screening tools beyond the limitations of traditional clinical trials.",
+      "impact": "Enables scalable, population-level evaluation of lung cancer screening AI under conditions that are impossible to replicate in real-world trials alone.",
+      "tags": ["Virtual Trials", "Lung Cancer", "CT Screening"],
+      "link": null
+    },
+    {
+      "id": "syn-lungs",
+      "title": "SYN-LUNGS",
+      "summary": "A comprehensive synthetic data generation pipeline that produces anatomically realistic, pathology-conditioned lung CT images with full ground-truth annotations — supporting AI development, evaluation, and reproducibility.",
+      "impact": "Provides the research community with open, controllable, and fully annotated imaging data to accelerate development and fair benchmarking of thoracic AI models.",
+      "tags": ["Synthetic Data", "Lung Imaging", "Open Science"],
+      "link": null
+    },
+    {
+      "id": "nodmaisi",
+      "title": "NodMAISI",
+      "summary": "An intelligent tool for automated lung nodule measurement, analysis, and reporting in CT imaging — designed to reduce inter-reader variability and support standardized clinical workflows in pulmonary nodule management.",
+      "impact": "Brings consistency and efficiency to a critical step in lung cancer detection, directly addressing a real clinical bottleneck in radiology practice.",
+      "tags": ["Clinical AI", "Lung Nodules", "Radiology"],
+      "link": null
+    }
+  ],
+  "gallery": [
+    {
+      "id": "cpu-index",
+      "title": "CPU-Index Framework",
+      "description": "A data-centric framework for measuring and improving the coverage, precision, and utility of medical imaging datasets for AI development.",
+      "status": "Ongoing",
+      "category": "Data-Centric AI"
+    },
+    {
+      "id": "dukeseg",
+      "title": "DukeSeg",
+      "description": "Segmentation tools for anatomical structures in medical imaging, built for integration into clinical and research pipelines.",
+      "status": "Published",
+      "category": "Clinical Tools"
+    },
+    {
+      "id": "foundation-models-ct",
+      "title": "Foundation Models for CT",
+      "description": "Exploring large-scale pre-trained models adapted for CT imaging tasks — from organ segmentation to anomaly detection.",
+      "status": "In Development",
+      "category": "Clinical Tools"
+    },
+    {
+      "id": "digital-human-phantoms",
+      "title": "Digital Human Phantoms",
+      "description": "Computationally generated patient models with realistic anatomy and pathology for physics-based imaging simulation.",
+      "status": "Ongoing",
+      "category": "Simulation"
+    },
+    {
+      "id": "pathology-conditioned-generation",
+      "title": "Pathology-Conditioned CT Generation",
+      "description": "Generative models that produce CT images conditioned on specific pathologies, enabling controlled experiments and data augmentation.",
+      "status": "In Development",
+      "category": "Generative Data"
+    },
+    {
+      "id": "privacy-preserving-augmentation",
+      "title": "Privacy-Preserving Data Augmentation",
+      "description": "Synthetic data methods designed to expand training datasets while preserving patient privacy and maintaining clinical fidelity.",
+      "status": "Ongoing",
+      "category": "Generative Data"
+    },
+    {
+      "id": "open-synthetic-datasets",
+      "title": "Open Synthetic Datasets",
+      "description": "Publicly available synthetic imaging datasets with full annotations, designed to support reproducible AI research and benchmarking.",
+      "status": "Open-Source",
+      "category": "Data-Centric AI"
+    },
+    {
+      "id": "robustness-testing",
+      "title": "Robustness & Stress Testing for AI",
+      "description": "Systematic evaluation of AI model behavior under distribution shifts, edge cases, and clinically challenging scenarios.",
+      "status": "Ongoing",
+      "category": "Evaluation"
+    }
+  ]
+}
