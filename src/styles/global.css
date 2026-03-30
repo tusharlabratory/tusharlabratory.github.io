@@ -24,7 +24,7 @@
   /* Neutrals — cool whites and grays */
   --bg:           #FFFFFF;
   --bg-subtle:    #FAFAFA;
-  --bg-warm:      #F8FAFC;
+  --bg-warm:      #F8FAFC; /* Cool blue-tinted white for section alternation */
   --white:        #FFFFFF;
   --gray-50:      #F8FAFC;
   --gray-100:     #F1F5F9;
