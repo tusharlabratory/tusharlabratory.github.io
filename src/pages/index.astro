@@ -3,7 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import site from '../content/site.json';
 import research from '../content/research.json';
 import news from '../content/news.json';
+import resources from '../content/resources.json';
 const base = import.meta.env.BASE_URL;
+const recentSoftware = resources.filter(r => r.type === 'Software').slice(0, 2);
+const recentData = resources.filter(r => r.type === 'Dataset' || r.type === 'Model').slice(0, 2);
+
+function assetUrl(path: string) {
+  return `${base}${path.replace(/^\//, '')}`;
+}
+function itemLink(item: { github?: string }) {
+  return item.github || `${base}resources/`;
+}
 ---
 
 <BaseLayout>
@@ -82,27 +92,76 @@ const base = import.meta.env.BASE_URL;
   </section>
 
   <!-- ============================================================
+       RECENTLY SHARED — Software & Data
+  ============================================================ -->
+  <section class="section recently-shared-section">
+    <div class="container">
+      <div class="shared-grid reveal">
+        <!-- Recently Shared Software -->
+        <div class="shared-column">
+          <h2 class="shared-heading">Recently Shared Software</h2>
+          <a href={`${base}resources/`} class="shared-view-all">✦ View All Software</a>
+          {recentSoftware.map(item => (
+            <div class="shared-item">
+              <h3 class="shared-item-title">
+                <a href={itemLink(item)}>{item.title}</a>
+              </h3>
+              <div class="shared-item-body">
+                {item.image && (
+                  <img src={assetUrl(item.image)} alt={item.title} class="shared-item-thumb" />
+                )}
+                <p>{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Recently Shared Data -->
+        <div class="shared-column">
+          <h2 class="shared-heading">Recently Shared Data</h2>
+          <a href={`${base}resources/`} class="shared-view-all">✦ View All Data</a>
+          {recentData.map(item => (
+            <div class="shared-item">
+              <h3 class="shared-item-title">
+                <a href={itemLink(item)}>{item.title}</a>
+              </h3>
+              <div class="shared-item-body">
+                {item.image && (
+                  <img src={assetUrl(item.image)} alt={item.title} class="shared-item-thumb" />
+                )}
+                <p>{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        NEWS — Latest updates
   ============================================================ -->
   <section class="section news-section">
     <div class="container">
       <div class="section-header reveal">
-        <p class="section-label">News</p>
-        <h2>Recent updates</h2>
+        <h2>News</h2>
+        <a href={`${base}news/`} class="shared-view-all">✦ View All News</a>
       </div>
-      <div class="grid-3">
+      <div class="news-cards-grid">
         {news.slice(0, 3).map(n => (
-          <article class="news-card card">
-            <time class="news-date" datetime={n.date}>
-              {new Date(n.date).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })}
-            </time>
-            <h4 class="news-title">{n.title}</h4>
-            <p class="news-summary">{n.summary}</p>
-          </article>
+          <a href={`${base}news/${n.id}/`} class="news-card-v2 reveal">
+            {n.image && (
+              <div class="news-card-image">
+                <img src={assetUrl(n.image)} alt={n.title} />
+              </div>
+            )}
+            <div class="news-card-body">
+              <h4 class="news-card-title">{n.title}</h4>
+              <p class="news-card-summary">{n.summary}</p>
+              <span class="news-card-read-more">✦ Read More</span>
+            </div>
+          </a>
         ))}
-      </div>
-      <div class="section-cta">
-        <a href={`${base}news/`} class="btn btn-outline">All News &rarr;</a>
       </div>
     </div>
   </section>
@@ -306,19 +365,160 @@ const base = import.meta.env.BASE_URL;
 }
 
 /* ---- News ---- */
-.news-card {
+.news-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.news-card-v2 {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--gray-200);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.news-card-v2:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.news-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--gray-100);
+}
+.news-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news-card-body {
+  padding: var(--space-md);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  flex: 1;
 }
-.news-date {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--gray-400);
+
+.news-card-title {
+  font-size: 1rem;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+.news-card-summary {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  flex: 1;
+}
+
+.news-card-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
   font-weight: 500;
+  color: var(--navy);
+  margin-top: var(--space-sm);
 }
-.news-title { font-size: 1rem; color: var(--gray-900); }
-.news-summary { font-size: 0.875rem; line-height: 1.65; }
+.news-card-v2:hover .news-card-read-more {
+  color: var(--primary);
+}
+
+/* ---- Recently Shared ---- */
+.recently-shared-section {
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--white);
+}
+
+.shared-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+}
+
+.shared-heading {
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  color: var(--gray-900);
+  margin-bottom: 0.5rem;
+}
+
+.shared-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--navy);
+  text-decoration: none;
+  margin-bottom: var(--space-lg);
+}
+.shared-view-all:hover {
+  color: var(--primary);
+}
+
+.shared-item {
+  margin-bottom: var(--space-lg);
+}
+
+.shared-item-title {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+.shared-item-title a {
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 600;
+}
+.shared-item-title a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.shared-item-body {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+}
+
+.shared-item-thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--gray-200);
+}
+
+.shared-item-body p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.section-header .shared-view-all {
+  margin-bottom: 0;
+}
+
+@media (max-width: 800px) {
+  .shared-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px) {
+  .news-cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .news-cards-grid { grid-template-columns: 1fr; }
+}
 
 .section-cta {
   margin-top: var(--space-xl);
