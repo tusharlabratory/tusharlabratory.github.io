@@ -2,14 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import pubs from '../content/publications.json';
 
-const featured = pubs.filter(p => p.featured);
 const years = [...new Set(pubs.map(p => p.year))].sort((a,b) => b - a);
-const typeLabel: Record<string, string> = {
-  journal: 'Journal',
-  conference: 'Conference',
-  workshop: 'Workshop',
-  preprint: 'Preprint',
-};
 ---
 
 <BaseLayout title="Publications">
@@ -21,67 +14,26 @@ const typeLabel: Record<string, string> = {
     </div>
   </section>
 
-  <!-- Featured Publications -->
-  {featured.length > 0 && (
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-label">Highlights</p>
-          <h2>Featured Publications</h2>
-        </div>
-        <div class="featured-grid">
-          {featured.map(p => (
-            <article class="featured-card card">
-              <div class="pub-meta">
-                <span class={`pub-type tag tag--red`}>Featured</span>
-                <span class={`pub-type tag tag--${p.type === 'journal' ? 'red' : 'navy'}`}>
-                  {typeLabel[p.type] ?? p.type}
-                </span>
-                <span class="pub-venue">{p.venue} · {p.year}</span>
-              </div>
-              <h3 class="pub-title">{p.title}</h3>
-              <p class="pub-authors">{p.authors.join(', ')}</p>
-              <div class="pub-tags">
-                {p.tags.map(t => <span class="tag">{t}</span>)}
-              </div>
-              <div class="pub-links">
-                {p.doi && <a href={`https://doi.org/${p.doi}`} class="pub-link" target="_blank">DOI ↗</a>}
-                {p.pdf && <a href={p.pdf} class="pub-link" target="_blank">PDF ↗</a>}
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- All Publications -->
-  <section class="section section--alt">
+  <section class="section">
     <div class="container">
-      <div class="section-header">
-        <p class="section-label">All Work</p>
-        <h2>Publications</h2>
-      </div>
       <div class="pubs-list" id="pubs-list">
         {years.map(year => (
           <div class="year-group" data-year={year}>
             <div class="year-heading">{year}</div>
-            {pubs.filter(p => p.year === year).map(p => (
-              <article class="pub-item" data-type={p.type} data-year={p.year}>
-                <div class="pub-meta">
-                  <span class={`pub-type tag tag--${p.type === 'journal' ? 'red' : 'navy'}`}>
-                    {typeLabel[p.type] ?? p.type}
-                  </span>
-                  <span class="pub-venue">{p.venue}</span>
-                </div>
-                <h3 class="pub-title">{p.title}</h3>
-                <p class="pub-authors">{p.authors.join(', ')}</p>
-                <div class="pub-tags">
-                  {p.tags.map(t => <span class="tag">{t}</span>)}
-                </div>
-                <div class="pub-links">
-                  {p.doi && <a href={`https://doi.org/${p.doi}`} class="pub-link" target="_blank">DOI ↗</a>}
-                  {p.pdf && <a href={p.pdf} class="pub-link" target="_blank">PDF ↗</a>}
+            {pubs.filter(p => p.year === year).map((p) => (
+              <article class="pub-item">
+                <div class="pub-number">[{pubs.indexOf(p) + 1}]</div>
+                <div class="pub-body">
+                  <p class="pub-citation">
+                    {p.authors.join(', ')},
+                    &ldquo;{p.title},&rdquo;
+                    <em>{p.venue}</em>,
+                    {p.year}.
+                  </p>
+                  <div class="pub-links">
+                    {p.doi && <a href={`https://doi.org/${p.doi}`} class="pub-link" target="_blank">DOI ↗</a>}
+                    {p.pdf && <a href={p.pdf} class="pub-link" target="_blank">PDF ↗</a>}
+                  </div>
                 </div>
               </article>
             ))}
@@ -93,24 +45,6 @@ const typeLabel: Record<string, string> = {
 </BaseLayout>
 
 <style>
-/* Featured grid */
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr));
-  gap: var(--space-lg);
-}
-
-.featured-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  border-left: 3px solid var(--primary);
-}
-
-.featured-card .pub-title {
-  font-size: 1.1rem;
-}
-
 /* Publication list */
 .year-group { margin-bottom: var(--space-xl); }
 .year-heading {
@@ -124,34 +58,40 @@ const typeLabel: Record<string, string> = {
 }
 
 .pub-item {
+  display: flex;
+  gap: 0.75rem;
   padding: var(--space-md) 0;
   border-bottom: 1px solid var(--gray-100);
+  align-items: flex-start;
+}
+.pub-item:last-child { border-bottom: none; }
+
+.pub-number {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy);
+  flex-shrink: 0;
+  min-width: 28px;
+  padding-top: 2px;
+}
+
+.pub-body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.pub-item:last-child { border-bottom: none; }
 
-.pub-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
+.pub-citation {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
 }
-.pub-venue {
-  font-size: 0.8rem;
-  color: var(--gray-400);
+.pub-citation em {
   font-style: italic;
-}
-.pub-title {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 600;
   color: var(--navy);
-  line-height: 1.4;
 }
-.pub-authors { font-size: 0.85rem; color: var(--gray-400); font-weight: 400; }
-.pub-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
 .pub-links { display: flex; gap: var(--space-sm); }
 .pub-link {
   font-size: 0.8rem;
@@ -160,8 +100,4 @@ const typeLabel: Record<string, string> = {
   transition: opacity 0.15s;
 }
 .pub-link:hover { opacity: 0.7; }
-
-@media (max-width: 700px) {
-  .featured-grid { grid-template-columns: 1fr; }
-}
 </style>

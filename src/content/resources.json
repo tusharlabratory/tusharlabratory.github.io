@@ -1,36 +1,14 @@
 [
   {
-    "id": "triannot",
-    "title": "TriAnnot",
-    "description": "Annotation software for efficient and accurate labeling of medical imaging data, supporting collaborative workflows.",
-    "type": "Software",
-    "tags": ["Annotation", "Medical Imaging", "Labeling"],
-    "github": "",
-    "paper": "",
-    "image": "images/resources/triannot.svg",
-    "link": ""
-  },
-  {
     "id": "haid-dataset",
     "title": "HAID",
     "description": "A curated dataset for health AI research and development, enabling training and evaluation of medical imaging models.",
     "type": "Dataset",
     "tags": ["Medical Imaging", "AI", "Healthcare"],
-    "github": "",
+    "github": "https://github.com/fitushar/HAID",
     "paper": "",
     "image": "images/resources/haid-dataset.svg",
-    "link": ""
-  },
-  {
-    "id": "nodmaisi",
-    "title": "NodMAISI",
-    "description": "A model for nodule-level medical AI analysis supporting segmentation and identification tasks.",
-    "type": "Model",
-    "tags": ["Deep Learning", "Nodule Analysis", "Medical AI"],
-    "github": "",
-    "paper": "",
-    "image": "images/resources/nodmaisi.svg",
-    "link": ""
+    "link": "https://github.com/fitushar/HAID"
   },
   {
     "id": "ai-lung-health",
@@ -38,9 +16,9 @@
     "description": "AI-driven models for lung health detection and classification, supporting early diagnosis and clinical decision-making.",
     "type": "Model",
     "tags": ["Deep Learning", "Lung Health", "Classification"],
-    "github": "",
+    "github": "https://github.com/fitushar",
     "paper": "",
     "image": "images/resources/ai-lung-health.svg",
-    "link": ""
+    "link": "https://github.com/fitushar"
   }
 ]
