@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import pubs from '../content/publications.json';
 
+const featured = pubs.filter(p => p.featured);
 const years = [...new Set(pubs.map(p => p.year))].sort((a,b) => b - a);
 const typeLabel: Record<string, string> = {
   journal: 'Journal',
@@ -20,28 +21,47 @@ const typeLabel: Record<string, string> = {
     </div>
   </section>
 
-  <section class="section">
-    <div class="container pubs-layout">
-
-      <!-- Sidebar filters -->
-      <aside class="pubs-sidebar">
-        <div class="filter-group">
-          <div class="filter-title">Year</div>
-          <button class="filter-btn active" data-filter="year" data-value="all">All Years</button>
-          {years.map(y => (
-            <button class="filter-btn" data-filter="year" data-value={String(y)}>{y}</button>
+  <!-- Featured Publications -->
+  {featured.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Highlights</p>
+          <h2>Featured Publications</h2>
+        </div>
+        <div class="featured-grid">
+          {featured.map(p => (
+            <article class="featured-card card">
+              <div class="pub-meta">
+                <span class={`pub-type tag tag--red`}>Featured</span>
+                <span class={`pub-type tag tag--${p.type === 'journal' ? 'red' : 'navy'}`}>
+                  {typeLabel[p.type] ?? p.type}
+                </span>
+                <span class="pub-venue">{p.venue} · {p.year}</span>
+              </div>
+              <h3 class="pub-title">{p.title}</h3>
+              <p class="pub-authors">{p.authors.join(', ')}</p>
+              <div class="pub-tags">
+                {p.tags.map(t => <span class="tag">{t}</span>)}
+              </div>
+              <div class="pub-links">
+                {p.doi && <a href={`https://doi.org/${p.doi}`} class="pub-link" target="_blank">DOI ↗</a>}
+                {p.pdf && <a href={p.pdf} class="pub-link" target="_blank">PDF ↗</a>}
+              </div>
+            </article>
           ))}
         </div>
-        <div class="filter-group">
-          <div class="filter-title">Type</div>
-          <button class="filter-btn active" data-filter="type" data-value="all">All Types</button>
-          {['journal','conference','workshop','preprint'].map(t => (
-            <button class="filter-btn" data-filter="type" data-value={t}>{typeLabel[t]}</button>
-          ))}
-        </div>
-      </aside>
+      </div>
+    </section>
+  )}
 
-      <!-- Publication list -->
+  <!-- All Publications -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">All Work</p>
+        <h2>Publications</h2>
+      </div>
       <div class="pubs-list" id="pubs-list">
         {years.map(year => (
           <div class="year-group" data-year={year}>
@@ -68,53 +88,27 @@ const typeLabel: Record<string, string> = {
           </div>
         ))}
       </div>
-
     </div>
   </section>
 </BaseLayout>
 
 <style>
-.pubs-layout {
+/* Featured grid */
+.featured-grid {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: var(--space-xl);
-  align-items: start;
-}
-
-/* Sidebar */
-.pubs-sidebar {
-  position: sticky;
-  top: calc(var(--nav-h) + 1.5rem);
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr));
   gap: var(--space-lg);
 }
-.filter-group { display: flex; flex-direction: column; gap: 0.3rem; }
-.filter-title {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--primary);
-  margin-bottom: 0.25rem;
+
+.featured-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-left: 3px solid var(--primary);
 }
-.filter-btn {
-  text-align: left;
-  padding: 0.35rem 0.65rem;
-  background: none;
-  border: 1px solid transparent;
-  border-radius: var(--radius);
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  color: var(--gray-600);
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.filter-btn:hover { background: var(--primary-light); color: var(--primary); }
-.filter-btn.active {
-  background: var(--navy);
-  color: var(--white);
-  border-color: var(--navy);
+
+.featured-card .pub-title {
+  font-size: 1.1rem;
 }
 
 /* Publication list */
@@ -137,7 +131,6 @@ const typeLabel: Record<string, string> = {
   gap: 0.5rem;
 }
 .pub-item:last-child { border-bottom: none; }
-.pub-item.hidden { display: none; }
 
 .pub-meta {
   display: flex;
@@ -169,41 +162,6 @@ const typeLabel: Record<string, string> = {
 .pub-link:hover { opacity: 0.7; }
 
 @media (max-width: 700px) {
-  .pubs-layout { grid-template-columns: 1fr; }
-  .pubs-sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
-  .filter-group { flex-direction: row; align-items: center; gap: 0.3rem; }
+  .featured-grid { grid-template-columns: 1fr; }
 }
 </style>
-
-<script>
-const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
-let activeYear = 'all';
-let activeType = 'all';
-
-function applyFilters() {
-  const items = document.querySelectorAll<HTMLElement>('.pub-item');
-  items.forEach(item => {
-    const yearMatch = activeYear === 'all' || item.dataset.year === activeYear;
-    const typeMatch = activeType === 'all' || item.dataset.type === activeType;
-    item.classList.toggle('hidden', !(yearMatch && typeMatch));
-  });
-  // Hide empty year groups
-  document.querySelectorAll<HTMLElement>('.year-group').forEach(g => {
-    const visible = g.querySelectorAll('.pub-item:not(.hidden)').length > 0;
-    g.style.display = visible ? '' : 'none';
-  });
-}
-
-buttons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const filter = btn.dataset.filter!;
-    const value = btn.dataset.value!;
-    // Deactivate siblings
-    document.querySelectorAll<HTMLButtonElement>(`.filter-btn[data-filter="${filter}"]`).forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    if (filter === 'year') activeYear = value;
-    if (filter === 'type') activeType = value;
-    applyFilters();
-  });
-});
-</script>
