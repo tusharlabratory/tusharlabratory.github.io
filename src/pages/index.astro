@@ -45,6 +45,21 @@ function itemLink(item: { github?: string }) {
   </section>
 
   <!-- ============================================================
+       AFFILIATION LOGOS — Lab & Department
+  ============================================================ -->
+  <section class="affiliation-strip">
+    <div class="container affiliation-inner reveal">
+      <a href={`${base}`} class="affiliation-logo-link" aria-label="Tushar Lab">
+        <img src={`${base}images/TusharLAB_logo.svg`} alt="Tushar Lab Logo" class="affiliation-logo affiliation-logo--lab" />
+      </a>
+      <span class="affiliation-divider" aria-hidden="true"></span>
+      <a href="https://radiology.arizona.edu/" target="_blank" rel="noopener" class="affiliation-logo-link" aria-label="Department of Radiology and Imaging Sciences">
+        <img src={`${base}images/radiology-and-imaging-sciences_web_header.png`} alt="Department of Radiology and Imaging Sciences, University of Arizona" class="affiliation-logo affiliation-logo--dept" />
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
        MISSION & RESEARCH — Combined section
   ============================================================ -->
   <section class="section mission-section">
@@ -243,6 +258,66 @@ function itemLink(item: { github?: string }) {
   display: flex;
   gap: var(--space-sm);
   flex-wrap: wrap;
+}
+
+/* ---- Affiliation strip ---- */
+.affiliation-strip {
+  background: var(--bg-warm);
+  border-top: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--gray-100);
+  padding: var(--space-lg) 0;
+}
+
+.affiliation-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.affiliation-logo-link {
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.affiliation-logo-link:hover {
+  opacity: 0.8;
+  transform: scale(1.03);
+}
+
+.affiliation-logo--lab {
+  height: 72px;
+  width: auto;
+}
+
+.affiliation-logo--dept {
+  height: 52px;
+  width: auto;
+}
+
+.affiliation-divider {
+  width: 1px;
+  height: 48px;
+  background: var(--gray-300);
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .affiliation-inner {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .affiliation-divider {
+    width: 48px;
+    height: 1px;
+  }
+  .affiliation-logo--lab {
+    height: 56px;
+  }
+  .affiliation-logo--dept {
+    height: 40px;
+  }
 }
 
 /* ---- Mission ---- */
