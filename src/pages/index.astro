@@ -60,7 +60,7 @@ const base = import.meta.env.BASE_URL;
         </p>
       </div>
     </div>
-    <div class="container" style="margin-top:var(--space-xl)">
+    <div class="container research-container">
       <div class="research-grid-v2">
         {research.map((r, i) => (
           <a href={`${base}research/`} class="research-card-v2 reveal" style={`transition-delay:${i * 0.08}s`}>
@@ -206,6 +206,10 @@ const base = import.meta.env.BASE_URL;
   font-style: italic;
   color: var(--gray-800);
   font-weight: 500;
+}
+
+.research-container {
+  margin-top: var(--space-xl);
 }
 
 /* ---- Research cards v2 ---- */
