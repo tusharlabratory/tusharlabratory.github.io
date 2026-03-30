@@ -7,7 +7,8 @@
     "tags": ["Annotation", "Medical Imaging", "Labeling"],
     "github": "",
     "paper": "",
-    "image": "/images/resources/triannot.svg"
+    "image": "images/resources/triannot.svg",
+    "link": ""
   },
   {
     "id": "haid-dataset",
@@ -17,7 +18,8 @@
     "tags": ["Medical Imaging", "AI", "Healthcare"],
     "github": "",
     "paper": "",
-    "image": "/images/resources/haid-dataset.svg"
+    "image": "images/resources/haid-dataset.svg",
+    "link": ""
   },
   {
     "id": "nodmaisi",
@@ -27,7 +29,8 @@
     "tags": ["Deep Learning", "Nodule Analysis", "Medical AI"],
     "github": "",
     "paper": "",
-    "image": "/images/resources/nodmaisi.svg"
+    "image": "images/resources/nodmaisi.svg",
+    "link": ""
   },
   {
     "id": "ai-lung-health",
@@ -37,6 +40,7 @@
     "tags": ["Deep Learning", "Lung Health", "Classification"],
     "github": "",
     "paper": "",
-    "image": "/images/resources/ai-lung-health.svg"
+    "image": "images/resources/ai-lung-health.svg",
+    "link": ""
   }
 ]
