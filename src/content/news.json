@@ -1,12 +1,12 @@
 [
   {
-    "id": "lab-launch-2025",
-    "title": "Tushar Lab Officially Launches at the University of Arizona",
-    "date": "2025-01-15",
+    "id": "lab-launch-2026",
+    "title": "Tushar Lab Launches at the University of Arizona",
+    "date": "2026-03-23",
     "category": "Announcement",
-    "summary": "We are excited to announce the official launch of the Tushar Lab at the University of Arizona's Department of Medical Imaging. The lab will focus on virtual imaging trials and deep learning for radiology AI.",
-    "content": "The Tushar Lab is now open and accepting applications for PhD students and postdoctoral researchers. We are excited to build a dynamic team passionate about transforming medical imaging through physics-based simulation and AI.",
-    "link": "",
+    "summary": "The Tushar Lab has officially launched at the University of Arizona in the Department of Radiology and Imaging Sciences, with a research focus on data-centric AI for healthcare and medicine.",
+    "content": "The Tushar Lab is a newly established research group at the University of Arizona dedicated to advancing trustworthy, data-centric AI for healthcare and medicine. Our work brings together data discovery, intelligent tools, and the integration of clinical, simulated, and synthetic data to support more reliable and clinically grounded AI. The lab website is now live at https://tusharlabratory.github.io/, and our GitHub is available at https://github.com/tusharlabratory. We are actively building the lab and welcome interest from students, postdoctoral researchers, and collaborators who share our vision for rigorous and impactful healthcare AI.",
+    "link": "https://tusharlabratory.github.io/",
     "image": "/images/news/lab-launch.svg"
   }
 ]
