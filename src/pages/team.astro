@@ -21,7 +21,7 @@ const base = import.meta.env.BASE_URL;
         <div class="pi-profile">
           <div class="pi-avatar">
             {pi.photo
-              ? <img src={pi.photo} alt={pi.name} />
+              ? <img src={`${base}${pi.photo}`} alt={pi.name} />
               : <div class="pi-initials">{pi.name.split(' ').map((n:string) => n[0]).join('')}</div>
             }
           </div>
@@ -55,7 +55,7 @@ const base = import.meta.env.BASE_URL;
             <div class="member-card card">
               <div class="member-avatar">
                 {m.photo
-                  ? <img src={m.photo} alt={m.name} />
+                  ? <img src={`${base}${m.photo}`} alt={m.name} />
                   : <div class="member-initials">{m.name.split(' ').map((n:string) => n[0]).join('')}</div>
                 }
               </div>
