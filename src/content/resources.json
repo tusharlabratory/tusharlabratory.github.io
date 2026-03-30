@@ -1,42 +1,42 @@
 [
   {
-    "id": "vlst-toolkit",
-    "title": "VLST Toolkit",
-    "description": "Open-source framework for running virtual lung screening trials using digital human phantoms and CT simulation.",
+    "id": "triannot",
+    "title": "TriAnnot",
+    "description": "Annotation software for efficient and accurate labeling of medical imaging data, supporting collaborative workflows.",
     "type": "Software",
-    "tags": ["Python", "CT Simulation", "Virtual Trials"],
-    "github": "https://github.com/fitushar",
-    "paper": "",
-    "image": "/images/resources/vlst-toolkit.svg"
-  },
-  {
-    "id": "synlungs-dataset",
-    "title": "SYN-LUNGS Dataset",
-    "description": "Synthetically generated lung CT volumes with annotated nodules, spanning diverse patient anatomies and acquisition protocols.",
-    "type": "Dataset",
-    "tags": ["CT", "Lung Nodules", "Synthetic Data"],
+    "tags": ["Annotation", "Medical Imaging", "Labeling"],
     "github": "",
     "paper": "",
-    "image": "/images/resources/synlungs-dataset.svg"
+    "image": "/images/resources/triannot.svg"
   },
   {
-    "id": "cpu-index-tool",
-    "title": "CPU-Index Evaluation Tool",
-    "description": "Python package for computing the Comprehensive CT Protocol Utility Index — a task-based image quality metric.",
-    "type": "Software",
-    "tags": ["Python", "Image Quality", "CT Protocol"],
-    "github": "https://github.com/fitushar",
+    "id": "haid-dataset",
+    "title": "HAID",
+    "description": "A curated dataset for health AI research and development, enabling training and evaluation of medical imaging models.",
+    "type": "Dataset",
+    "tags": ["Medical Imaging", "AI", "Healthcare"],
+    "github": "",
     "paper": "",
-    "image": "/images/resources/cpu-index-tool.svg"
+    "image": "/images/resources/haid-dataset.svg"
   },
   {
-    "id": "dukeseg-weights",
-    "title": "DukeSeg Pre-trained Weights",
-    "description": "Pre-trained model weights for weakly-supervised organ segmentation on chest and abdomen CT.",
+    "id": "nodmaisi",
+    "title": "NodMAISI",
+    "description": "A model for nodule-level medical AI analysis supporting segmentation and identification tasks.",
     "type": "Model",
-    "tags": ["PyTorch", "Segmentation", "Transfer Learning"],
-    "github": "https://github.com/fitushar",
+    "tags": ["Deep Learning", "Nodule Analysis", "Medical AI"],
+    "github": "",
     "paper": "",
-    "image": "/images/resources/dukeseg-weights.svg"
+    "image": "/images/resources/nodmaisi.svg"
+  },
+  {
+    "id": "ai-lung-health",
+    "title": "AI in Lung Health Detection and Classification Models",
+    "description": "AI-driven models for lung health detection and classification, supporting early diagnosis and clinical decision-making.",
+    "type": "Model",
+    "tags": ["Deep Learning", "Lung Health", "Classification"],
+    "github": "",
+    "paper": "",
+    "image": "/images/resources/ai-lung-health.svg"
   }
 ]
