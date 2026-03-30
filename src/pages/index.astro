@@ -180,7 +180,7 @@ const base = import.meta.env.BASE_URL;
   right: 0;
   width: 45%;
   height: 100%;
-  background: radial-gradient(ellipse at 70% 40%, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 70% 40%, rgba(12, 35, 75, 0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -271,7 +271,7 @@ const base = import.meta.env.BASE_URL;
 }
 .research-card:hover {
   box-shadow: var(--shadow-md);
-  border-color: rgba(37, 99, 235, 0.2);
+  border-color: rgba(171, 5, 32, 0.2);
   transform: translateY(-2px);
 }
 .rc-icon-wrap {
@@ -417,13 +417,13 @@ if (canvas) {
       // Soft glow
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(37, 99, 235, ${alpha * 0.08})`;
+      ctx.fillStyle = `rgba(12, 35, 75, ${alpha * 0.08})`;
       ctx.fill();
 
       // Core dot
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(37, 99, 235, ${alpha})`;
+      ctx.fillStyle = `rgba(12, 35, 75, ${alpha})`;
       ctx.fill();
     }
 

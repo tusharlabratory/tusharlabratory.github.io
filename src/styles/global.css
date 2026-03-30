@@ -1,17 +1,17 @@
 /* =====================================================
    TUSHAR LAB — Global Styles
-   Clean academic design with white & blue theme
-   White background · Refined typography · Airy spacing
+   Clean academic design with UofA color scheme
+   White background · Arizona Red & Blue · Airy spacing
    ===================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  /* Brand Colors — Blue accent on white */
-  --primary:      #2563EB;
-  --primary-dark: #1D4ED8;
-  --primary-light: rgba(37, 99, 235, 0.06);
-  --primary-muted: rgba(37, 99, 235, 0.12);
+  /* Brand Colors — UofA Color Scheme (Arizona Red + Arizona Blue) */
+  --primary:      #AB0520;
+  --primary-dark: #8B0015;
+  --primary-light: rgba(171, 5, 32, 0.06);
+  --primary-muted: rgba(171, 5, 32, 0.12);
   --navy:         #0C234B;
   --navy-light:   #1E3A5F;
   --navy-muted:   #2d4a7a;
@@ -168,7 +168,7 @@ p {
 }
 .btn-primary:hover {
   background: var(--primary-dark);
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 14px rgba(171, 5, 32, 0.3);
   transform: translateY(-1px);
 }
 
@@ -284,7 +284,7 @@ p {
   right: 0;
   width: 50%;
   height: 100%;
-  background: radial-gradient(ellipse at 80% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 80% 50%, rgba(12, 35, 75, 0.15) 0%, transparent 60%);
   pointer-events: none;
 }
 .page-hero h1 { color: var(--white); }
