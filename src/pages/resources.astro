@@ -29,38 +29,28 @@ function assetUrl(path: string) {
         <div class="resource-group">
           <h3 class="rg-title">{g.type === 'Software' ? '🛠 ' : g.type === 'Dataset' ? '🗄 ' : '🤖 '}{g.type}</h3>
           <div class="resources-grid">
-            {g.items.map((r, i) => {
-              const mainLink = r.link || r.github || r.paper || '';
-              const CardTag = mainLink ? 'a' : 'div';
-              return (
-                <CardTag
-                  href={mainLink || undefined}
-                  target={mainLink ? '_blank' : undefined}
-                  rel={mainLink ? 'noopener noreferrer' : undefined}
-                  class={`resource-card reveal`}
-                  style={`transition-delay:${i * 0.05}s`}
-                >
-                  <div class="resource-card-image">
-                    <img src={assetUrl(r.image)} alt={r.title} />
+            {g.items.map((r, i) => (
+              <div class={`resource-card reveal`} style={`transition-delay:${i * 0.05}s`}>
+                <div class="resource-card-image">
+                  <img src={assetUrl(r.image)} alt={r.title} />
+                </div>
+                <div class="resource-card-body">
+                  <div class="resource-card-header">
+                    <h4 class="resource-card-title">{r.title}</h4>
+                    <span class={`tag tag--${r.type === 'Software' ? 'red' : r.type === 'Dataset' ? 'navy' : 'navy'}`}>{r.type}</span>
                   </div>
-                  <div class="resource-card-body">
-                    <div class="resource-card-header">
-                      <h4 class="resource-card-title">{r.title}</h4>
-                      <span class={`tag tag--${r.type === 'Software' ? 'red' : r.type === 'Dataset' ? 'navy' : 'navy'}`}>{r.type}</span>
-                    </div>
-                    <p class="resource-card-desc">{r.description}</p>
-                    <div class="resource-card-tags">
-                      {r.tags.map(t => <span class="tag">{t}</span>)}
-                    </div>
-                    <div class="resource-card-links">
-                      {r.github && <a href={r.github} class="btn btn-navy btn-sm" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">GitHub ↗</a>}
-                      {r.paper && <a href={r.paper} class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Paper ↗</a>}
-                      {mainLink && <span class="resource-card-link">View Resource &rarr;</span>}
-                    </div>
+                  <p class="resource-card-desc">{r.description}</p>
+                  <div class="resource-card-tags">
+                    {r.tags.map(t => <span class="tag">{t}</span>)}
                   </div>
-                </CardTag>
-              );
-            })}
+                  <div class="resource-card-links">
+                    {r.github && <a href={r.github} class="btn btn-navy btn-sm" target="_blank" rel="noopener noreferrer">GitHub ↗</a>}
+                    {r.paper && <a href={r.paper} class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Paper ↗</a>}
+                    {r.link && <a href={r.link} class="resource-card-link" target="_blank" rel="noopener noreferrer">View Resource &rarr;</a>}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       ))}
@@ -97,11 +87,6 @@ function assetUrl(path: string) {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-lg);
-}
-
-a.resource-card {
-  text-decoration: none;
-  color: inherit;
 }
 
 .resource-card {
@@ -188,6 +173,7 @@ a.resource-card {
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--primary);
+  text-decoration: none;
   gap: 0.25rem;
   margin-left: auto;
   transition: gap 0.2s ease;
