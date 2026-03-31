@@ -2,7 +2,28 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import pubs from '../content/publications.json';
 
+const featured = pubs.filter(p => p.featured);
 const years = [...new Set(pubs.map(p => p.year))].sort((a,b) => b - a);
+
+/**
+ * Format a publication in IEEE style:
+ * Authors, "Title," Venue, vol. X, no. Y, pp. Z, Year.
+ */
+function ieeeRef(p: typeof pubs[0]): string {
+  let ref = p.authors.join(', ');
+  ref += `, "${p.title},"`;
+  // venue is handled in JSX as italic
+  return ref;
+}
+
+function ieeeVenueDetails(p: typeof pubs[0]): string {
+  let details = '';
+  if (p.volume) details += `, vol. ${p.volume}`;
+  if (p.number) details += `, no. ${p.number}`;
+  if (p.pages) details += `, pp. ${p.pages}`;
+  details += `, ${p.year}.`;
+  return details;
+}
 ---
 
 <BaseLayout title="Publications">
@@ -14,11 +35,50 @@ const years = [...new Set(pubs.map(p => p.year))].sort((a,b) => b - a);
     </div>
   </section>
 
-  <section class="section">
+  <!-- Featured Publications -->
+  {featured.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Highlights</p>
+          <h2>Featured Publications</h2>
+        </div>
+        <div class="featured-grid">
+          {featured.map((p, i) => (
+            <article class="featured-card">
+              <div class="featured-accent"></div>
+              <div class="featured-body">
+                <p class="featured-citation">
+                  {p.authors.join(', ')},
+                  &ldquo;{p.title},&rdquo;
+                  <em>{p.venue}</em>
+                  {p.volume && <>, vol. {p.volume}</>}
+                  {p.number && <>, no. {p.number}</>}
+                  {p.pages && <>, pp. {p.pages}</>}
+                  , {p.year}.
+                </p>
+                <div class="featured-links">
+                  {p.doi && <a href={`https://doi.org/${p.doi}`} class="pub-link" target="_blank">DOI ↗</a>}
+                  {p.pdf && <a href={p.pdf} class="pub-link" target="_blank">PDF ↗</a>}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- All Publications -->
+  <section class="section section--alt">
     <div class="container">
-      <div class="pubs-list" id="pubs-list">
+      <div class="section-header">
+        <p class="section-label">All Work</p>
+        <h2>Publications</h2>
+      </div>
+      <div class="pubs-list">
         {years.map(year => (
-          <div class="year-group" data-year={year}>
+          <div class="year-group">
             <div class="year-heading">{year}</div>
             {pubs.filter(p => p.year === year).map((p) => (
               <article class="pub-item">
@@ -27,8 +87,11 @@ const years = [...new Set(pubs.map(p => p.year))].sort((a,b) => b - a);
                   <p class="pub-citation">
                     {p.authors.join(', ')},
                     &ldquo;{p.title},&rdquo;
-                    <em>{p.venue}</em>,
-                    {p.year}.
+                    <em>{p.venue}</em>
+                    {p.volume && <>, vol. {p.volume}</>}
+                    {p.number && <>, no. {p.number}</>}
+                    {p.pages && <>, pp. {p.pages}</>}
+                    , {p.year}.
                   </p>
                   <div class="pub-links">
                     {p.doi && <a href={`https://doi.org/${p.doi}`} class="pub-link" target="_blank">DOI ↗</a>}
@@ -45,7 +108,56 @@ const years = [...new Set(pubs.map(p => p.year))].sort((a,b) => b - a);
 </BaseLayout>
 
 <style>
-/* Publication list */
+/* ---- Featured Publications ---- */
+.featured-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.featured-card {
+  display: flex;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.featured-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.featured-accent {
+  width: 4px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--navy) 100%);
+}
+
+.featured-body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.featured-citation {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text);
+}
+.featured-citation em {
+  font-style: italic;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.featured-links {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* ---- All Publications ---- */
 .year-group { margin-bottom: var(--space-xl); }
 .year-heading {
   font-family: var(--font-display);
@@ -92,7 +204,7 @@ const years = [...new Set(pubs.map(p => p.year))].sort((a,b) => b - a);
   color: var(--navy);
 }
 
-.pub-links { display: flex; gap: var(--space-sm); }
+.pub-links, .featured-links { display: flex; gap: var(--space-sm); }
 .pub-link {
   font-size: 0.8rem;
   font-weight: 500;
