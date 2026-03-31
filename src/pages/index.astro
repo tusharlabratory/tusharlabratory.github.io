@@ -10,8 +10,8 @@ const recentData = resources.filter(r => r.type === 'Dataset' || r.type === 'Mod
 function assetUrl(path: string) {
   return `${base}${path.replace(/^\//, '')}`;
 }
-function itemLink(item: { github?: string }) {
-  return item.github || `${base}resources/`;
+function itemLink(item: { link?: string; github?: string }) {
+  return item.link || item.github || `${base}resources/`;
 }
 ---
 

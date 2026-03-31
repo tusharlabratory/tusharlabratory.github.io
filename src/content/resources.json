@@ -16,9 +16,9 @@
     "description": "AI-driven models for lung health detection and classification, supporting early diagnosis and clinical decision-making.",
     "type": "Model",
     "tags": ["Deep Learning", "Lung Health", "Classification"],
-    "github": "https://github.com/fitushar",
+    "github": "",
     "paper": "",
     "image": "images/resources/AI_Lung_Models.png",
-    "link": "https://github.com/fitushar/AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets"
+    "link": "https://zenodo.org/records/14967976"
   }
 ]

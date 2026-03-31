@@ -35,7 +35,7 @@ function assetUrl(path: string) {
             <div class="resource-card-body">
               <h4 class="resource-card-title">{r.title}</h4>
               <p class="resource-card-desc">{r.description}</p>
-              <span class="resource-card-link">View on GitHub &rarr;</span>
+              <span class="resource-card-link">{r.link?.includes('zenodo') ? 'View on Zenodo' : 'View on GitHub'} &rarr;</span>
             </div>
           </a>
         ))}
