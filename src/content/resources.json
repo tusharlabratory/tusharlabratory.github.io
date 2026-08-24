@@ -1,4 +1,17 @@
 [
+    {
+  "name": "iTrialSpace",
+  "type": "Software + Dataset",
+  "description": "Cohort-by-specification engine for lung-CT AI: declare a virtual trial by prevalence, nodule size, lobe distribution, and demographics; synthesize anatomically grounded CTs; evaluate CADe/CADx/VLMs under controlled conditions. 13 trial modes, 44K+ synthetic volumes, and a zero-shot VLM benchmark.",
+  "license": "Noncommercial research use",
+  "image": "/images/news/itrialspace_banner.jpeg",
+  "links": [
+    { "label": "Paper", "url": "https://arxiv.org/abs/2605.05761" },
+    { "label": "Dataset (Hugging Face)", "url": "https://huggingface.co/datasets/TusharLab/iTrialSpace_Lung" },
+    { "label": "Code (Hugging Face)", "url": "https://huggingface.co/TusharLab/iTrialSpace"},
+    { "label": "Code (GitHub)", "url": "https://github.com/tusharlabratory/itrialspace" }
+  ]
+},
   {
     "id": "haid-dataset",
     "title": "HAID",
@@ -20,18 +33,5 @@
     "paper": "",
     "image": "images/resources/AI_Lung_Models.png",
     "link": "https://zenodo.org/records/14967976"
-  },
-  {
-  "name": "iTrialSpace",
-  "type": "Software + Dataset",
-  "description": "Cohort-by-specification engine for lung-CT AI: declare a virtual trial by prevalence, nodule size, lobe distribution, and demographics; synthesize anatomically grounded CTs; evaluate CADe/CADx/VLMs under controlled conditions. 13 trial modes, 44K+ synthetic volumes, and a zero-shot VLM benchmark.",
-  "license": "Noncommercial research use",
-  "image": "/images/news/itrialspace_banner.jpeg",
-  "links": [
-    { "label": "Paper", "url": "https://arxiv.org/abs/2605.05761" },
-    { "label": "Dataset (Hugging Face)", "url": "https://huggingface.co/datasets/TusharLab/iTrialSpace_Lung" },
-    { "label": "Code (Hugging Face)", "url": "https://huggingface.co/TusharLab/iTrialSpace"},
-    { "label": "Code (GitHub)", "url": "https://github.com/tusharlabratory/itrialspace" }
-  ]
-}
+  }
 ]
