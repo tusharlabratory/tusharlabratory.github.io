@@ -16,7 +16,7 @@
         "Support open-source documentation and software release"
       ],
       "requirements": [
-        "Master's graduate or soon-to-be graduate in ECE, CS, BME, Data Science, or a related field",
+        "Master's/Undergrad graduate or soon-to-be graduate in ECE, CS, BME, Data Science, or a related field",
         "Strong Python programming skills",
         "Experience with LLMs and agentic AI",
         "ML / computer vision, GitHub, and Docker experience is a plus"
