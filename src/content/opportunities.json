@@ -1,6 +1,40 @@
 {
   "intro": "The Tushar Lab is a newly established and growing research group. We welcome motivated individuals with interests in medical imaging AI, data-centric machine learning, and computational health sciences.",
-  "positions": [],
+  "positions": [
+    {
+      "id": "research-assistant-2026",
+      "status": "Open",
+      "type": "Research Staff",
+      "title": "Research Assistant / Research Staff — Medical Imaging & Agentic AI",
+      "summary": "1-year contract, full-time, in-person at the University of Arizona.",
+      "description": "The Tushar Lab develops and evaluates AI-based systems for medical imaging and agentic AI applications, including chatbot-style and vision-language assistants for clinical screening and decision-making. Current work includes building programmable virtual imaging trial frameworks (e.g., iTRIALSPACE) for controlled evaluation of AI models in lung cancer screening, along with broader efforts in benchmarking model performance, consistency, and usability across imaging conditions and task settings.",
+      "faculty_lead": "Fakrul Islam Tushar, PhD — Assistant Professor, Department of Radiology and Imaging Sciences, University of Arizona",
+      "responsibilities": [
+        "Build and test AI models and prototype assistants",
+        "Develop evaluation pipelines and implement benchmark tasks and testing protocols",
+        "Design performance and usability metrics",
+        "Support open-source documentation and software release"
+      ],
+      "requirements": [
+        "Master's graduate or soon-to-be graduate in ECE, CS, BME, Data Science, or a related field",
+        "Strong Python programming skills",
+        "Experience with LLMs and agentic AI",
+        "ML / computer vision, GitHub, and Docker experience is a plus"
+      ],
+      "outcomes": "Contributions to lab research infrastructure, prototype AI tools, reproducible open-source evaluation toolkits, and potential co-authorship on peer-reviewed publications.",
+      "details": [
+        { "label": "Position Type", "value": "1-year contract, full-time" },
+        { "label": "Location", "value": "University of Arizona, Tucson, AZ (in-person)" },
+        { "label": "Start Date", "value": "As soon as possible" },
+        { "label": "Eligibility", "value": "Applicants must currently reside in the US and hold valid work authorization (F1/OPT/STEM OPT/Work Permit/Citizen). Priority will be given to candidates already in the USA who can start as soon as possible." },
+        { "label": "Review", "value": "Applications are reviewed on a rolling basis" }
+      ],
+      "apply_url": "https://docs.google.com/forms/d/e/1FAIpQLSfq4K7tBsfeJqkELySFVpG1Vn0wYfWnQmOKYoPgd1XGH-py6Q/viewform",
+      "apply_label": "Apply via Google Form",
+      "apply_note": "Complete the application form, including your CV, relevant experience, and research background.",
+      "contact": "ftushar@arizona.edu"
+    }
+  ],
   "how_to_apply": "If our research resonates with you, we encourage you to reach out directly via email at ftushar@arizona.edu. Please include your CV and a brief statement of research interests. Specific positions will be posted here as they become available.",
-  "general_message": "While specific positions have not yet been finalized, we anticipate openings for PhD students, postdoctoral researchers, and research staff in the near future. We are always eager to hear from motivated individuals. If our research resonates with you, we encourage you to check back here for updates or reach out directly."
+  "general_message": "Beyond the positions listed above, we anticipate additional openings for PhD students, postdoctoral researchers, and research staff in the near future. We are always eager to hear from motivated individuals. If our research resonates with you, we encourage you to check back here for updates or reach out directly."
 }

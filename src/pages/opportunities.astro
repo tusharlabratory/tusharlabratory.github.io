@@ -18,15 +18,6 @@ const base = import.meta.env.BASE_URL;
     <div class="container opp-layout">
 
       <div class="opp-main">
-        <div class="general-card card">
-          <h3>We're Growing</h3>
-          <div class="divider"></div>
-          <p>{opp.general_message}</p>
-          <a href={`mailto:${site.email}`} class="btn btn-ghost" style="margin-top:var(--space-sm);align-self:flex-start;">
-            Get in Touch &rarr;
-          </a>
-        </div>
-
         {opp.positions.length > 0 && (
           <div class="positions-list">
             <h3 style="margin-bottom:var(--space-md)">Open Positions</h3>
@@ -37,10 +28,26 @@ const base = import.meta.env.BASE_URL;
                   <span class="tag" style="margin-left:0.4rem">{pos.type}</span>
                 </div>
                 <h4 class="pos-title">{pos.title}</h4>
+                {pos.summary && <p class="pos-summary">{pos.summary}</p>}
+                {pos.faculty_lead && (
+                  <p class="pos-lead"><span class="pos-lead-label">Faculty Lead</span>{pos.faculty_lead}</p>
+                )}
                 <p class="pos-desc">{pos.description}</p>
+
+                {pos.responsibilities?.length > 0 && (
+                  <div class="pos-req">
+                    <h4 class="req-title">Responsibilities</h4>
+                    <ul class="req-list">
+                      {pos.responsibilities.map((r: string) => (
+                        <li class="req-item"><span class="req-check">&check;</span>{r}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
                 {pos.requirements?.length > 0 && (
                   <div class="pos-req">
-                    <h4 class="req-title">Requirements</h4>
+                    <h4 class="req-title">Desired Background</h4>
                     <ul class="req-list">
                       {pos.requirements.map((r: string) => (
                         <li class="req-item"><span class="req-check">&check;</span>{r}</li>
@@ -48,13 +55,52 @@ const base = import.meta.env.BASE_URL;
                     </ul>
                   </div>
                 )}
-                <a href={`mailto:${pos.contact}?subject=[${pos.type}] Application`} class="btn btn-primary pos-btn">
-                  Apply via Email &rarr;
-                </a>
+
+                {pos.outcomes && (
+                  <div class="pos-req">
+                    <h4 class="req-title">Expected Outcomes</h4>
+                    <p class="pos-desc">{pos.outcomes}</p>
+                  </div>
+                )}
+
+                {pos.details?.length > 0 && (
+                  <dl class="pos-details">
+                    {pos.details.map((d: any) => (
+                      <div class="pos-detail">
+                        <dt>{d.label}</dt>
+                        <dd>{d.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+
+                {pos.apply_note && <p class="pos-apply-note">{pos.apply_note}</p>}
+
+                <div class="pos-actions">
+                  {pos.apply_url && (
+                    <a href={pos.apply_url} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                      {pos.apply_label || 'Apply Now'} &rarr;
+                    </a>
+                  )}
+                  {pos.contact && (
+                    <a href={`mailto:${pos.contact}?subject=${encodeURIComponent(`[${pos.type}] ${pos.title}`)}`} class="btn btn-ghost">
+                      Email a Question
+                    </a>
+                  )}
+                </div>
               </div>
             ))}
           </div>
         )}
+
+        <div class="general-card card">
+          <h3>We're Growing</h3>
+          <div class="divider"></div>
+          <p>{opp.general_message}</p>
+          <a href={`mailto:${site.email}`} class="btn btn-ghost" style="margin-top:var(--space-sm);align-self:flex-start;">
+            Get in Touch &rarr;
+          </a>
+        </div>
       </div>
 
       <aside class="opp-sidebar">
@@ -130,6 +176,48 @@ const base = import.meta.env.BASE_URL;
 }
 .req-check { color: var(--primary); flex-shrink: 0; font-weight: 600; }
 .pos-btn { align-self: flex-start; margin-top: 0.25rem; }
+
+.pos-summary {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+.pos-lead { font-size: 0.875rem; color: var(--gray-600); line-height: 1.6; }
+.pos-lead-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 0.2rem;
+}
+
+.pos-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem 1.5rem;
+  padding: 1rem 0 0.25rem;
+  border-top: 1px solid var(--gray-200);
+}
+.pos-detail dt {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 0.25rem;
+}
+.pos-detail dd { font-size: 0.875rem; line-height: 1.6; color: var(--gray-600); }
+
+.pos-apply-note { font-size: 0.875rem; line-height: 1.7; color: var(--gray-600); }
+
+.pos-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
 
 /* Sidebar */
 .opp-sidebar {
