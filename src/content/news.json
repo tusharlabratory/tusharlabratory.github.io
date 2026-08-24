@@ -8,5 +8,15 @@
     "content": "The Tushar Lab is a newly established research group at the University of Arizona dedicated to advancing trustworthy, data-centric AI for healthcare and medicine. Our work brings together data discovery, intelligent tools, and the integration of clinical, simulated, and synthetic data to support more reliable and clinically grounded AI. The lab website is now live at https://tusharlabratory.github.io/, and our GitHub is available at https://github.com/tusharlabratory. We are actively building the lab and welcome interest from students, postdoctoral researchers, and collaborators who share our vision for rigorous and impactful healthcare AI.",
     "link": "https://tusharlabratory.github.io/",
     "image": "/images/news/New_TusharLab_launch.png"
-  }
+  },
+  {
+  "id": "sashimi-2026",
+  "date": "2026-08-23",
+  "category": "Publication",
+  "title": "Paper accepted at SASHIMI 2026 (MICCAI 2026)",
+  "summary": "Our collaborative work with the Duke Center for Virtual Imaging Trials has been accepted at the SASHIMI 2026 Workshop, held in conjunction with MICCAI 2026 in Strasbourg.",
+  "content": "The paper explores how physics-based digital twins and simulated CT can augment clinical datasets to improve lung nodule detection, segmentation, and malignancy classification — addressing the persistent challenge of limited annotated data in medical imaging. We look forward to presenting the work in Strasbourg.",
+  "link": "https://arxiv.org/abs/2502.21187",
+  "image": "/images/news/SASHIMI_2026_acceptance.jpeg"
+}
 ]
