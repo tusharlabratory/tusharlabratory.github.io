@@ -1,13 +1,13 @@
 [
     {
+  "id": "itrialspaceDataset",
   "title": "iTrialSpace",
   "name": "iTrialSpace",
-  "type": "Software + Dataset",
+  "type": "Model",
   "description": "Cohort-by-specification engine for lung-CT AI: declare a virtual trial by prevalence, nodule size, lobe distribution, and demographics; synthesize anatomically grounded CTs; evaluate CADe/CADx/VLMs under controlled conditions. 13 trial modes, 44K+ synthetic volumes, and a zero-shot VLM benchmark.",
-  "license": "Noncommercial research use",
   "image": "/images/news/itrialspace_banner.jpeg",
-  "paper": "https://arxiv.org/abs/2605.05761",
   "github": "",
+  "paper": "",
   "links": "https://huggingface.co/TusharLab/iTrialSpace"
   },
   {
