@@ -9,7 +9,19 @@
     "link": "https://tusharlabratory.github.io/",
     "image": "/images/news/New_TusharLab_launch.png"
   },
-  {
+
+{
+  "id": "itrialspace-2026",
+  "date": "2026-06-23",
+  "category": "Release",
+  "title": "Introducing iTrialSpace — the first public release from Tushar Lab",
+  "summary": "An engine that flips lung-CT AI evaluation from \"find more data\" to \"specify the data you need\": declare a cohort by prevalence, nodule size, lobe distribution, and demographics, and the engine manufactures anatomically grounded synthetic CTs to match.",
+  "content": "Most lung-CT AI is evaluated on whatever a retrospective dataset happens to contain. iTrialSpace lets you declare a trial by its statistical properties — calibrated to published screening trials such as NLST and NELSON — then evaluates CADe, CADx, and vision-language models under controlled, one-variable-at-a-time conditions. Donor nodule masks are placed into real host lung anatomy and rendered by NodMAISI, with 13 trial modes spanning prevalence control, size and location sensitivity, cross-dataset transfer, multi-round screening, and patient digital twins. The public release includes 44K+ synthetic CT volumes (~3 TB) with organ and nodule masks, a ready-to-use VLM benchmark of 42K+ evaluation cases under four spatial-guidance conditions, 13K+ donor nodule profiles from seven public datasets, and tooling to run the same pipeline on real CT. Our flagship Virtual Lesion Study — 3 VLMs × 3 tasks × 4 conditions × 13 trial modes × 7 datasets, roughly 2M inference calls — found that synthetic results track real ones closely (Spearman ρ = 0.93) while exposing shortcuts that fixed benchmarks miss. Everything is open for noncommercial research. This work was done with Umme Hafsa, Joseph Lo, and Geoffrey Rubin, supported by the University of Arizona Department of Radiology & Imaging Sciences and the Duke Center for Virtual Imaging Trials, and builds on Project MONAI / MAISI (NVIDIA).",
+  "link": "https://arxiv.org/abs/2605.05761",
+   "image": "/images/news/itrialspace_banner.jpeg"
+},
+
+{
   "id": "sashimi-2026",
   "date": "2026-08-23",
   "category": "Publication",
