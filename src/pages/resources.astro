@@ -7,6 +7,12 @@ const base = import.meta.env.BASE_URL;
 function assetUrl(path: string) {
   return `${base}${path.replace(/^\//, '')}`;
 }
+
+function linkLabel(url?: string) {
+  if (url?.includes('zenodo')) return 'View on Zenodo';
+  if (url?.includes('huggingface')) return 'View on Hugging Face';
+  return 'View on GitHub';
+}
 ---
 
 <BaseLayout title="Resources">
@@ -35,7 +41,7 @@ function assetUrl(path: string) {
             <div class="resource-card-body">
               <h4 class="resource-card-title">{r.title}</h4>
               <p class="resource-card-desc">{r.description}</p>
-              <span class="resource-card-link">{r.link?.includes('zenodo') ? 'View on Zenodo' : 'View on GitHub'} &rarr;</span>
+              <span class="resource-card-link">{linkLabel(r.link || r.github)} &rarr;</span>
             </div>
           </a>
         ))}
